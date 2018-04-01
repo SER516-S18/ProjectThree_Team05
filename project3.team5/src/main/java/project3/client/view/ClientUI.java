@@ -19,22 +19,64 @@ import javax.swing.JScrollBar;
 
 public class ClientUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField textField;
+	private JPanel mainPanel;
+	private JButton connectToServer;
+	private JTabbedPane mainTab;
+	private JPanel faceMetricsPanel;
+	private JPanel facePanel;
+	private JPanel faceGraphPanel;
+	private JPanel faceFeaturesPanel;
+	private JSlider blinkSlider;
+	private JSlider rightWinkSlider;
+	private JSlider leftWinkSlider;
+	private JSlider lookRLSlider;
+	private JSlider furrowBrowSlider;
+	private JSlider raiseBrowSlider;
+	private JSlider smileSlider;
+	private JSlider clenchSlider;
+	private JSlider leftSmirkSlider;
+	private JSlider rightSmirkSlider;
+	private JSlider laughSlider;
+	private JLabel blinkLabel;
+	private JLabel rightWinkLabel;
+	private JLabel leftWinkLabel;
+	private JLabel lookRLLabel;
+	private JLabel furrowBrowLabel;
+	private JLabel raiseBrowLabel;
+	private JLabel smileLabel;
+	private JLabel clenchLabel;
+	private JLabel leftSmirkLabel;
+	private JLabel rightSmirkLabel;
+	private JLabel laughLabel;
+	private JPanel performanceMetricsPanel;
+	private JPanel performanceGraphPanel;
+	private JComboBox<String> interestComboBox;
+	private JComboBox<String> engagementComboBox;
+	private JComboBox<String> stressComboBox;
+	private JComboBox<String> relaxationComboBox;
+	private JComboBox<String> excitementComboBox;
+	private JComboBox<String> focusComboBox;
+	private JLabel interestLabel;
+	private JLabel engagementLabel;
+	private JLabel stressLabel;
+	private JLabel relaxationLabel;
+	private JLabel excitementLabel;
+	private JLabel focusLabel;
+	private JLabel displayLengthLabel;
+	private JTextField xAxisLength;
+	private JLabel secondsLabel;
+	private JLabel clockLabel;
+	private JLabel timeLabel;
+	private String[] performanceMetricColors = new String[] { "Red", "Green", "Blue", "Yellow", "Pink", "Brown" };
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientUI frame = new ClientUI();
-					frame.setVisible(true);
+					ClientUI clientMainFrame = new ClientUI();
+					clientMainFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,213 +84,217 @@ public class ClientUI extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
+	
 	public ClientUI() {
 		setTitle("Client");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1006, 608);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBounds(100, 100, 1015, 616);
+		mainPanel = new JPanel();
+		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(mainPanel);
+		mainPanel.setLayout(null);
 		
-		JButton Connect = new JButton("Connect");
-		Connect.setBounds(863, 5, 117, 29);
-		contentPane.add(Connect);
+		connectToServer = new JButton("Connect");
+		connectToServer.setBounds(863, 5, 117, 29);
+		mainPanel.add(connectToServer);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(6, 41, 984, 528);
-		contentPane.add(tabbedPane);
+		mainTab =new JTabbedPane(JTabbedPane.TOP);
+		mainTab.setBounds(6, 40, 1003, 548);
+		mainPanel.add(mainTab);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		tabbedPane.addTab("Facial Expressions", null, panel, null);
-		panel.setLayout(null);
+		faceMetricsPanel = new JPanel();
+		faceMetricsPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		mainTab.addTab("Facial Expressions", null, faceMetricsPanel, null);
+		faceMetricsPanel.setLayout(null);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(6, 11, 310, 478);
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.add(panel_2);
+		facePanel = new JPanel();
+		facePanel.setBounds(16, 11, 300, 478);
+		facePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		faceMetricsPanel.add(facePanel);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(326, 11, 341, 478);
-		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.add(panel_4);
+		faceGraphPanel = new JPanel();
+		faceGraphPanel.setBounds(326, 11, 341, 478);
+		faceGraphPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		faceMetricsPanel.add(faceGraphPanel);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.setBounds(677, 11, 292, 478);
-		panel.add(panel_3);
-		panel_3.setLayout(null);
+		faceFeaturesPanel = new JPanel();
+		faceFeaturesPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		faceFeaturesPanel.setBounds(677, 11, 292, 478);
+		faceMetricsPanel.add(faceFeaturesPanel);
+		faceFeaturesPanel.setLayout(null);
 		
-		JSlider slider = new JSlider();
-		slider.setBounds(82, 35, 200, 26);
+		blinkSlider = new JSlider();
+		blinkSlider.setBounds(96, 40, 195, 26);
+		faceFeaturesPanel.add(blinkSlider);
 		
-		panel_3.add(slider);
+		blinkLabel = new JLabel("Blink");
+		blinkLabel.setBounds(10, 40, 86, 26);
+		faceFeaturesPanel.add(blinkLabel);
 		
-		JLabel lblBlink = new JLabel("Blink");
-		lblBlink.setBounds(10, 40, 72, 14);
-		panel_3.add(lblBlink);
+		rightWinkSlider = new JSlider();
+		rightWinkSlider.setBounds(96, 72, 195, 26);
+		faceFeaturesPanel.add(rightWinkSlider);
 		
-		JSlider slider_1 = new JSlider();
-		slider_1.setBounds(82, 72, 200, 26);
-		panel_3.add(slider_1);
+		leftWinkSlider = new JSlider();
+		leftWinkSlider.setBounds(96, 109, 195, 26);
+		faceFeaturesPanel.add(leftWinkSlider);
 		
-		JSlider slider_2 = new JSlider();
-		slider_2.setBounds(82, 109, 200, 26);
-		panel_3.add(slider_2);
+		lookRLSlider = new JSlider();
+		lookRLSlider.setBounds(96, 146, 195, 26);
+		faceFeaturesPanel.add(lookRLSlider);
 		
-		JSlider slider_3 = new JSlider();
-		slider_3.setBounds(82, 146, 200, 26);
-		panel_3.add(slider_3);
+		furrowBrowSlider = new JSlider();
+		furrowBrowSlider.setBounds(96, 205, 195, 26);
+		faceFeaturesPanel.add(furrowBrowSlider);
 		
-		JSlider slider_4 = new JSlider();
-		slider_4.setBounds(82, 205, 200, 26);
-		panel_3.add(slider_4);
+		raiseBrowSlider = new JSlider();
+		raiseBrowSlider.setBounds(96, 242, 195, 26);
+		faceFeaturesPanel.add(raiseBrowSlider);
 		
-		JSlider slider_5 = new JSlider();
-		slider_5.setBounds(82, 242, 200, 26);
-		panel_3.add(slider_5);
+		smileSlider = new JSlider();
+		smileSlider.setBounds(96, 293, 195, 26);
+		faceFeaturesPanel.add(smileSlider);
 		
-		JSlider slider_6 = new JSlider();
-		slider_6.setBounds(82, 293, 200, 26);
-		panel_3.add(slider_6);
+		clenchSlider = new JSlider();
+		clenchSlider.setBounds(96, 330, 195, 26);
+		faceFeaturesPanel.add(clenchSlider);
 		
-		JSlider slider_7 = new JSlider();
-		slider_7.setBounds(82, 330, 200, 26);
-		panel_3.add(slider_7);
+		leftSmirkSlider = new JSlider();
+		leftSmirkSlider.setBounds(96, 367, 195, 26);
+		faceFeaturesPanel.add(leftSmirkSlider);
 		
-		JSlider slider_8 = new JSlider();
-		slider_8.setBounds(82, 367, 200, 26);
-		panel_3.add(slider_8);
+		rightSmirkSlider = new JSlider();
+		rightSmirkSlider.setBounds(96, 404, 195, 26);
+		faceFeaturesPanel.add(rightSmirkSlider);
 		
-		JSlider slider_9 = new JSlider();
-		slider_9.setBounds(82, 404, 200, 26);
-		panel_3.add(slider_9);
+		laughSlider = new JSlider();
+		laughSlider.setBounds(96, 441, 195, 26);
+		faceFeaturesPanel.add(laughSlider);
 		
-		JSlider slider_10 = new JSlider();
-		slider_10.setBounds(82, 441, 200, 26);
-		panel_3.add(slider_10);
+		rightWinkLabel = new JLabel("Right Wink");
+		rightWinkLabel.setBounds(10, 72, 86, 26);
+		faceFeaturesPanel.add(rightWinkLabel);
 		
-		JLabel lblRightWink = new JLabel("Right Wink");
-		lblRightWink.setBounds(10, 72, 72, 14);
-		panel_3.add(lblRightWink);
+		leftWinkLabel = new JLabel("Left Wink");
+		leftWinkLabel.setBounds(10, 109, 86, 26);
+		faceFeaturesPanel.add(leftWinkLabel);
 		
-		JLabel lblLeftWink = new JLabel("Left Wink");
-		lblLeftWink.setBounds(10, 109, 72, 14);
-		panel_3.add(lblLeftWink);
+		lookRLLabel = new JLabel("Look R/L");
+		lookRLLabel.setBounds(10, 146, 86, 26);
+		faceFeaturesPanel.add(lookRLLabel);
 		
-		JLabel lblLookRl = new JLabel("Look R/L");
-		lblLookRl.setBounds(10, 146, 72, 14);
-		panel_3.add(lblLookRl);
+		furrowBrowLabel = new JLabel("Furrow Brow");
+		furrowBrowLabel.setBounds(10, 205, 86, 26);
+		faceFeaturesPanel.add(furrowBrowLabel);
 		
-		JLabel lblFurrowBrow = new JLabel("Furrow Brow");
-		lblFurrowBrow.setBounds(10, 205, 72, 14);
-		panel_3.add(lblFurrowBrow);
+		raiseBrowLabel = new JLabel("Raise Brow");
+		raiseBrowLabel.setBounds(10, 242, 86, 26);
+		faceFeaturesPanel.add(raiseBrowLabel);
 		
-		JLabel lblRaiseBrow = new JLabel("Raise Brow");
-		lblRaiseBrow.setBounds(10, 242, 72, 14);
-		panel_3.add(lblRaiseBrow);
+		smileLabel = new JLabel("Smile");
+		smileLabel.setBounds(10, 293, 86, 26);
+		faceFeaturesPanel.add(smileLabel);
 		
-		JLabel lblSmile = new JLabel("Smile");
-		lblSmile.setBounds(10, 293, 72, 14);
-		panel_3.add(lblSmile);
+		clenchLabel = new JLabel("Clench");
+		clenchLabel.setBounds(10, 330, 86, 26);
+		faceFeaturesPanel.add(clenchLabel);
 		
-		JLabel lblClench = new JLabel("Clench");
-		lblClench.setBounds(10, 330, 72, 14);
-		panel_3.add(lblClench);
+		leftSmirkLabel = new JLabel("Left Smirk");
+		leftSmirkLabel.setBounds(10, 367, 86, 26);
+		faceFeaturesPanel.add(leftSmirkLabel);
 		
-		JLabel lblLeftSmirk = new JLabel("Left Smirk");
-		lblLeftSmirk.setBounds(10, 367, 72, 14);
-		panel_3.add(lblLeftSmirk);
+		rightSmirkLabel = new JLabel("Right Smirk");
+		rightSmirkLabel.setBounds(10, 404, 86, 26);
+		faceFeaturesPanel.add(rightSmirkLabel);
 		
-		JLabel lblRightSmirk = new JLabel("Right Smirk");
-		lblRightSmirk.setBounds(10, 404, 72, 14);
-		panel_3.add(lblRightSmirk);
+		laughLabel = new JLabel("Laugh");
+		laughLabel.setBounds(10, 441, 86, 26);
+		faceFeaturesPanel.add(laughLabel);
 		
-		JLabel lblLaugh = new JLabel("Laugh");
-		lblLaugh.setBounds(10, 441, 72, 14);
-		panel_3.add(lblLaugh);
+		performanceMetricsPanel = new JPanel();
+		mainTab.addTab("Performance Metrics", null, performanceMetricsPanel, null);
+		performanceMetricsPanel.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Performance Metrics", null, panel_1, null);
-		panel_1.setLayout(null);
+		performanceGraphPanel = new JPanel();
+		performanceGraphPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		performanceGraphPanel.setBounds(6, 6, 641, 483);
+		performanceMetricsPanel.add(performanceGraphPanel);
 		
-		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_6.setBounds(6, 6, 641, 483);
-		panel_1.add(panel_6);
+		interestComboBox = new JComboBox<String>(performanceMetricColors);
+		interestComboBox.setSelectedIndex(0);
+		interestComboBox.setBounds(657, 34, 115, 27);
+		performanceMetricsPanel.add(interestComboBox);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(657, 34, 115, 27);
-		panel_1.add(comboBox);
+		engagementComboBox = new JComboBox<String>(performanceMetricColors);
+		engagementComboBox.setSelectedIndex(1);
+		engagementComboBox.setBounds(834, 34, 108, 27);
+		performanceMetricsPanel.add(engagementComboBox);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(834, 34, 108, 27);
-		panel_1.add(comboBox_1);
+		stressComboBox = new JComboBox<String>(performanceMetricColors);
+		stressComboBox.setSelectedIndex(2);
+		stressComboBox.setBounds(657, 100, 108, 27);
+		performanceMetricsPanel.add(stressComboBox);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(657, 100, 108, 27);
-		panel_1.add(comboBox_2);
+		relaxationComboBox = new JComboBox<String>(performanceMetricColors);
+		relaxationComboBox.setSelectedIndex(3);
+		relaxationComboBox.setBounds(834, 100, 108, 27);
+		performanceMetricsPanel.add(relaxationComboBox);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(834, 100, 108, 27);
-		panel_1.add(comboBox_3);
+		excitementComboBox = new JComboBox<String>(performanceMetricColors);
+		excitementComboBox.setSelectedIndex(4);
+		excitementComboBox.setBounds(657, 163, 108, 27);
+		performanceMetricsPanel.add(excitementComboBox);
 		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(657, 163, 108, 27);
-		panel_1.add(comboBox_4);
+		focusComboBox = new JComboBox<String>(performanceMetricColors);
+		focusComboBox.setSelectedIndex(5);
+		focusComboBox.setBounds(834, 163, 108, 27);
+		performanceMetricsPanel.add(focusComboBox);
 		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(834, 163, 108, 27);
-		panel_1.add(comboBox_5);
+		interestLabel = new JLabel("Interest");
+		interestLabel.setBounds(657, 18, 61, 16);
+		performanceMetricsPanel.add(interestLabel);
 		
-		JLabel lblInterest = new JLabel("Interest");
-		lblInterest.setBounds(657, 18, 61, 16);
-		panel_1.add(lblInterest);
+		engagementLabel = new JLabel("Engagement");
+		engagementLabel.setBounds(837, 18, 77, 16);
+		performanceMetricsPanel.add(engagementLabel);
 		
-		JLabel lblEngagement = new JLabel("Engagement");
-		lblEngagement.setBounds(837, 18, 77, 16);
-		panel_1.add(lblEngagement);
+		stressLabel = new JLabel(" Stress");
+		stressLabel.setBounds(666, 84, 61, 16);
+		performanceMetricsPanel.add(stressLabel);
 		
-		JLabel lblStress = new JLabel(" Stress");
-		lblStress.setBounds(666, 84, 61, 16);
-		panel_1.add(lblStress);
+		relaxationLabel = new JLabel("Relaxation");
+		relaxationLabel.setBounds(837, 84, 77, 16);
+		performanceMetricsPanel.add(relaxationLabel);
 		
-		JLabel lblRelaxation = new JLabel("Relaxation");
-		lblRelaxation.setBounds(837, 84, 77, 16);
-		panel_1.add(lblRelaxation);
+		excitementLabel = new JLabel("Excitement");
+		excitementLabel.setBounds(665, 148, 74, 16);
+		performanceMetricsPanel.add(excitementLabel);
 		
-		JLabel lblExcitement = new JLabel("Excitement");
-		lblExcitement.setBounds(665, 148, 74, 16);
-		panel_1.add(lblExcitement);
+		focusLabel = new JLabel("Focus");
+		focusLabel.setBounds(834, 148, 61, 16);
+		performanceMetricsPanel.add(focusLabel);
 		
-		JLabel lblFocus = new JLabel("Focus");
-		lblFocus.setBounds(834, 148, 61, 16);
-		panel_1.add(lblFocus);
+		displayLengthLabel = new JLabel("Display Length");
+		displayLengthLabel.setBounds(700, 341, 94, 16);
+		performanceMetricsPanel.add(displayLengthLabel);
 		
-		JLabel lblDisplayLength = new JLabel("Display Length");
-		lblDisplayLength.setBounds(700, 341, 94, 16);
-		panel_1.add(lblDisplayLength);
+		xAxisLength = new JTextField("30");
+		xAxisLength.setBounds(804, 336, 91, 26);
+		performanceMetricsPanel.add(xAxisLength);
+		xAxisLength.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(804, 336, 91, 26);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		secondsLabel = new JLabel("Seconds");
+		secondsLabel.setBounds(908, 341, 61, 16);
+		performanceMetricsPanel.add(secondsLabel);
 		
-		JLabel lblSeconds = new JLabel("Seconds");
-		lblSeconds.setBounds(908, 341, 61, 16);
-		panel_1.add(lblSeconds);
+		clockLabel = new JLabel("Time: ");
+		clockLabel.setBounds(731, 11, 39, 16);
+		mainPanel.add(clockLabel);
+		clockLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel lblTime = new JLabel("Time: ");
-		lblTime.setBounds(731, 11, 39, 16);
-		contentPane.add(lblTime);
-		lblTime.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		JLabel label = new JLabel("");
-		label.setBounds(764, 11, 61, 16);
-		contentPane.add(label);
+		timeLabel = new JLabel("");
+		timeLabel.setBounds(764, 11, 61, 16);
+		mainPanel.add(timeLabel);
 	}
 }
