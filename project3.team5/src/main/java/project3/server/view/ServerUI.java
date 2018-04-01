@@ -92,6 +92,7 @@ public class ServerUI extends JFrame {
 		gbc_spinner.gridy = 2;
 		panel.add(spinner, gbc_spinner);
 		
+		//Auto-reset checkbox
 		JCheckBox chckbxAutoReset = new JCheckBox("Auto Reset");
 		GridBagConstraints gbc_chckbxAutoReset = new GridBagConstraints();
 		gbc_chckbxAutoReset.insets = new Insets(0, 0, 0, 5);
@@ -99,6 +100,7 @@ public class ServerUI extends JFrame {
 		gbc_chckbxAutoReset.gridy = 3;
 		panel.add(chckbxAutoReset, gbc_chckbxAutoReset);
 		
+		//Send button
 		JToggleButton tglbtnSend = new JToggleButton("SEND");
 		GridBagConstraints gbc_tglbtnSend = new GridBagConstraints();
 		gbc_tglbtnSend.insets = new Insets(0, 0, 0, 5);
@@ -106,6 +108,7 @@ public class ServerUI extends JFrame {
 		gbc_tglbtnSend.gridy = 3;
 		panel.add(tglbtnSend, gbc_tglbtnSend);
 		
+		//Detection Panel
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
@@ -122,6 +125,7 @@ public class ServerUI extends JFrame {
 		Border detectionBorder = BorderFactory.createCompoundBorder(detectionMargin, detection);
 		panel_1.setBorder(detectionBorder);
 		
+		//Creating Upperface labels and options
 		JLabel lblUpperface = new JLabel("UpperFace");
 		GridBagConstraints gbc_lblUpperface = new GridBagConstraints();
 		gbc_lblUpperface.insets = new Insets(0, 0, 5, 5);
