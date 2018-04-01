@@ -2,10 +2,12 @@ package project3.client.view;
 
 
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JSlider;
@@ -96,7 +98,7 @@ public class ClientUI extends JFrame {
 		mainPanel.setLayout(null);
 		
 		connectToServer = new JButton("Connect");
-		connectToServer.setBounds(863, 5, 117, 29);
+		connectToServer.setBounds(863, 15, 117, 29);
 		mainPanel.add(connectToServer);
 		
 		mainTab =new JTabbedPane(JTabbedPane.TOP);
@@ -289,9 +291,13 @@ public class ClientUI extends JFrame {
 		performanceMetricsPanel.add(secondsLabel);
 		
 		clockLabel = new JLabel("Time: ");
-		clockLabel.setBounds(731, 11, 39, 16);
+		clockLabel.setBounds(731, 11, 45, 45);
 		mainPanel.add(clockLabel);
 		clockLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		Image img = new ImageIcon(this.getClass().getResource("/clck.png")).getImage();
+		ImageIcon icon = new ImageIcon(img);
+		clockLabel.setIcon(icon);
 		
 		timeLabel = new JLabel("");
 		timeLabel.setBounds(764, 11, 61, 16);
