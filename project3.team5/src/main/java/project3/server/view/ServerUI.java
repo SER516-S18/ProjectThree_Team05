@@ -151,6 +151,7 @@ public class ServerUI extends JFrame {
 				gbc_choice_2.gridy = 2;
 				panel_1.add(choice_2, gbc_choice_2);
 		
+		//Adding lowerFace and its options
 		JLabel lblLowerface = new JLabel("LowerFace");
 		GridBagConstraints gbc_lblLowerface = new GridBagConstraints();
 		gbc_lblLowerface.insets = new Insets(0, 0, 5, 5);
@@ -175,6 +176,7 @@ public class ServerUI extends JFrame {
 		gbc_choice_3.gridy = 4;
 		panel_1.add(choice_3, gbc_choice_3);
 		
+		//Creating Radio Actibve button
 		JRadioButton rdbtnActive = new JRadioButton("Active");
 		GridBagConstraints gbc_rdbtnActive = new GridBagConstraints();
 		gbc_rdbtnActive.insets = new Insets(0, 0, 5, 5);
@@ -182,6 +184,7 @@ public class ServerUI extends JFrame {
 		gbc_rdbtnActive.gridy = 9;
 		panel_1.add(rdbtnActive, gbc_rdbtnActive);
 		
+		//Creating options
 		Choice choice_1 = new Choice();
 		choice_1.add("Blink");
 		choice_1.add("Wink Left");
@@ -196,6 +199,7 @@ public class ServerUI extends JFrame {
 		gbc_chckbxNewCheckBox.gridy = 9;
 		panel_1.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
 		
+		//Creating Eye Label
 		JLabel lblEye = new JLabel("Eye");
 		GridBagConstraints gbc_lblEye = new GridBagConstraints();
 		gbc_lblEye.insets = new Insets(0, 0, 5, 5);
