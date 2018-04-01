@@ -295,9 +295,9 @@ public class ClientUI extends JFrame {
 		mainPanel.add(clockLabel);
 		clockLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		Image img = new ImageIcon(this.getClass().getResource("/clck.png")).getImage();
+		/*Image img = new ImageIcon(this.getClass().getResource("res/clck.png")).getImage();
 		ImageIcon icon = new ImageIcon(img);
-		clockLabel.setIcon(icon);
+		clockLabel.setIcon(icon);*/
 		
 		timeLabel = new JLabel("");
 		timeLabel.setBounds(764, 11, 61, 16);
