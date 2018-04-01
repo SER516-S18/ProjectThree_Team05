@@ -1,7 +1,5 @@
 package project3.server.view;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -33,7 +31,7 @@ public class ServerUI extends JFrame {
 	private static final Font FONT = new Font("Times New Roman", Font.BOLD, 14);
 
 	/**
-	 * Launch the application.
+	 * Launches the server UI application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
