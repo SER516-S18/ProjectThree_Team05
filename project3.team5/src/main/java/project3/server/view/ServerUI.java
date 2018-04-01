@@ -214,6 +214,7 @@ public class ServerUI extends JFrame {
 		gbc_choice_1.gridy = 10;
 		panel_1.add(choice_1, gbc_choice_1);
 		
+		//Performance Metrics added
 		JLabel lblPerformanceMetrics = new JLabel("Performance Metrics");
 		GridBagConstraints gbc_lblPerformanceMetrics = new GridBagConstraints();
 		gbc_lblPerformanceMetrics.insets = new Insets(0, 0, 0, 5);
@@ -222,8 +223,8 @@ public class ServerUI extends JFrame {
 		panel_1.add(lblPerformanceMetrics, gbc_lblPerformanceMetrics);
 		
 		Choice choice = new Choice();
-		choice.add("Ok");
-		choice.add("Not Enough Data");
+		choice.add("OK");
+		choice.add("Requires More Data");
 		GridBagConstraints gbc_choice = new GridBagConstraints();
 		gbc_choice.insets = new Insets(0, 0, 0, 5);
 		gbc_choice.gridx = 3;
