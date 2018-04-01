@@ -57,6 +57,7 @@ public class ServerUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		//creates the panel for Interaction
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -73,6 +74,7 @@ public class ServerUI extends JFrame {
 		Border interactionBorder = BorderFactory.createCompoundBorder(interactionMargin, interaction);
 		panel.setBorder(interactionBorder);
 		
+		//creates spinner to genrerate numbers at required intervals.
 		SpinnerModel value = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
 		
 		JLabel lblEmoti = new JLabel("EmoState Interval(in Sec)");
