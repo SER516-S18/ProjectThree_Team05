@@ -47,7 +47,7 @@ public class ServerUI extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Creates the UI for Server 
 	 */
 	public serverFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
