@@ -290,15 +290,16 @@ public class ClientUI extends JFrame {
 		secondsLabel.setBounds(908, 341, 61, 16);
 		performanceMetricsPanel.add(secondsLabel);
 		
-		clockLabel = new JLabel("Time: ");
+		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
 		clockLabel.setBounds(731, 11, 45, 45);
 		mainPanel.add(clockLabel);
 		clockLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		/*Image img = new ImageIcon(this.getClass().getResource("res/clck.png")).getImage();
+		/*Image img = new ImageIcon("clck.png");
 		ImageIcon icon = new ImageIcon(img);
-		clockLabel.setIcon(icon);*/
-		
+		clockLabel.setIcon(icon);
+		*/
+		//mainPanel.add(l);
 		timeLabel = new JLabel("");
 		timeLabel.setBounds(764, 11, 61, 16);
 		mainPanel.add(timeLabel);
