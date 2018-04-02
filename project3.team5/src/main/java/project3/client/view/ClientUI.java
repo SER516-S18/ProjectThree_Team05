@@ -16,12 +16,18 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import project3.client.controller.ClientExpression;
+import project3.client.model.ExpressiveModel;
+
 import java.awt.Color;
 import javax.swing.JScrollBar;
 
 public class ClientUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private ClientExpression clientExpression;
+	private String expressionName;
 	private JPanel mainPanel;
 	private JButton connectToServer;
 	private JTabbedPane mainTab;
@@ -124,7 +130,16 @@ public class ClientUI extends JFrame {
 		
 		gifLabel = new JLabel(new ImageIcon("res/laugh.png"));
 		gifLabel.setBounds(27, 110, 260, 240);
-		facePanel.add(gifLabel);
+		facePanel.add(gifLabel);	
+		
+		clientExpression = new ClientExpression();
+		expressionName = clientExpression.getExpression();
+		if(expressionName!= null) {
+			facePanel.remove(gifLabel);
+			gifLabel = new JLabel(new ImageIcon("res/"+expressionName));
+			gifLabel.setBounds(27, 110, 260, 240);
+			facePanel.add(gifLabel);	
+		}
 
 		faceGraphPanel = new JPanel();
 		faceGraphPanel.setBounds(326, 11, 341, 478);
