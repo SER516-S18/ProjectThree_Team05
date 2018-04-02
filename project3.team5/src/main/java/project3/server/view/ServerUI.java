@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -17,8 +18,12 @@ import java.awt.GridBagConstraints;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JCheckBox;
 import javax.swing.JToggleButton;
 import javax.swing.JRadioButton;
@@ -37,8 +42,7 @@ public class ServerUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					serverFrame frame = new serverFrame();
-					frame.setVisible(true);
+					new ServerUI().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -77,7 +81,7 @@ public class ServerUI extends JFrame {
 		//creates spinner to genrerate numbers at required intervals.
 		SpinnerModel value = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
 		
-		JLabel lblEmoti = new JLabel("EmoState Interval(in Sec)");
+		JLabel lblEmoti = new JLabel("Time Interval (Sec)");
 		GridBagConstraints gbc_lblEmoti = new GridBagConstraints();
 		gbc_lblEmoti.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEmoti.gridx = 4;
@@ -92,21 +96,61 @@ public class ServerUI extends JFrame {
 		gbc_spinner.gridy = 2;
 		panel.add(spinner, gbc_spinner);
 		
-		//Auto-reset checkbox
-		JCheckBox chckbxAutoReset = new JCheckBox("Auto Reset");
+// Check box and Button
+
+        JButton buttonToggle = new JButton("Send");
+		
+		JCheckBox autoRepeatCheckBox = new JCheckBox("Auto Repeat", false);
 		GridBagConstraints gbc_chckbxAutoReset = new GridBagConstraints();
 		gbc_chckbxAutoReset.insets = new Insets(0, 0, 0, 5);
 		gbc_chckbxAutoReset.gridx = 4;
 		gbc_chckbxAutoReset.gridy = 3;
-		panel.add(chckbxAutoReset, gbc_chckbxAutoReset);
-		
-		//Send button
-		JToggleButton tglbtnSend = new JToggleButton("SEND");
+		panel.add(autoRepeatCheckBox, gbc_chckbxAutoReset);
+		autoRepeatCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
+		autoRepeatCheckBox.setEnabled(true);
+		autoRepeatCheckBox.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	
+            	//send value only once
+            	
+            	    if(autoRepeatCheckBox.isSelected()){
+            	    	
+            	        buttonToggle.setText("Start");
+        	        	autoRepeatCheckBox.setEnabled(true);
+            	        buttonToggle.addActionListener(new ActionListener() {
+
+            	            @Override
+            	            public void actionPerformed(ActionEvent e) {
+            	            	if(buttonToggle.getText().equals("Start"))
+            	            	{
+            	            		// implement start functionality here
+                	            	buttonToggle.setText("Stop");
+                    	        	autoRepeatCheckBox.setEnabled(false);	
+            	            	}
+            	            	else
+            	            	{
+
+                	            	buttonToggle.setText("Start");
+                    	        	autoRepeatCheckBox.setEnabled(true);
+            	            	}
+            	            }
+            	        });
+            	        
+            	    
+            	    }
+            	    else {
+            	    	buttonToggle.setText("Send");
+            	    	autoRepeatCheckBox.setEnabled(true);
+            	    }
+            }
+		});
 		GridBagConstraints gbc_tglbtnSend = new GridBagConstraints();
 		gbc_tglbtnSend.insets = new Insets(0, 0, 0, 5);
 		gbc_tglbtnSend.gridx = 6;
 		gbc_tglbtnSend.gridy = 3;
-		panel.add(tglbtnSend, gbc_tglbtnSend);
+		panel.add(buttonToggle, gbc_tglbtnSend);
 		
 		//Detection Panel
 		JPanel panel_1 = new JPanel();
@@ -176,7 +220,7 @@ public class ServerUI extends JFrame {
 		gbc_choice_3.gridy = 4;
 		panel_1.add(choice_3, gbc_choice_3);
 		
-		//Creating Radio Actibve button
+		//Creating Radio Active button
 		JRadioButton rdbtnActive = new JRadioButton("Active");
 		GridBagConstraints gbc_rdbtnActive = new GridBagConstraints();
 		gbc_rdbtnActive.insets = new Insets(0, 0, 5, 5);
