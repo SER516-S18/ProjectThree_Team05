@@ -70,6 +70,7 @@ public class ClientUI extends JFrame {
 	private JLabel secondsLabel;
 	private JLabel clockLabel;
 	private JLabel timeLabel;
+	private JLabel gifLabel;
 	private String[] performanceMetricColors = new String[] { "Red", "Green", "Blue", "Yellow", "Pink", "Brown" };
 
 	
@@ -94,6 +95,7 @@ public class ClientUI extends JFrame {
 		setBounds(100, 100, 1015, 616);
 		mainPanel = new JPanel();
 		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		mainPanel.setBackground(Color.WHITE);
 		setContentPane(mainPanel);
 		mainPanel.setLayout(null);
 		
@@ -103,26 +105,36 @@ public class ClientUI extends JFrame {
 		
 		mainTab =new JTabbedPane(JTabbedPane.TOP);
 		mainTab.setBounds(6, 40, 1003, 548);
+		mainTab.setBackground(Color.WHITE);
 		mainPanel.add(mainTab);
 		
 		faceMetricsPanel = new JPanel();
 		faceMetricsPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		faceMetricsPanel.setBackground(Color.WHITE);
 		mainTab.addTab("Facial Expressions", null, faceMetricsPanel, null);
 		faceMetricsPanel.setLayout(null);
 		
 		facePanel = new JPanel();
 		facePanel.setBounds(16, 11, 300, 478);
 		facePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		facePanel.setBackground(Color.WHITE);
+		facePanel.setLayout(null);
 		faceMetricsPanel.add(facePanel);
+		
+		gifLabel = new JLabel(new ImageIcon("res/laugh.png"));
+		gifLabel.setBounds(27, 110, 260, 240);
+		facePanel.add(gifLabel);
 		
 		faceGraphPanel = new JPanel();
 		faceGraphPanel.setBounds(326, 11, 341, 478);
+		faceGraphPanel.setBackground(Color.WHITE);
 		faceGraphPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		faceMetricsPanel.add(faceGraphPanel);
 		
 		faceFeaturesPanel = new JPanel();
 		faceFeaturesPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		faceFeaturesPanel.setBounds(677, 11, 292, 478);
+		faceFeaturesPanel.setBackground(Color.WHITE);
 		faceMetricsPanel.add(faceFeaturesPanel);
 		faceFeaturesPanel.setLayout(null);
 		
@@ -291,15 +303,10 @@ public class ClientUI extends JFrame {
 		performanceMetricsPanel.add(secondsLabel);
 		
 		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
-		clockLabel.setBounds(731, 11, 45, 45);
+		clockLabel.setBounds(731, 5, 45, 45);
 		mainPanel.add(clockLabel);
 		clockLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		/*Image img = new ImageIcon("clck.png");
-		ImageIcon icon = new ImageIcon(img);
-		clockLabel.setIcon(icon);
-		*/
-		//mainPanel.add(l);
 		timeLabel = new JLabel("");
 		timeLabel.setBounds(764, 11, 61, 16);
 		mainPanel.add(timeLabel);
