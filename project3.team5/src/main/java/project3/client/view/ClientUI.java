@@ -116,6 +116,7 @@ public class ClientUI extends JFrame {
 		
 		facePanel = new JPanel();
 		facePanel.setBounds(16, 11, 300, 478);
+		facePanel.setLayout(null);
 		facePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		facePanel.setBackground(Color.WHITE);
 		facePanel.setLayout(null);
@@ -124,7 +125,7 @@ public class ClientUI extends JFrame {
 		gifLabel = new JLabel(new ImageIcon("res/laugh.png"));
 		gifLabel.setBounds(27, 110, 260, 240);
 		facePanel.add(gifLabel);
-		
+
 		faceGraphPanel = new JPanel();
 		faceGraphPanel.setBounds(326, 11, 341, 478);
 		faceGraphPanel.setBackground(Color.WHITE);
