@@ -1,6 +1,6 @@
 package project3.client.controller;
 
-import project3.client.model.ExpressiveModel;
+import project3.model.ExpressiveModel;
 
 public class ClientExpression {
 

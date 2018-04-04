@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project3.client.controller.ClientExpression;
-import project3.client.model.ExpressiveModel;
+import project3.model.ExpressiveModel;
 	
 
 public class FaceMetricsPanel extends JPanel {

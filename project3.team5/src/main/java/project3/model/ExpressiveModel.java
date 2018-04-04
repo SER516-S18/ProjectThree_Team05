@@ -1,4 +1,4 @@
-package project3.client.model;
+package project3.model;
 
 public class ExpressiveModel {
 	private int blink;
@@ -13,6 +13,17 @@ public class ExpressiveModel {
 	private float smirkLeft;
 	private float smirkRight;
 	private float laugh;
+	private int TimeStamp;
+	  
+    public int getTimeStamp() {
+    	return TimeStamp;
+	}
+    
+	public void setTimeStamp(int timeStamp) {
+		TimeStamp = timeStamp;
+	}
+	
+		
 	
 	public int getBlink() {
 		return blink;
