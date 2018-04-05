@@ -8,10 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import project3.client.controller.ClientExpression;
-import project3.client.model.ExpressiveModel;
 	
 
 public class FaceMetricsPanel extends JPanel {
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		private JPanel facePanel;
 		private JLabel gifLabel;
 		private ClientExpression clientExpression;
