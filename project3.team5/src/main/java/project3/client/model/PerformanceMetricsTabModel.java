@@ -14,7 +14,7 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import com.sun.prism.paint.Color;
 /*This class contains the model for the performance metrics tab*/
 
-public class PerformanceMetricsTab {
+public class PerformanceMetricsTabModel{
  private double interest;
  private double engagement;
  private double relaxation;
