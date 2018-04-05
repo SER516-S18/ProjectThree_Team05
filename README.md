@@ -29,6 +29,6 @@ File >> Import >> Maven >> Existing Maven Projects >> Browse to Project Folder(D
 8. Abhishek Kumar (Akuma168@asu.edu)
 9. Natalya Kumar (nkumar50@asu.edu)
 10. Minal Laad (mlaad@asu.edu)
-11. Sowmya Madabhushi 
+11. Sowmya Madabhushi (smadabh1@asu.edu)
 12. Venkata Akhil Madaraju (vmadaraj@asu.edu)
-13. Aanchal Mahajan (smadabh1@asu.edu)
+13. Aanchal Mahajan (amahaj14@asu.edu)
