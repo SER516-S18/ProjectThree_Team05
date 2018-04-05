@@ -27,17 +27,22 @@ public class ServerEndPoint implements Runnable{
 	private Session session;
     private static Set<ServerEndPoint> connections  = new CopyOnWriteArraySet<>();
     private static Thread thread; 
+    private static ServerEndPoint serverEndPoint = new ServerEndPoint();
     
     ExpressiveModel values = new ExpressiveModel();
     TimeStamp timeStamp = new TimeStamp(); 
     Timer time = timeStamp.gettimer();
     int secondspassed = 0;
     
+    public static ServerEndPoint getServerEndPointInsctance()
+    {
+    	 return serverEndPoint;
+    }
+    
 	@OnOpen
 	public void onOpen(Session session ) throws IOException, EncodeException{
 		 this.session = session;
 	        connections.add(this);
-	        time.scheduleAtFixedRate(task,timeStamp.getIntialTime() ,5000);
 	}
 	
 	
@@ -98,7 +103,7 @@ public class ServerEndPoint implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		
+		   time.scheduleAtFixedRate(task,timeStamp.getIntialTime() ,5000);
 		
 	}
 	
