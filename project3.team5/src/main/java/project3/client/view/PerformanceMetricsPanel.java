@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import project3.client.controller.PerformanceMetricsTabController;
+import project3.client.model.PerformanceMetricsTabModel;
+
 public class PerformanceMetricsPanel extends JPanel {
 	private JPanel performanceGraphPanel;
 	private JComboBox<String> interestComboBox;
@@ -25,13 +28,22 @@ public class PerformanceMetricsPanel extends JPanel {
 	private JLabel displayLengthLabel;
 	private JTextField xAxisLength;
 	private JLabel secondsLabel;
-	private String[] performanceMetricColors = new String[] { "Red", "Green", "Blue", "Yellow", "Pink", "Brown" };
+	private String[] performanceMetricColors = new String[] { "Red", "Green", "Blue", "Yellow", "Pink", "Magenta" };
+	int displayLength;
+	PerformanceMetricsTabModel performanceMetricsModel;
+	PerformanceMetricsTabController performanceMetricsController;
 
 	
 	public PerformanceMetricsPanel() {
-			setLayout(null);
+		setLayout(null);
+			
+		performanceMetricsModel = new PerformanceMetricsTabModel();
+		performanceMetricsModel.setDisplayLength(30);
+		displayLength = performanceMetricsModel.getDisplayLength();
 		
-		performanceGraphPanel = new JPanel();
+		performanceMetricsController = new PerformanceMetricsTabController("");
+		performanceGraphPanel =  performanceMetricsController.PlotPerformanceGraph(displayLength);
+		performanceMetricsController.pack();
 		performanceGraphPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		performanceGraphPanel.setBounds(6, 6, 641, 483);
 		performanceGraphPanel.setBackground(Color.white);

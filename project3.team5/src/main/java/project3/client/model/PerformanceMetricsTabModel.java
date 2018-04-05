@@ -21,12 +21,12 @@ public class PerformanceMetricsTabModel{
  private double excitement;
  private double stress;
  private double focus;
- private double displayLength;
+ private int displayLength;
  
  public void setDisplayLength(int length) {
 	 this.displayLength=length;
  }
- public double getDisplayLength() {
+ public int getDisplayLength() {
 	 return displayLength;
  }
  public XYSeries drawInterest() {
@@ -34,7 +34,7 @@ public class PerformanceMetricsTabModel{
 	 for(int i=0;i<displayLength;i++)
 	 {
 		 interest.add(displayLength, this.interest);
-	 } 
+	 }
 	 return interest;	 
  }
  public XYSeries drawEngagement() {
