@@ -18,6 +18,7 @@ import project3.model.MessageDecoder;
 import project3.model.MessageEncoder;
 import project3.model.ExpressiveModel;
 import project3.model.TimeStamp;
+import project3.model.serverConfiguations;
 
 
 
@@ -26,17 +27,31 @@ public class ServerEndPoint implements Runnable{
 	
 	private Session session;
     private static Set<ServerEndPoint> connections  = new CopyOnWriteArraySet<>();
-    private static Thread thread; 
     private static ServerEndPoint serverEndPoint = new ServerEndPoint();
+    private static boolean serverStatus = false;  
     
-    ExpressiveModel values = new ExpressiveModel();
+    
+    public  boolean isServerStatus() {
+		return serverStatus;
+	}
+
+	public void setServerStatus(boolean serverStatus) {
+		ServerEndPoint.serverStatus = serverStatus;
+	}
+
+	
+    
     TimeStamp timeStamp = new TimeStamp(); 
-    Timer time = timeStamp.gettimer();
+    Timer time ;
     int secondspassed = 0;
     
     public static ServerEndPoint getServerEndPointInsctance()
     {
-    	 return serverEndPoint;
+    	 if (serverEndPoint == null)
+    		 serverEndPoint = new ServerEndPoint();
+    	 
+         return serverEndPoint;
+    	
     }
     
 	@OnOpen
@@ -65,8 +80,8 @@ public class ServerEndPoint implements Runnable{
 	TimerTask task = new TimerTask() {
 		  public void run() {
 
-			  
-			  System.out.println("Timer : "+secondspassed);
+			  ExpressiveModel values = new ExpressiveModel();
+			  System.out.println("ServerTimer : "+secondspassed);
 			  values.setTimeStamp(timeStamp.getSecondspassed());
 			  try {
 				broadcast(values);
@@ -99,12 +114,47 @@ public class ServerEndPoint implements Runnable{
 		    }
 
 
+	public void haltSendingValues()
+	{
+		System.out.println("In timer " + time);
+			this.time.cancel();
+	}
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		System.out.println("Server status"+isServerStatus());
+		while(isServerStatus())
+		{
+			this.time = new Timer();
+			System.out.println(serverConfiguations.getServerDataInstance().isAutoReset() +","+serverConfiguations.getServerDataInstance().isSendOneTime());
+			
+			 if(serverConfiguations.getServerDataInstance().isAutoReset())
+			 {
+				 time.scheduleAtFixedRate(task,timeStamp.getIntialTime() ,5000);
+
+			 }
+			 else if (serverConfiguations.getServerDataInstance().isSendOneTime())
+			 {
+				 ExpressiveModel values = new ExpressiveModel();
+				 secondspassed++;
+				 timeStamp.setSecondspassed(secondspassed);
+				 System.out.println("ServerTimer : "+ timeStamp.getSecondspassed());
+				 System.out.println("send one value");
+				 values.setTimeStamp(timeStamp.getSecondspassed());
+				 setServerStatus(false);
+				 
+				 try {
+					broadcast(values);
+				} catch (IOException | EncodeException e) {
+					// TODO Auto-generated catch blockz
+					e.printStackTrace();
+				}
+			 }
+		}
 		
-		   time.scheduleAtFixedRate(task,timeStamp.getIntialTime() ,5000);
-		
+			 
+			 
 	}
 	
 

@@ -2,26 +2,29 @@ package project3.model;
 
 public class serverConfiguations {
 	
-	private boolean autoReset = false;
-	private boolean sendOneTime = false;
-	private serverConfiguations serverConfig = new serverConfiguations();
+	private  boolean autoReset = false;
+	private  boolean sendOneTime = true;
+	private static serverConfiguations serverConfig = new serverConfiguations();
 	
 	public boolean isAutoReset() {
-		return autoReset;
+		return this.autoReset;
 	}
-	public void setAutoReset(boolean autoReset) {
-		this.autoReset = autoReset;
+	public void setAutoReset(boolean autoResetValue) {
+		this.autoReset = autoResetValue;
 	}
 	public boolean isSendOneTime() {
-		return sendOneTime;
+		return this.sendOneTime;
 	}
-	public void setSendOneTime(boolean sendOneTime) {
-		this.sendOneTime = sendOneTime;
+	public void setSendOneTime(boolean sendOneTimeValue) {
+		this.sendOneTime = sendOneTimeValue;
 	}
 		
-	public serverConfiguations getServerDataInstance()
+	public  static serverConfiguations getServerDataInstance()
 	{
-		return this.serverConfig;
+		if(serverConfig == null)
+			serverConfig = new serverConfiguations();
+		
+		return serverConfig;
 	}
     
 }

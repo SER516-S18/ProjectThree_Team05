@@ -12,6 +12,11 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import project3.client.controller.Client;
+import project3.model.serverConfiguations;
+import project3.server.controller.Server;
+import project3.server.controller.ServerEndPoint;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -114,11 +119,21 @@ public class ServerUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	
             	//send value only once
+            	Server serverInstance = Server.getServerInstance();
             	
+            	Client clientInstance = Client.getClientInstance();
+				Thread thread1 = new Thread(serverInstance);
+				Thread thread2 = new Thread(clientInstance);
+            	 System.out.println(autoRepeatCheckBox.isSelected());
             	    if(autoRepeatCheckBox.isSelected()){
+            	    	
             	    	
             	        buttonToggle.setText("Start");
         	        	autoRepeatCheckBox.setEnabled(true);
+//        	        	thread1.start();
+//    					thread2.start();
+//    					
+
             	        buttonToggle.addActionListener(new ActionListener() {
 
             	            @Override
@@ -126,15 +141,24 @@ public class ServerUI extends JFrame {
             	            	if(buttonToggle.getText().equals("Start"))
             	            	{
             	            		// implement start functionality here
+            	            		ServerEndPoint.getServerEndPointInsctance().setServerStatus(true);
+            	            		if(thread1.getState() == Thread.State.NEW)
+            	            			thread1.start();
+            	            		if(thread2.getState() == Thread.State.NEW)
+            	            			thread2.start();
                 	            	buttonToggle.setText("Stop");
-                    	        	autoRepeatCheckBox.setEnabled(false);	
+                    	        	autoRepeatCheckBox.setEnabled(false);
+                    	        	
+                    	        	
             	            	}
-            	            	else
+            	            	else if (buttonToggle.getText().equals("Stop"))
             	            	{
-
+            	            		serverInstance.stopSendingValues();
+            	            		ServerEndPoint.getServerEndPointInsctance().setServerStatus(false);
                 	            	buttonToggle.setText("Start");
                     	        	autoRepeatCheckBox.setEnabled(true);
             	            	}
+            	            
             	            }
             	        });
             	        
@@ -143,7 +167,30 @@ public class ServerUI extends JFrame {
             	    else {
             	    	buttonToggle.setText("Send");
             	    	autoRepeatCheckBox.setEnabled(true);
+            	    	 buttonToggle.addActionListener(new ActionListener() {
+
+             	            @Override
+             	            public void actionPerformed(ActionEvent e) {
+             	            	if(buttonToggle.getText().equals("Send"))
+             	            	{
+             	            		// implement start functionality here
+             	            		
+             	            		ServerEndPoint.getServerEndPointInsctance().setServerStatus(true);
+             	            		//thread1.start();
+                 					//thread2.start();
+                     	        	autoRepeatCheckBox.setEnabled(false);
+                     	        	
+                     	        	
+             	            	}
+             	            
+             	            }
+             	        });
+             	        
             	    }
+            	    
+            	    
+            	    serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
+            	    
             }
 		});
 		GridBagConstraints gbc_tglbtnSend = new GridBagConstraints();
