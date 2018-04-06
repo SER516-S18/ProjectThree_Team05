@@ -2,19 +2,17 @@ package project3.client.controller;
 
 import java.net.URI;
 import java.util.Scanner;
-
 import javax.websocket.Session;
-
-
 import org.glassfish.tyrus.client.ClientManager;
-
 import project3.client.view.FaceMetricsPanel;
 import project3.server.controller.Server;
+import project3.model.ConnectionIpAndPortValues;
+import utilities.Constants;
 
 public class Client implements Runnable{
 	
 	
-	 public static final String SERVER = "ws://localhost:1726/ws/server";
+	 public static String SERVER;
 	 private static Client clientObject = null;
 	 
 	public void startClient() throws Exception {
@@ -27,33 +25,40 @@ public class Client implements Runnable{
 		        FaceMetricsPanel expressiveModelObserver = new FaceMetricsPanel();
 		        ExpressiveModelObservable.getExpressiveModelObservableInstance().addObserver(expressiveModelObserver);
 		      
-		        Session session = client.connectToServer(ClientEndPoint.class, URI.create(SERVER));
-		        
-	
-		        do {
-		        	message = scanner.nextLine();
-		        } while (!message.equalsIgnoreCase("quit"));
-		    }
+		           
+        
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(Constants.CONNECTIONSTRING_START);
+        sb.append(ConnectionIpAndPortValues.getIpAddress());
+        sb.append(":");
+        sb.append(ConnectionIpAndPortValues.getPortAddress());
+        sb.append(Constants.WS);
+        sb.append(Constants.SERVER);
+        SERVER = sb.toString();
+        
+        System.out.println(SERVER);
+        
+        Session session = client.connectToServer(ClientEndPoint.class, URI.create(SERVER));
+        do {
+        		message = scanner.nextLine();
+        } while (!message.equalsIgnoreCase("quit"));
+    }
 	
 	public static Client getClientInstance() {
 		if(clientObject == null)
 			clientObject = new Client();
-		
 		return clientObject;
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
 		try {
 			startClient();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
-	
-
 }
