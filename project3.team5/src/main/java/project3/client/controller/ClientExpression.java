@@ -6,12 +6,23 @@ public class ClientExpression {
 
  ExpressiveModel expressiveModel;
  
- public ClientExpression() {
-	 expressiveModel = new ExpressiveModel();
-	 expressiveModel.setClench((float) 1.78);
+ 
+ public ExpressiveModel getExpressiveModel() {
+	return expressiveModel;
+}
+
+public void setExpressiveModel(ExpressiveModel expressiveModel) {
+	this.expressiveModel = expressiveModel;
+}
+
+public ClientExpression() {
+	expressiveModel = new ExpressiveModel();
+	expressiveModel.setGifLabel("res/laugh.png");
  }
 
- public String getExpression() {
+ public String getExpression(ExpressiveModel expressiveModel) {
+	 System.out.println("In cliengt expression"+ expressiveModel.getBlink());
+	 
 	 if(expressiveModel.getBlink()!=0) {
 		 return "blink.gif";
 	 }

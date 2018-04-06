@@ -14,6 +14,7 @@ public class ExpressiveModel {
 	private float smirkRight;
 	private float laugh;
 	private int TimeStamp;
+	private String gifLabel;
 	  
     public int getTimeStamp() {
     	return TimeStamp;
@@ -97,5 +98,14 @@ public class ExpressiveModel {
 	public void setLaugh(float laugh) {
 		this.laugh = laugh;
 	}
+
+	public String getGifLabel() {
+		return gifLabel;
+	}
+
+	public void setGifLabel(String gifLabel) {
+		this.gifLabel = gifLabel;
+	}
+	
 
 }
