@@ -23,7 +23,6 @@ public class ClientEndPoint {
     @OnMessage
     public void onMessage(ExpressiveModel message) {
     	System.out.println("ClientTimer:"+message.getTimeStamp());
-    	//serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();
     	
     	// Add json data to Array list for ploting graph and calculate performance.
     		ExpressiveModelObservable.getExpressiveModelObservableInstance().AddToListExpressiveModel(message);

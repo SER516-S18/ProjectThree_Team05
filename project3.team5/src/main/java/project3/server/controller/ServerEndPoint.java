@@ -23,7 +23,7 @@ import project3.model.serverConfiguations;
 
 
 @ServerEndpoint(value = "/server" ,decoders = MessageDecoder.class,  encoders = MessageEncoder.class)
-public class ServerEndPoint implements Runnable{
+public class ServerEndPoint{
 	
 	private Session session;
     private static Set<ServerEndPoint> connections  = new CopyOnWriteArraySet<>();
@@ -42,7 +42,7 @@ public class ServerEndPoint implements Runnable{
 	
     
     TimeStamp timeStamp = new TimeStamp(); 
-    Timer time ;
+    Timer time = new Timer() ;
     int secondspassed = 0;
     
     public static ServerEndPoint getServerEndPointInsctance()
@@ -77,25 +77,29 @@ public class ServerEndPoint implements Runnable{
 		
 	}
 	
-	TimerTask task = new TimerTask() {
-		  public void run() {
+	public TimerTask createNewTimerTask()
+	{
+		return new TimerTask() {
+			  public void run() {
 
-			  ExpressiveModel values = new ExpressiveModel();
-			  System.out.println("ServerTimer : "+secondspassed);
-			  values.setTimeStamp(timeStamp.getSecondspassed());
-			  try {
-				broadcast(values);
-				} catch (IOException | EncodeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			  
-			  secondspassed++;
-			  timeStamp.setSecondspassed(secondspassed);
-			  timeStamp.setIntialTime();
-			  
-		  }
-		};
+				  ExpressiveModel values = new ExpressiveModel();
+				  System.out.println("ServerTimer : "+secondspassed);
+				  values.setTimeStamp(timeStamp.getSecondspassed());
+				  try {
+					broadcast(values);
+					} catch (IOException | EncodeException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				  
+				  secondspassed++;
+				  timeStamp.setSecondspassed(secondspassed);
+				  timeStamp.setIntialTime();
+				  
+			  }
+			};
+	}
+	
 		
 	
 	public void broadcast(ExpressiveModel values ) 
@@ -116,32 +120,27 @@ public class ServerEndPoint implements Runnable{
 
 	public void haltSendingValues()
 	{
-		System.out.println("In timer " + time);
-			this.time.cancel();
+		 this.time.cancel();		
 	}
 	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		System.out.println("Server status"+isServerStatus());
-		while(isServerStatus())
-		{
-			this.time = new Timer();
-			System.out.println(serverConfiguations.getServerDataInstance().isAutoReset() +","+serverConfiguations.getServerDataInstance().isSendOneTime());
-			
+	public void startSendingValues() {
+		
+		if(isServerStatus())
+		{			
 			 if(serverConfiguations.getServerDataInstance().isAutoReset())
 			 {
-				 time.scheduleAtFixedRate(task,timeStamp.getIntialTime() ,5000);
+				 this.time = new Timer();
+				 time.scheduleAtFixedRate(createNewTimerTask(),timeStamp.getIntialTime() ,5000);
 
 			 }
-			 else if (serverConfiguations.getServerDataInstance().isSendOneTime())
+			 else 
 			 {
 				 ExpressiveModel values = new ExpressiveModel();
-				 secondspassed++;
-				 timeStamp.setSecondspassed(secondspassed);
+				 values.setTimeStamp(timeStamp.getSecondspassed());
 				 System.out.println("ServerTimer : "+ timeStamp.getSecondspassed());
 				 System.out.println("send one value");
-				 values.setTimeStamp(timeStamp.getSecondspassed());
+				 secondspassed++;
+				 timeStamp.setSecondspassed(secondspassed);
 				 setServerStatus(false);
 				 
 				 try {
@@ -152,10 +151,8 @@ public class ServerEndPoint implements Runnable{
 				}
 			 }
 		}
-		
-			 
-			 
 	}
+	
 	
 
 }

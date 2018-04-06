@@ -9,18 +9,14 @@ public class Server implements Runnable{
 
 	private static Server serverObject = null;
 	
-	private ServerEndPoint serverEndPoint = ServerEndPoint.getServerEndPointInsctance();
-	
 	public void Start() {
 		
 		org.glassfish.tyrus.server.Server server =
 	            new org.glassfish.tyrus.server.Server("localhost", 1726, "/ws", ServerEndPoint.class);
 		
-		Thread thread = new Thread(serverEndPoint);
-		
 	            try {
 					server.start();
-					thread.start();
+					
 				} catch (DeploymentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -28,11 +24,7 @@ public class Server implements Runnable{
 
 	}
 	
-	public synchronized void stopSendingValues()
-	{
-		serverEndPoint.haltSendingValues();
-	  	
-	}
+
 	public void setAutoReset(boolean autoResetValue)
 	{
 		serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();

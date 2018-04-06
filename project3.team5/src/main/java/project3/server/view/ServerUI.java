@@ -59,6 +59,8 @@ public class ServerUI extends JFrame {
 	 * Creates the UI for Server 
 	 */
 	public ServerUI() {
+		ServerEndPoint serverEndPoint = ServerEndPoint.getServerEndPointInsctance();
+    	Server serverInstance = Server.getServerInstance();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();
@@ -113,86 +115,67 @@ public class ServerUI extends JFrame {
 		panel.add(autoRepeatCheckBox, gbc_chckbxAutoReset);
 		autoRepeatCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
 		autoRepeatCheckBox.setEnabled(true);
+		
 		autoRepeatCheckBox.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
             	
             	//send value only once
-            	Server serverInstance = Server.getServerInstance();
             	
-            	Client clientInstance = Client.getClientInstance();
-				Thread thread1 = new Thread(serverInstance);
-				Thread thread2 = new Thread(clientInstance);
+            	
             	 System.out.println(autoRepeatCheckBox.isSelected());
             	    if(autoRepeatCheckBox.isSelected()){
-            	    	
-            	    	
+         	    	        	    	
+             	    	serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
             	        buttonToggle.setText("Start");
-        	        	autoRepeatCheckBox.setEnabled(true);
-//        	        	thread1.start();
-//    					thread2.start();
-//    					
-
-            	        buttonToggle.addActionListener(new ActionListener() {
-
-            	            @Override
-            	            public void actionPerformed(ActionEvent e) {
-            	            	if(buttonToggle.getText().equals("Start"))
-            	            	{
-            	            		// implement start functionality here
-            	            		ServerEndPoint.getServerEndPointInsctance().setServerStatus(true);
-            	            		if(thread1.getState() == Thread.State.NEW)
-            	            			thread1.start();
-            	            		if(thread2.getState() == Thread.State.NEW)
-            	            			thread2.start();
-                	            	buttonToggle.setText("Stop");
-                    	        	autoRepeatCheckBox.setEnabled(false);
-                    	        	
-                    	        	
-            	            	}
-            	            	else if (buttonToggle.getText().equals("Stop"))
-            	            	{
-            	            		serverInstance.stopSendingValues();
-            	            		ServerEndPoint.getServerEndPointInsctance().setServerStatus(false);
-                	            	buttonToggle.setText("Start");
-                    	        	autoRepeatCheckBox.setEnabled(true);
-            	            	}
-            	            
-            	            }
-            	        });
-            	        
-            	    
+        	        	
             	    }
             	    else {
-            	    	buttonToggle.setText("Send");
-            	    	autoRepeatCheckBox.setEnabled(true);
-            	    	 buttonToggle.addActionListener(new ActionListener() {
-
-             	            @Override
-             	            public void actionPerformed(ActionEvent e) {
-             	            	if(buttonToggle.getText().equals("Send"))
-             	            	{
-             	            		// implement start functionality here
-             	            		
-             	            		ServerEndPoint.getServerEndPointInsctance().setServerStatus(true);
-             	            		//thread1.start();
-                 					//thread2.start();
-                     	        	autoRepeatCheckBox.setEnabled(false);
-                     	        	
-                     	        	
-             	            	}
-             	            
-             	            }
-             	        });
-             	        
+            	    	serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
+            	        buttonToggle.setText("Send");
             	    }
-            	    
-            	    
-            	    serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
             	    
             }
 		});
+		
+		
+		buttonToggle.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	if(buttonToggle.getText().equals("Start"))
+            	{
+            		
+            		serverEndPoint.setServerStatus(true);
+	            	buttonToggle.setText("Stop");
+    	        	autoRepeatCheckBox.setEnabled(false);
+    	        	serverEndPoint.startSendingValues();
+    	        	
+    	        	
+            	}
+            	else if (buttonToggle.getText().equals("Stop"))
+            	{
+            		serverEndPoint.setServerStatus(false);
+	            	buttonToggle.setText("Start");
+    	        	autoRepeatCheckBox.setEnabled(true);
+    	        	serverEndPoint.haltSendingValues();
+            	}
+            	else if(buttonToggle.getText().equals("Send"))
+	            	{
+	            		// implement start functionality here
+	            		
+	            		serverEndPoint.setServerStatus(true);
+     	        	autoRepeatCheckBox.setEnabled(true);
+     	        	System.out.println("Send button clicked");
+     	        	serverEndPoint.startSendingValues();
+     	        	
+     	        	
+	            	}
+            
+            }
+        });
+	    
 		GridBagConstraints gbc_tglbtnSend = new GridBagConstraints();
 		gbc_tglbtnSend.insets = new Insets(0, 0, 0, 5);
 		gbc_tglbtnSend.gridx = 6;

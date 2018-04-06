@@ -15,9 +15,6 @@ public class MessageDecoder implements Decoder.Text<ExpressiveModel> {
  
     @Override
     public ExpressiveModel decode(String s) throws DecodeException {
- 
-    	//System.out.println(s);
-    	//ExpressiveModelObservable.getExpressiveModelObservableInstance().AddToListExpressiveModel(s);
     	
         return gson.fromJson(s, ExpressiveModel.class);
     }

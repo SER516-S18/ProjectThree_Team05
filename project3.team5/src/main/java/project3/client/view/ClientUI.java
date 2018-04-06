@@ -100,12 +100,12 @@ public class ClientUI extends JFrame {
 				switch (optionValues) {
 				case 0:
 					System.out.println("Connect to Server");
-//					Server server = Server.getServerInstance();
-//					Client client = Client.getClientInstance();
-//					Thread thread1 = new Thread(server);
-//					Thread thread2 = new Thread(client);
-//					thread1.start();
-//					thread2.start();
+					Server server = Server.getServerInstance();
+					Client client = Client.getClientInstance();
+					Thread thread1 = new Thread(server);
+					Thread thread2 = new Thread(client);
+					thread1.start();
+					thread2.start();
 					break;
 				case 1:
 					System.out.println("Cancel");
