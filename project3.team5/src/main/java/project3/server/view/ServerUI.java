@@ -60,7 +60,7 @@ public class ServerUI extends JFrame {
 	 */
 	public ServerUI() {
 		ServerEndPoint serverEndPoint = ServerEndPoint.getServerEndPointInsctance();
-    	Server serverInstance = Server.getServerInstance();
+		Server serverInstance = Server.getServerInstance();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 800);
 		contentPane = new JPanel();

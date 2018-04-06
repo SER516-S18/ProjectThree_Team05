@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import project3.client.controller.Client;
+import project3.model.ConnectionIpAndPortValues;
 import project3.server.controller.Server;
 import project3.server.view.ServerUI;
 
@@ -91,6 +92,8 @@ public class ClientUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JTextField host = new JTextField();
 				JTextField port = new JTextField();
+				host.setText(ConnectionIpAndPortValues.getIpAddress());
+				port.setText(String.valueOf(ConnectionIpAndPortValues.getPortAddress()));
 				
 				Object[] fields= {
 						"Host Name", host,
@@ -101,6 +104,9 @@ public class ClientUI extends JFrame {
 				case 0:
 					System.out.println("Connect to Server");
 					Server server = Server.getServerInstance();
+					ConnectionIpAndPortValues.setIpAddress(host.getText());
+					ConnectionIpAndPortValues.setPortAddress(Integer.parseInt(port.getText()));
+					
 					Client client = Client.getClientInstance();
 					Thread thread1 = new Thread(server);
 					Thread thread2 = new Thread(client);
