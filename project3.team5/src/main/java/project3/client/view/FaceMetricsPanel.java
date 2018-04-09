@@ -93,7 +93,7 @@ public class FaceMetricsPanel extends JPanel {
 		blinkGraphPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
 		facialExpressionGraphController.pack();
 		Border blink = new TitledBorder(null, "Blink", TitledBorder.LEADING, TitledBorder.TOP);
-		Border blinkMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border blinkMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border blinkBorder = BorderFactory.createCompoundBorder(blinkMargin, blink);
 		blinkGraphPanel.setBorder(blinkBorder);
 		panelBuffer.add(blinkGraphPanel, BorderLayout.PAGE_START);
@@ -105,24 +105,32 @@ public class FaceMetricsPanel extends JPanel {
 		blinkGraphPanel.setBorder(blinkBorder);
 		panelBuffer.add(blinkGraphPanel, BorderLayout.PAGE_START);*/
 		
-		
-		rightWinkPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		rightWinkPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//rightWinkPanel = new JPanel();
 		Border rightWink = new TitledBorder(null, "Right Wink", TitledBorder.LEADING, TitledBorder.TOP);
-		Border rightWinkMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border rightWinkMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border rightWinkBorder = BorderFactory.createCompoundBorder(rightWinkMargin, rightWink);
 		rightWinkPanel.setBorder(rightWinkBorder);
 		panelBuffer.add(rightWinkPanel, BorderLayout.CENTER);
 		
-		leftWinkPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		leftWinkPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//leftWinkPanel = new JPanel();
 		Border leftWink = new TitledBorder(null, "Left Wink", TitledBorder.LEADING, TitledBorder.TOP);
-		Border leftWinkMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border leftWinkMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border leftWinkBorder = BorderFactory.createCompoundBorder(leftWinkMargin, leftWink);
 		leftWinkPanel.setBorder(leftWinkBorder);
 		panelBuffer.add(leftWinkPanel, BorderLayout.PAGE_START);
 		
-		lookRightPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		lookRightPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//lookRightPanel = new JPanel();
 		Border lookRight = new TitledBorder(null, "Look Right/Left", TitledBorder.LEADING, TitledBorder.TOP);
-		Border lookRightMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border lookRightMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border lookRightBorder = BorderFactory.createCompoundBorder(lookRightMargin, lookRight);
 		lookRightPanel.setBorder(lookRightBorder);
 		panelBuffer.add(lookRightPanel, BorderLayout.CENTER);
@@ -134,51 +142,72 @@ public class FaceMetricsPanel extends JPanel {
 		lookLeftPanel.setBorder(lookLeftBorder);
 		panelBuffer.add(lookLeftPanel, BorderLayout.PAGE_START);*/
 		
-		furrowBrowPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		furrowBrowPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//furrowBrowPanel = new JPanel();
 		Border furrowBrow = new TitledBorder(null, "Furrow Brow", TitledBorder.LEADING, TitledBorder.TOP);
-		Border furrowBrowMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border furrowBrowMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border furrowBrowBorder = BorderFactory.createCompoundBorder(furrowBrowMargin, furrowBrow);
 		furrowBrowPanel.setBorder(furrowBrowBorder);
 		panelBuffer.add(furrowBrowPanel, BorderLayout.CENTER);
 		
-		raiseBrowPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		raiseBrowPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//raiseBrowPanel = new JPanel();
 		Border raiseBrow = new TitledBorder(null, "Raise Brow", TitledBorder.LEADING, TitledBorder.TOP);
-		Border raiseBrowMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border raiseBrowMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border raiseBrowBorder = BorderFactory.createCompoundBorder(raiseBrowMargin, raiseBrow);
 		raiseBrowPanel.setBorder(raiseBrowBorder);
 		panelBuffer.add(raiseBrowPanel, BorderLayout.PAGE_START);
 		
-		smilePanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		smilePanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//smilePanel = new JPanel();
 		Border smile = new TitledBorder(null, "Smile", TitledBorder.LEADING, TitledBorder.TOP);
-		Border smileMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border smileMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border smileBorder = BorderFactory.createCompoundBorder(smileMargin, smile);
 		smilePanel.setBorder(smileBorder);
 		panelBuffer.add(smilePanel, BorderLayout.CENTER);
 		
-		clenchPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		clenchPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//clenchPanel = new JPanel();
 		Border clench = new TitledBorder(null, "Clench", TitledBorder.LEADING, TitledBorder.TOP);
-		Border clenchMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border clenchMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border clenchBorder = BorderFactory.createCompoundBorder(clenchMargin, clench);
 		clenchPanel.setBorder(clenchBorder);
 		panelBuffer.add(clenchPanel, BorderLayout.PAGE_START);
 		
-		leftSmirkPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		leftSmirkPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//leftSmirkPanel = new JPanel();
 		Border leftSmirk = new TitledBorder(null, "Left Smirk", TitledBorder.LEADING, TitledBorder.TOP);
-		Border leftSmirkMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border leftSmirkMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border leftSmirkBorder = BorderFactory.createCompoundBorder(leftSmirkMargin, leftSmirk);
 		leftSmirkPanel.setBorder(leftSmirkBorder);
 		panelBuffer.add(leftSmirkPanel, BorderLayout.CENTER);
 		
-		rightSmirkPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		rightSmirkPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//rightSmirkPanel = new JPanel();
 		Border rightSmirk = new TitledBorder(null, "Right Smirk", TitledBorder.LEADING, TitledBorder.TOP);
-		Border rightSmirkMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border rightSmirkMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border rightSmirkBorder = BorderFactory.createCompoundBorder(rightSmirkMargin, rightSmirk);
 		rightSmirkPanel.setBorder(rightSmirkBorder);
 		panelBuffer.add(rightSmirkPanel, BorderLayout.PAGE_START);
 		
-		laughPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		laughPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
+		//laughPanel = new JPanel();
 		Border laugh = new TitledBorder(null, "Smile", TitledBorder.LEADING, TitledBorder.TOP);
-		Border laughMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border laughMargin = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 		Border laughBorder = BorderFactory.createCompoundBorder(laughMargin, laugh);
 		laughPanel.setBorder(laughBorder);
 		panelBuffer.add(laughPanel, BorderLayout.CENTER);
