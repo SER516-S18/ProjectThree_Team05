@@ -56,7 +56,9 @@ import java.awt.Dimension;
  	/**
  	 * Creates the UI for Server 
  	 */
- 	public ServerUI() {
+ 	public ServerUI() {CreateServer();}
+ 	
+ 	public void CreateServer() {
  		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  		setBounds(350, 30, 500, 550);
  		//setMinimumSize(new Dimension(470,400));
