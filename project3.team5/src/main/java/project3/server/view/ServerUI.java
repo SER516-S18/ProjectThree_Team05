@@ -1,4 +1,4 @@
-package project3.server.controller;
+package project3.server.view;
 
 public class ServerUI {
 	
