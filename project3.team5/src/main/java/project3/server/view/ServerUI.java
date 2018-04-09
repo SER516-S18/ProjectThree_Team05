@@ -58,7 +58,7 @@ public class ServerUI extends JFrame {
 	public ServerUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(350, 30, 500, 550);
-		setMinimumSize(new Dimension(470,400));
+		setMinimumSize(new Dimension(470,550));
 		setTitle(" Server");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
