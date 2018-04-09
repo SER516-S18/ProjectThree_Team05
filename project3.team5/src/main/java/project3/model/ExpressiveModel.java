@@ -15,6 +15,7 @@ public class ExpressiveModel {
 	private float laugh;
 	private int TimeStamp;
 	private String gifLabel;
+	public Boolean eyeReset;
 	  
     public int getTimeStamp() {
     	return TimeStamp;
@@ -106,6 +107,11 @@ public class ExpressiveModel {
 	public void setGifLabel(String gifLabel) {
 		this.gifLabel = gifLabel;
 	}
-	
+	public Boolean getEyeReset() {
+		return eyeReset;
+	}
+	public void setEyeReset(Boolean eyeReset) {
+		this.eyeReset = eyeReset;
+	}
 
 }
