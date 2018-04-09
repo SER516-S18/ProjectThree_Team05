@@ -185,4 +185,4 @@ public class DetectionController {
         if (eyeAutoReset) {
             emodel.setEyeReset(true);
         }
-    }
+    }}
