@@ -1,11 +1,14 @@
 package project3.client.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import project3.client.controller.PerformanceMetricsTabController;
@@ -13,12 +16,13 @@ import project3.client.model.PerformanceMetricsTabModel;
 
 public class PerformanceMetricsPanel extends JPanel {
 	private JPanel performanceGraphPanel;
-	private JComboBox<String> interestComboBox;
+	private JPanel performanceColorPanel;
+	/*private JComboBox<String> interestComboBox;
 	private JComboBox<String> engagementComboBox;
 	private JComboBox<String> stressComboBox;
 	private JComboBox<String> relaxationComboBox;
 	private JComboBox<String> excitementComboBox;
-	private JComboBox<String> focusComboBox;
+	private JComboBox<String> focusComboBox;*/
 	private JLabel interestLabel;
 	private JLabel engagementLabel;
 	private JLabel stressLabel;
@@ -35,7 +39,11 @@ public class PerformanceMetricsPanel extends JPanel {
 
 	
 	public PerformanceMetricsPanel() {
-		setLayout(null);
+		this.setLayout(new GridLayout(1,2,8,8));
+		this.setBorder(new EmptyBorder(8, 8, 8, 8));
+        this.setOpaque(false);
+        this.setBackground(Color.WHITE);
+        this.setBorder(new LineBorder(new Color(0, 0, 0)));
 			
 		performanceMetricsModel = new PerformanceMetricsTabModel();
 		performanceMetricsModel.setDisplayLength(30);
@@ -45,12 +53,18 @@ public class PerformanceMetricsPanel extends JPanel {
 		performanceGraphPanel =  performanceMetricsController.PlotPerformanceGraph(displayLength);
 		performanceMetricsController.pack();
 		performanceGraphPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		performanceGraphPanel.setBounds(6, 6, 641, 483);
+		performanceGraphPanel.setPreferredSize(new Dimension(641, 483));
 		performanceGraphPanel.setBackground(Color.white);
 		setBackground(Color.WHITE);
-		add(performanceGraphPanel);
+		this.add(performanceGraphPanel);
+
+		performanceColorPanel = new JPanel();
+		performanceColorPanel.setPreferredSize(new Dimension(416, 478));
+		performanceColorPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		performanceColorPanel.setBackground(Color.WHITE);
+		performanceColorPanel.setLayout(new GridLayout(4,2,30,4));
 		
-		interestComboBox = new JComboBox<String>(performanceMetricColors);
+		/*interestComboBox = new JComboBox<String>(performanceMetricColors);
 		interestComboBox.setSelectedIndex(0);
 		interestComboBox.setBounds(657, 34, 115, 27);
 		add(interestComboBox);
@@ -78,44 +92,46 @@ public class PerformanceMetricsPanel extends JPanel {
 		focusComboBox = new JComboBox<String>(performanceMetricColors);
 		focusComboBox.setSelectedIndex(5);
 		focusComboBox.setBounds(834, 163, 108, 27);
-		add(focusComboBox);
+		add(focusComboBox);*/
 		
-		interestLabel = new JLabel("Interest");
-		interestLabel.setBounds(657, 18, 61, 16);
-		add(interestLabel);
+		interestLabel = new JLabel("Interest",JLabel.CENTER);
+		interestLabel.setPreferredSize(new Dimension(61, 16));
+		performanceColorPanel.add(interestLabel);
 		
-		engagementLabel = new JLabel("Engagement");
-		engagementLabel.setBounds(837, 18, 77, 16);
-		add(engagementLabel);
+		engagementLabel = new JLabel("Engagement",JLabel.CENTER);
+		engagementLabel.setPreferredSize(new Dimension(77, 16));
+		performanceColorPanel.add(engagementLabel);
 		
-		stressLabel = new JLabel(" Stress");
-		stressLabel.setBounds(666, 84, 61, 16);
-		add(stressLabel);
+		stressLabel = new JLabel("Stress",JLabel.CENTER);
+		stressLabel.setPreferredSize(new Dimension(61, 16));
+		performanceColorPanel.add(stressLabel);
 		
-		relaxationLabel = new JLabel("Relaxation");
-		relaxationLabel.setBounds(837, 84, 77, 16);
-		add(relaxationLabel);
+		relaxationLabel = new JLabel("Relaxation",JLabel.CENTER);
+		relaxationLabel.setPreferredSize(new Dimension(77, 16));
+		performanceColorPanel.add(relaxationLabel);
 		
-		excitementLabel = new JLabel("Excitement");
-		excitementLabel.setBounds(665, 148, 74, 16);
-		add(excitementLabel);
+		excitementLabel = new JLabel("Excitement",JLabel.CENTER);
+		excitementLabel.setPreferredSize(new Dimension(74, 16));
+		performanceColorPanel.add(excitementLabel);
 		
-		focusLabel = new JLabel("Focus");
-		focusLabel.setBounds(834, 148, 61, 16);
-		add(focusLabel);
+		focusLabel = new JLabel("Focus",JLabel.CENTER);
+		focusLabel.setPreferredSize(new Dimension (61, 16));
+		performanceColorPanel.add(focusLabel);
 		
-		displayLengthLabel = new JLabel("Display Length");
-		displayLengthLabel.setBounds(700, 341, 94, 16);
-		add(displayLengthLabel);
+		displayLengthLabel = new JLabel("Display Length",JLabel.CENTER);
+		displayLengthLabel.setPreferredSize(new Dimension (94, 16));
+		performanceColorPanel.add(displayLengthLabel);
 		
-		xAxisLength = new JTextField("30");
-		xAxisLength.setBounds(804, 336, 91, 26);
-		add(xAxisLength);
+		xAxisLength = new JTextField("30",JTextField.CENTER);
+		xAxisLength.setSize(new Dimension (11, 26));
+		performanceColorPanel.add(xAxisLength,JPanel.CENTER_ALIGNMENT);
 		xAxisLength.setColumns(10);
 		
-		secondsLabel = new JLabel("Seconds");
-		secondsLabel.setBounds(908, 341, 61, 16);
-		add(secondsLabel);
+		/*secondsLabel = new JLabel("Seconds");
+		secondsLabel.setPreferredSize(new Dimension (61, 16));
+		performanceColorPanel.add(secondsLabel);*/
+		
+		this.add(performanceColorPanel);
 	}
 
 }
