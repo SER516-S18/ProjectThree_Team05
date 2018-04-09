@@ -26,7 +26,8 @@
  
  import javax.swing.JCheckBox;
  import java.awt.Choice;
- import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Dimension;
  
  public class ServerUI extends JFrame {
  
@@ -58,8 +59,8 @@
  	public ServerUI() {
  		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  		setBounds(350, 30, 500, 550);
--		setMinimumSize(new Dimension(470,400));
-+		setMinimumSize(new Dimension(470,550));
+ 		//setMinimumSize(new Dimension(470,400));
+ 		setMinimumSize(new Dimension(470,550));
  		setTitle(" Server");
  		contentPane = new JPanel();
  		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,7 +78,7 @@
  		panel.setLayout(gbl_panel);
  		
  
- 		Border interaction = new TitledBorder(null, "Interaction", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
+ 		Border interaction = new TitledBorder(null, "Interaction", TitledBorder.LEADING, TitledBorder.TOP, FONT, Color.GRAY);
  		Border interactionMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
  
  		Border interactionBorder = BorderFactory.createCompoundBorder(interactionMargin, interaction);
@@ -87,6 +88,7 @@
  		SpinnerModel value = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
  		
  		JLabel lblEmoti = new JLabel("Time Interval (Sec): ");
+ 		lblEmoti.setForeground(Color.BLUE);
  		GridBagConstraints gbc_lblEmoti = new GridBagConstraints();
  		gbc_lblEmoti.insets = new Insets(10, 10, 5, 5);
  		gbc_lblEmoti.gridx = 4;
@@ -171,7 +173,7 @@
  		panel_1.setLayout(gbl_panel_1);
  		
  
- 		Border detection = new TitledBorder(null, "Detection", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
+ 		Border detection = new TitledBorder(null, "Detection", TitledBorder.LEADING, TitledBorder.TOP, FONT, Color.GRAY);
  		Border detectionMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
  
  		Border detectionBorder = BorderFactory.createCompoundBorder(detectionMargin, detection);
@@ -179,6 +181,7 @@
  		
  		//Creating Upperface labels and options
  		JLabel lblUpperface = new JLabel("Upper Face ");
+ 		lblUpperface.setForeground(Color.BLUE);
  		GridBagConstraints gbc_lblUpperface = new GridBagConstraints();
  		gbc_lblUpperface.insets = new Insets(0, 0, 5, 5);
  		gbc_lblUpperface.gridx = 1;
@@ -208,6 +211,7 @@
  
  		//Adding lowerFace and its options
  		JLabel lblLowerface = new JLabel("Lower Face");
+ 		lblLowerface.setForeground(Color.BLUE);
  		GridBagConstraints gbc_lblLowerface = new GridBagConstraints();
  		gbc_lblLowerface.insets = new Insets(0, 0, 5, 5);
  		gbc_lblLowerface.gridx = 1;
@@ -262,6 +266,7 @@
  		
  		//Creating Eye Label
  		JLabel lblEye = new JLabel("Eye");
+ 		lblEye.setForeground(Color.BLUE);
  		GridBagConstraints gbc_lblEye = new GridBagConstraints();
  		gbc_lblEye.insets = new Insets(0, 0, 5, 5);
  		gbc_lblEye.gridx = 1;
@@ -277,6 +282,7 @@
  		
  		//Performance Metrics added
  		JLabel lblPerformanceMetrics = new JLabel("Performance Metrics");
+ 		lblPerformanceMetrics.setForeground(Color.BLUE);
  		GridBagConstraints gbc_lblPerformanceMetrics = new GridBagConstraints();
  		gbc_lblPerformanceMetrics.insets = new Insets(0, 0, 5, 5);
  		gbc_lblPerformanceMetrics.gridwidth = 2;
@@ -304,7 +310,7 @@
  		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
  		panel_2.setLayout(gbl_panel_2);
  				
- 		Border console = new TitledBorder(null, "Console", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
+ 		Border console = new TitledBorder(null, "Console", TitledBorder.LEADING, TitledBorder.TOP, FONT, Color.GRAY);
  		Border consoleMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
  
  		Border consoleBorder = BorderFactory.createCompoundBorder(consoleMargin, console);
