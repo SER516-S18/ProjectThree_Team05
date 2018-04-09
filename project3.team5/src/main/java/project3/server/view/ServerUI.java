@@ -259,6 +259,8 @@ import java.awt.Dimension;
  		choice_1.add("Look Left");
  		choice_1.add("Look Right");
  		
+ 	
+ 		
  		JCheckBox chckbxNewCheckBox = new JCheckBox("Auto Reset");
  		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
  		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
@@ -293,14 +295,28 @@ import java.awt.Dimension;
  		panel_1.add(lblPerformanceMetrics, gbc_lblPerformanceMetrics);
  		
  		Choice choice = new Choice();
- 		choice.add("OK");
- 		choice.add("Requires More Data");
+ 		choice.add("Interest");
+ 		choice.add("Engagement");
+ 		choice.add("Stress");
+ 		choice.add("Relaxation");
+ 		choice.add("Excitement");
+ 		choice.add("Focus");
+
  		GridBagConstraints gbc_choice = new GridBagConstraints();
  		gbc_choice.insets = new Insets(0, 0, 5, 5);
  		gbc_choice.gridx = 3;
  		gbc_choice.gridy = 10;
  		panel_1.add(choice, gbc_choice);
  
+ 		SpinnerModel value_3 = new SpinnerNumberModel(0, 0, 5.0, 0.5);
+ 		JSpinner spinner_3 = new JSpinner(value_3);
+ 		GridBagConstraints gbc_spinner_3 = new GridBagConstraints();
+ 		gbc_spinner_3.insets = new Insets(0, 0, 1, 1);
+ 		gbc_spinner_3.ipadx = 12;
+ 		gbc_spinner_3.ipady = 5;
+ 		gbc_spinner_3.gridx = 4;
+ 		gbc_spinner_3.gridy = 10;
+ 		panel_1.add(spinner_3, gbc_spinner_3);
  		
  		//Console
  		JPanel panel_2 = new JPanel();
