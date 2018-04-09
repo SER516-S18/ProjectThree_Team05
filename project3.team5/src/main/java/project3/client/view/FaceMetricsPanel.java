@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import project3.client.controller.ClientExpression;
+import project3.client.controller.FacialExpressionGraphController;
 
 	
 
@@ -32,7 +33,6 @@ public class FaceMetricsPanel extends JPanel {
 		private JPanel rightWinkPanel;
 		private JPanel leftWinkPanel;
 		private JPanel lookRightPanel;
-		private JPanel lookLeftPanel;
 		private JPanel furrowBrowPanel;
 		private JPanel raiseBrowPanel;
 		private JPanel smilePanel;
@@ -40,6 +40,7 @@ public class FaceMetricsPanel extends JPanel {
 		private JPanel leftSmirkPanel;
 		private JPanel rightSmirkPanel;
 		private JPanel laughPanel;
+		private FacialExpressionGraphController facialExpressionGraphController;
 		
 			
 		public FaceMetricsPanel() {
@@ -88,12 +89,21 @@ public class FaceMetricsPanel extends JPanel {
 		JPanel panelBuffer = new JPanel(new GridLayout(11, 1, 0, 0));
 		panelBuffer.setBackground(Color.GRAY);
 		
-		blinkGraphPanel = new JPanel();
+		facialExpressionGraphController = new FacialExpressionGraphController("");
+		blinkGraphPanel = facialExpressionGraphController.PlotFacialExpressionGraph();
+		facialExpressionGraphController.pack();
 		Border blink = new TitledBorder(null, "Blink", TitledBorder.LEADING, TitledBorder.TOP);
 		Border blinkMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		Border blinkBorder = BorderFactory.createCompoundBorder(blinkMargin, blink);
 		blinkGraphPanel.setBorder(blinkBorder);
 		panelBuffer.add(blinkGraphPanel, BorderLayout.PAGE_START);
+		
+		/*blinkGraphPanel = new JPanel();
+		Border blink = new TitledBorder(null, "Blink", TitledBorder.LEADING, TitledBorder.TOP);
+		Border blinkMargin = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+		Border blinkBorder = BorderFactory.createCompoundBorder(blinkMargin, blink);
+		blinkGraphPanel.setBorder(blinkBorder);
+		panelBuffer.add(blinkGraphPanel, BorderLayout.PAGE_START);*/
 		
 		
 		rightWinkPanel = new JPanel();
@@ -172,23 +182,6 @@ public class FaceMetricsPanel extends JPanel {
 		Border laughBorder = BorderFactory.createCompoundBorder(laughMargin, laugh);
 		laughPanel.setBorder(laughBorder);
 		panelBuffer.add(laughPanel, BorderLayout.CENTER);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		graphPanel.add(panelBuffer, BorderLayout.CENTER);

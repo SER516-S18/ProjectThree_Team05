@@ -31,16 +31,17 @@ public class ClientMenuBar extends JMenuBar{
 		this.add(clientMenu);
 		
 		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
-		clockLabel.setPreferredSize(new Dimension(45,45));
+		clockLabel.setBounds(500, 10, 25, 25);
+		//clockLabel.setPreferredSize(new Dimension(45,45));
 		this.add(clockLabel);
 		
 		timeLabel = new JLabel("");
 		timeLabel.setPreferredSize(new Dimension(61,16));
 		this.add(timeLabel);
 		
-		connectToServer = new JButton("Connect");
+		/*connectToServer = new JButton("Connect");
 		connectToServer.setPreferredSize(new Dimension(100,25));
-		this.add(connectToServer);		
+		this.add(connectToServer);	*/	
 		
 	}
 

@@ -50,7 +50,7 @@ public class ClientUI extends JFrame {
 		
         //this.setOpaque(false);
         //this.setBorder(new EmptyBorder(0, 8, 8, 8));
-        this.add(menuBar , BorderLayout.NORTH);
+        this.add(menuBar , BorderLayout.BEFORE_FIRST_LINE);
         JPanel panelBuffer = new JPanel(new GridLayout(1, 2, 8, 8));
         panelBuffer.setBorder(BorderFactory.createLineBorder(Color.black));
         
