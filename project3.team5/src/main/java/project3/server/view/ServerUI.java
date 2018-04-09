@@ -1,6 +1,8 @@
 package project3.server.view;
 
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -18,18 +20,24 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-
 import java.awt.Choice;
-import java.awt.Color;
-import javax.swing.JTextField;
+
+
 
 public class ServerUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static final Font FONT = new Font("Times New Roman", Font.BOLD, 16);
+
 	private JTextField textField;
+
 
 	/**
 	 * Launch the application.
@@ -52,7 +60,11 @@ public class ServerUI extends JFrame {
 	 */
 	public ServerUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(100, 100, 500, 800);
+
+		setMinimumSize(new Dimension(470,550));
+
 		setTitle(" Server");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,9 +72,11 @@ public class ServerUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+
 		panel.setBounds(15, 16, 448, 152);
 		contentPane.add(panel);
 		panel.setLayout(null);
+
 		
 		Border interaction = new TitledBorder(null, "INTERACTION", TitledBorder.LEADING, TitledBorder.TOP, FONT, Color.GRAY);
 		Border interactionMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
@@ -70,7 +84,6 @@ public class ServerUI extends JFrame {
 
 		panel.setBorder(interactionBorder);
 
-		
 		JLabel lblNewLabel = new JLabel("TIME INTERVAL (in secs)");
 		lblNewLabel.setFont(FONT);
 		lblNewLabel.setForeground(Color.blue);
@@ -86,6 +99,8 @@ public class ServerUI extends JFrame {
 		chckbxAutorepeat.setEnabled(true);
 		//--added
 		chckbxAutorepeat.addActionListener(new ActionListener() {
+
+
             @Override
             public void actionPerformed(ActionEvent e) {
             		//send value only once
@@ -115,6 +130,7 @@ public class ServerUI extends JFrame {
             	    }
             }
 		});
+
 		//--ends
 		
 		panel.add(chckbxAutorepeat);
@@ -123,6 +139,7 @@ public class ServerUI extends JFrame {
 		JSpinner spinner = new JSpinner(value);
 		spinner.setBounds(306, 41, 56, 29);
 		panel.add(spinner);
+
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(15, 184, 448, 429);
@@ -134,6 +151,7 @@ public class ServerUI extends JFrame {
 		Border detectionBorder = BorderFactory.createCompoundBorder(detectionMargin, detection);
 		panel_1.setBorder(detectionBorder);
 		
+
 		JLabel lblNewLabel_1 = new JLabel("UPPERFACE");
 		lblNewLabel_1.setBounds(35, 121, 95, 36);
 		lblNewLabel_1.setForeground(Color.BLUE);
@@ -156,6 +174,7 @@ public class ServerUI extends JFrame {
 		lblLowerface.setForeground(Color.BLUE);
 		lblLowerface.setFont(FONT);
 		panel_1.add(lblLowerface);
+
 		
 		Choice choice_1 = new Choice();
 		choice_1.add("smile");
@@ -166,6 +185,7 @@ public class ServerUI extends JFrame {
 		choice_1.setBounds(176, 163, 104, 43);
 		panel_1.add(choice_1);
 		
+
 		JSpinner spinner_2 = new JSpinner();
 		spinner_2.setBounds(315, 163, 86, 26);
 		panel_1.add(spinner_2);
@@ -225,5 +245,6 @@ public class ServerUI extends JFrame {
 		Border consoleBorder = BorderFactory.createCompoundBorder(consoleMargin, console);
 
 		panel_2.setBorder(consoleBorder);
+
 	}
 }
