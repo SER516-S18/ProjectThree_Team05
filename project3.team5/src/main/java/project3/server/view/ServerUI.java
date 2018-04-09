@@ -292,5 +292,22 @@ public class ServerUI extends JFrame {
 		gbc_choice.gridy = 10;
 		panel_1.add(choice, gbc_choice);
 
+		
+		//Console
+		JPanel panel_2 = new JPanel();
+		contentPane.add(panel_2, BorderLayout.SOUTH);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel_2.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100};
+		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		panel_2.setLayout(gbl_panel_2);
+				
+		Border console = new TitledBorder(null, "Console", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
+		Border consoleMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+
+		Border consoleBorder = BorderFactory.createCompoundBorder(consoleMargin, console);
+		panel_2.setBorder(consoleBorder);
+	        // To Do add console log 
 	}
 }
