@@ -44,7 +44,7 @@ public class ClientUI extends JFrame {
 	
 	public ClientUI() {
 		this.setTitle("Client");
-		this.setSize(new Dimension(800,478));
+		this.setSize(new Dimension(1200,800));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		
