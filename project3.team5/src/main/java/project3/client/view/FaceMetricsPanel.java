@@ -19,18 +19,15 @@ import javax.swing.border.TitledBorder;
 import project3.client.controller.ClientExpression;
 import project3.client.controller.ExpressiveModelObservable;
 import project3.client.controller.FacialExpressionGraphController;
-import project3.client.model.ExpressiveModel;
 
+import project3.model.ExpressiveModel;
 	
 
 public class FaceMetricsPanel extends JPanel implements Observer {
-		/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+		
 		private JPanel facePanel;
 		private JLabel gifLabel;
-		private ClientExpression clientExpression;
+		private ClientExpression clientExpression =  new ClientExpression();
 		private String expressionName;
 		private JPanel graphPanel;
 		private JPanel blinkGraphPanel;
@@ -50,27 +47,22 @@ public class FaceMetricsPanel extends JPanel implements Observer {
 		
 			
 		public FaceMetricsPanel() {
-		//setBorder(new LineBorder(new Color(0, 0, 0)));
-		//setBackground(Color.WHITE);
+		
 		this.setLayout(new GridLayout(1,2,8,8));
 		this.setBorder(new EmptyBorder(8, 8, 8, 8));
         this.setOpaque(false);
         this.setBackground(Color.WHITE);
         this.setBorder(new LineBorder(new Color(0, 0, 0)));
         
-		//JPanel panelBuffer = new JPanel(new GridLayout(1, 2, 8, 8));
-        //panelBuffer.setBorder(BorderFactory.createLineBorder(Color.black));
-
+		
 		
 		facePanel = new JPanel();
-		//facePanel.setBounds(16, 11, 416, 478);
-		//facePanel.setLayout(null);
+		
 		facePanel.setPreferredSize(new Dimension(416, 478));
 		facePanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		facePanel.setBackground(Color.WHITE);
 		facePanel.setLayout(new GridLayout(1,1,0,0));
 		this.add(facePanel);
-		//add(facePanel);
 		
 		gifLabel = new JLabel(new ImageIcon("res/laugh.png"));
 		gifLabel.setPreferredSize(new Dimension(260, 260));
@@ -216,29 +208,26 @@ public class FaceMetricsPanel extends JPanel implements Observer {
 		
 		graphPanel.add(panelBuffer, BorderLayout.CENTER);
 		this.add(graphPanel);
-
+		
 	}
 		// uncomment for implementation of observer pattern 
 
+
 		@Override
 		public void update(Observable o, Object arg) {
-			// TODO Auto-generated method stub
-		/*	expressiveModel = (ExpressiveModel) arg;
-			clientExpression = new ClientExpression();
-			expressionName = clientExpression.getExpression(expressiveModel);
-			if(expressionName!= null) {
-				System.out.println(expressionName);
-				facePanel.removeAll();
-				facePanel.revalidate();
 			
-				facePanel.repaint();
-				gifLabel = new JLabel(new ImageIcon("res/"+expressionName));
-				gifLabel.setPreferredSize(new Dimension(260, 260));
-				facePanel.add(gifLabel);
-				this.revalidate();
-				this.repaint();
-
-			}*/
+			expressiveModel = (ExpressiveModel) arg;
+			System.out.println("In update"+ expressiveModel.getBlink());
+			expressionName = clientExpression.getExpression(expressiveModel);
+			System.out.println("expression name"+ expressionName);
+			if(expressionName!= null) {
+				System.out.println("blah!");
+				ImageIcon icon = new ImageIcon("res/"+expressionName);
+				icon.getImage().flush();
+				gifLabel.setIcon( icon );
+				facePanel.add(gifLabel);	
+				
+			}
 			
 		}
 

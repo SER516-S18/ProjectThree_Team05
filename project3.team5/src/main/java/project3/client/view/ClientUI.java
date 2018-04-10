@@ -1,6 +1,5 @@
 package project3.client.view;
 
-
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,7 +17,6 @@ import project3.server.view.ServerUI;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -33,12 +31,11 @@ import java.awt.Dimension;
 public class ClientUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	/*private JPanel mainPanel;
-	private JButton connectToServer;
-	private JLabel clockLabel;
-	private JLabel timeLabel;*/
 	private static MainTab mainTab;
 	private ClientMenuBar menuBar = new ClientMenuBar();
+	private JPanel mainPanel;
+	private JLabel clockLabel;
+	private JLabel timeLabel;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -51,8 +48,6 @@ public class ClientUI extends JFrame {
 			}
 		});
 	}
-
-
 	
 	public ClientUI() {
 		this.setTitle("Client");
@@ -145,38 +140,7 @@ public class ClientUI extends JFrame {
 				System.exit(0);
 			}
 		});
-mainMenu.add(menuExit);
-        
-		/*setBounds(100, 100, 1015, 616);
-		mainPanel = new JPanel();
-		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		mainPanel.setBackground(Color.WHITE);
-		setContentPane(mainPanel);
-		this.setLayout(new BorderLayout());
-		mainPanel.setLayout(null);
-		
-		JPanel panelBuffer = new JPanel(new GridLayout(1, 2, 8, 8));
-        panelBuffer.setBorder(BorderFactory.createLineBorder(Color.black));
-
-		
-		connectToServer = new JButton("Connect");
-		connectToServer.setPreferredSize(new Dimension(100,25));
-        panelBuffer.add(connectToServer, BorderLayout.PAGE_START);
-        //panelBuffer.add(mainPanel, BorderLayout.PAGE_END);
-
-
-		//mainPanel.add(connectToServer);
-		
-		mainPanel.add(new MainTab());
-		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
-		clockLabel.setPreferredSize(new Dimension(45,45));
-		mainPanel.add(clockLabel);
-		clockLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		timeLabel = new JLabel("");
-		timeLabel.setPreferredSize(new Dimension(61,16));
-		mainPanel.add(timeLabel);
-		this.add(panelBuffer, BorderLayout.CENTER);*/
+		mainMenu.add(menuExit);
 	}
 	public static MainTab setObserver() {
 		return mainTab;
