@@ -25,7 +25,7 @@ public class Server implements Runnable{
 
 	public void setAutoReset(boolean autoResetValue) {
 		serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();
-		serverConfig.setAutoReset(autoResetValue);
+		serverConfig.setAutoRepeat(autoResetValue);
 		
 		if(autoResetValue)
 			serverConfig.setSendOneTime(false);

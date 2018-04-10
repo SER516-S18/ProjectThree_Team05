@@ -112,7 +112,7 @@ public class ServerEndPoint{
 		timerOffset = values.getTimeStamp();
 
 		if(isServerStatus()) {			
-			 if(serverConfiguations.getServerDataInstance().isAutoReset()) {
+			 if(serverConfiguations.getServerDataInstance().isAutoRepeat()) {
 				 this.time = new Timer();
 				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,5000);
 			 }

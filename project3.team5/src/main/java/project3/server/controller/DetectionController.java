@@ -50,9 +50,11 @@ public class DetectionController {
         this.chckbxEyeAutoReset = chckbxNewCheckBox;
         this.autoRepeatCheckBox= autoRepeatCheckBox;
       
+        updateAutoRepeatValue();
         updatefaceData();
         updateMetricsData();
         updateSpinnerTimeValue();
+        updateEyeAutoResetValue();
     }
 
     /**
@@ -96,9 +98,9 @@ public class DetectionController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			
-				if(eyeActive==false)
+				if(eyeActive == false)
 				{
-					eyeActive=true;
+					eyeActive = true;
 					if (eyeActive) {
 			            String eye = (String) choiceeye.getSelectedItem();
 			            switch (eye) {
@@ -122,7 +124,7 @@ public class DetectionController {
 				}
 				else
 				{
-					eyeActive=false;
+					eyeActive = false;
 					if (!eyeActive) {
 			            String eye = (String) choiceeye.getSelectedItem();
 			            switch (eye) {
@@ -149,10 +151,6 @@ public class DetectionController {
 			}
         	
         });
-        boolean eyeAutoReset = chckbxEyeAutoReset.isSelected();
-        if (eyeAutoReset) {
-            emodel.setEyeReset(true);
-        }
     }
     
     private void updateMetricsData() {
@@ -185,4 +183,17 @@ public class DetectionController {
 		emodel.setTimeStamp(timevalue);
     }
     
+    private void updateEyeAutoResetValue() {
+    		boolean eyeAutoReset = chckbxEyeAutoReset.isSelected();
+        if (eyeAutoReset) {
+            emodel.setEyeReset(true);
+        }
+    }
+    
+    private void updateAutoRepeatValue() {
+    		boolean startAutoRepeat = autoRepeatCheckBox.isSelected();
+        if (startAutoRepeat) {
+            emodel.setAutoRepeat(true);
+        }
+    }
 }

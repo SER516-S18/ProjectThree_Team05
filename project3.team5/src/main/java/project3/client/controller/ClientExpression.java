@@ -20,7 +20,7 @@ public class ClientExpression {
 	}
 
 	public String getExpression(ExpressiveModel expressiveModel) {
-		if (expressiveModel.isAutoReset()) {
+		if (expressiveModel.getEyeReset()) {
 
 			if (expressiveModel.getBlink() != 0) {
 				return "blink.gif";
@@ -74,8 +74,6 @@ public class ClientExpression {
 				return "laughing.png";
 			}
 		}
-
 		return null;
-
 	}
 }

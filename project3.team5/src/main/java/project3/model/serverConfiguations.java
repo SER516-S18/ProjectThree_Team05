@@ -2,15 +2,15 @@ package project3.model;
 
 public class serverConfiguations {
 	
-	private  boolean autoReset = false;
+	private  boolean autoRepeat = false;
 	private  boolean sendOneTime = true;
 	private static serverConfiguations serverConfig = new serverConfiguations();
 	
-	public boolean isAutoReset() {
-		return this.autoReset;
+	public boolean isAutoRepeat() {
+		return this.autoRepeat;
 	}
-	public void setAutoReset(boolean autoResetValue) {
-		this.autoReset = autoResetValue;
+	public void setAutoRepeat(boolean autoResetValue) {
+		this.autoRepeat = autoResetValue;
 	}
 	public boolean isSendOneTime() {
 		return this.sendOneTime;

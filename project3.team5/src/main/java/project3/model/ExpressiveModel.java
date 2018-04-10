@@ -16,14 +16,21 @@ public class ExpressiveModel {
 	private double laugh;
 	private double TimeStamp;
 	private String gifLabel;
-	private Boolean eyeReset;
+	private boolean eyeReset;
 	private double Interest;
 	private double Engagement;
 	private double Stress;
 	private double Relaxation;
 	private double Excitement;
 	private double Focus;
-	private boolean autoReset;
+	private boolean autoRepeat;
+
+	public boolean isAutoRepeat() {
+		return autoRepeat;
+	}
+	public void setAutoRepeat(boolean autoRepeat) {
+		this.autoRepeat = autoRepeat;
+	}
 	  
     public double getTimeStamp() {
     		return TimeStamp;
@@ -114,12 +121,13 @@ public class ExpressiveModel {
 		this.gifLabel = gifLabel;
 	}
 	public Boolean getEyeReset() {
+		System.out.println("Eye Reset: " + eyeReset);
 		return eyeReset;
 	}
 	public void setEyeReset(Boolean eyeReset) {
 		this.eyeReset = eyeReset;
-		
 	}
+	
 	public double getInterest() {
 		return Interest;
 	}
@@ -156,11 +164,4 @@ public class ExpressiveModel {
 	public void setFocus(double focus) {
 		this.Focus = focus;
 	}
-	public boolean isAutoReset() {
-		return autoReset;
-	}
-	public void setAutoReset(boolean autoReset) {
-		this.autoReset = autoReset;
-	}
-
 }
