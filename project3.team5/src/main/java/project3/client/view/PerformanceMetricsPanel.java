@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,24 +16,19 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import project3.client.controller.PerformanceMetricsButtonController;
 import project3.client.controller.PerformanceMetricsTabController;
 import project3.client.model.PerformanceMetricsTabModel;
 
 public class PerformanceMetricsPanel extends JPanel {
-	private JPanel performanceGraphPanel;
-	private JPanel performanceColorPanel;
-	/*private JComboBox<String> interestComboBox;
-	private JComboBox<String> engagementComboBox;
-	private JComboBox<String> stressComboBox;
-	private JComboBox<String> relaxationComboBox;
-	private JComboBox<String> excitementComboBox;
-	private JComboBox<String> focusComboBox;*/
-	private JLabel interestLabel;
-	private JLabel engagementLabel;
-	private JLabel stressLabel;
-	private JLabel relaxationLabel;
-	private JLabel excitementLabel;
-	private JLabel focusLabel;
+	public JPanel performanceGraphPanel;
+	public JPanel performanceColorPanel;
+	public JButton interestButton;
+	public JButton engagementButton;
+	public JButton stressButton;
+	public JButton relaxationButton;
+	public JButton excitementButton;
+	public JButton focusButton;
 	private JLabel displayLengthLabel;
 	private JTextField xAxisLength;
 	private JLabel secondsLabel;
@@ -63,99 +59,60 @@ public class PerformanceMetricsPanel extends JPanel {
 		this.add(performanceGraphPanel);
 
 		performanceColorPanel = new JPanel();
-		performanceColorPanel.setPreferredSize(new Dimension(416, 478));
+		performanceColorPanel.setPreferredSize(new Dimension(900, 478));
 		performanceColorPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		performanceColorPanel.setBackground(Color.WHITE);
-		performanceColorPanel.setLayout(new GridBagLayout());
-		
-		
-		/*interestComboBox = new JComboBox<String>(performanceMetricColors);
-		interestComboBox.setSelectedIndex(0);
-		interestComboBox.setBounds(657, 34, 115, 27);
-		add(interestComboBox);
-		
-		engagementComboBox = new JComboBox<String>(performanceMetricColors);
-		engagementComboBox.setSelectedIndex(1);
-		engagementComboBox.setBounds(834, 34, 108, 27);
-		add(engagementComboBox);
-		
-		stressComboBox = new JComboBox<String>(performanceMetricColors);
-		stressComboBox.setSelectedIndex(2);
-		stressComboBox.setBounds(657, 100, 108, 27);
-		add(stressComboBox);
-		
-		relaxationComboBox = new JComboBox<String>(performanceMetricColors);
-		relaxationComboBox.setSelectedIndex(3);
-		relaxationComboBox.setBounds(834, 100, 108, 27);
-		add(relaxationComboBox);
-		
-		excitementComboBox = new JComboBox<String>(performanceMetricColors);
-		excitementComboBox.setSelectedIndex(4);
-		excitementComboBox.setBounds(657, 163, 108, 27);
-		add(excitementComboBox);
-		
-		focusComboBox = new JComboBox<String>(performanceMetricColors);
-		focusComboBox.setSelectedIndex(5);
-		focusComboBox.setBounds(834, 163, 108, 27);
-		add(focusComboBox);*/
+		performanceColorPanel.setBackground(Color.white);
+		performanceColorPanel.setLayout(null);
 		
 		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(25, 25, 25, 25);
-		c.gridx = 0;
-		c.gridy = 0;
 		
-		interestLabel = new JLabel("Interest",JLabel.CENTER);
-		interestLabel.setPreferredSize(new Dimension(61, 16));
-		performanceColorPanel.add(interestLabel, c);
+		interestButton = new JButton("IN");
+		interestButton.setBackground(Color.red);
+		interestButton.setBounds(100, 34, 50, 50);
+		performanceColorPanel.add(interestButton, c);
 		
-		c.gridx = 1;
-		c.gridy = 0;
-		engagementLabel = new JLabel("Engagement",JLabel.CENTER);
-		engagementLabel.setPreferredSize(new Dimension(77, 16));
-		performanceColorPanel.add(engagementLabel, c);
+		engagementButton = new JButton("EN");
+		engagementButton.setBounds(155, 34, 50, 50);
+		engagementButton.setBackground(Color.blue);
+		performanceColorPanel.add(engagementButton, c);
 		
-		c.gridx = 0;
-		c.gridy = 1;
-		stressLabel = new JLabel("Stress",JLabel.CENTER);
-		stressLabel.setPreferredSize(new Dimension(61, 16));
-		performanceColorPanel.add(stressLabel, c);
+		stressButton = new JButton("ST");
+		stressButton.setBounds(210, 34, 50,50);
+		stressButton.setBackground(Color.yellow);
+		performanceColorPanel.add(stressButton, c);
 		
-		c.gridx = 1;
-		c.gridy = 1;
-		relaxationLabel = new JLabel("Relaxation",JLabel.CENTER);
-		relaxationLabel.setPreferredSize(new Dimension(77, 16));
-		performanceColorPanel.add(relaxationLabel, c);
+		relaxationButton = new JButton("RE");
+		relaxationButton.setBounds(100, 89,50,50);
+		relaxationButton.setBackground(Color.pink);
+		performanceColorPanel.add(relaxationButton, c);
 		
-		c.gridx = 0;
-		c.gridy = 2;
-		excitementLabel = new JLabel("Excitement",JLabel.CENTER);
-		excitementLabel.setPreferredSize(new Dimension(74, 16));
-		performanceColorPanel.add(excitementLabel, c);
+		excitementButton = new JButton("EX");
+		excitementButton.setBackground(Color.green);
+		excitementButton.setBounds(155, 89, 50, 50);
+		performanceColorPanel.add(excitementButton, c);
 		
-		c.gridx = 1;
-		c.gridy = 2;
-		focusLabel = new JLabel("Focus",JLabel.CENTER);
-		focusLabel.setPreferredSize(new Dimension (61, 16));
-		performanceColorPanel.add(focusLabel, c);
+		focusButton = new JButton("FO");
+		stressButton.setBackground(Color.gray);
+		focusButton.setBounds(210, 89, 50,50);
+		PerformanceMetricsButtonController performanceMBController=new PerformanceMetricsButtonController(performanceColorPanel,interestButton,engagementButton,focusButton,stressButton,relaxationButton,excitementButton);
+		performanceColorPanel.add(focusButton, c); 
 		
-		c.gridx = 0;
-		c.gridy = 3;
-		displayLengthLabel = new JLabel("Display Length",JLabel.CENTER);
-		displayLengthLabel.setPreferredSize(new Dimension (94, 16));
+		
+		
+		displayLengthLabel = new JLabel("Display Length",displayLengthLabel.CENTER);
+		displayLengthLabel.setBounds(100,470,110,26);
 		performanceColorPanel.add(displayLengthLabel, c);
-		
-		c.gridx = 1;
-		c.gridy = 3;
+				
 		xAxisLength = new JTextField("30",JTextField.CENTER);
-		xAxisLength.setSize(new Dimension (11, 26));
-		performanceColorPanel.add(xAxisLength,c);
+		xAxisLength.setBounds(216,470,50,26);
 		xAxisLength.setColumns(10);
+		performanceColorPanel.add(xAxisLength,c);
 		
-		c.gridx = 2;
-		c.gridy = 3;
-		secondsLabel = new JLabel("Seconds");
-		secondsLabel.setPreferredSize(new Dimension (61, 16));
+		
+		secondsLabel = new JLabel("Seconds",secondsLabel.CENTER);
+		secondsLabel.setBounds(276,470,61,26);
 		performanceColorPanel.add(secondsLabel, c);
+		
 		
 		this.add(performanceColorPanel, BorderLayout.NORTH);
 	}
