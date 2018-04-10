@@ -33,7 +33,10 @@ public class DetectionController {
     public Choice choiceupperface, choicelowerface, choicemetrics, choiceeye;
     public JButton eyerdbtnActive;
     public JButton btnClearLogs;
-    public ExpressiveModel emodel;
+    public ExpressiveModel emodel = new ExpressiveModel();
+    public boolean eyeActive= false;
+	
+    /* no implementation for time interval*/
 
     public DetectionController(JSpinner spinner_upperface, JSpinner spinner_lowerface,
                                JSpinner spinnertimevalue,JSpinner spinner_metrics,
@@ -53,89 +56,15 @@ public class DetectionController {
         this.eyerdbtnActive = eyerdbtnActive;
         this.chckbxEyeAutoReset = chckbxNewCheckBox;
         this.autoRepeatCheckBox= autoRepeatCheckBox;
-        
-        choiceupperface.addItemListener(new ItemListener(){
-
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                updatefaceData();
-
-            }});
-
-        choicelowerface.addItemListener(new ItemListener(){
-
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                updatefaceData();
-
-            }});
-
-        choiceeye.addItemListener(new ItemListener(){
-
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                updatefaceData();
-
-            }});
-        choicemetrics.addItemListener(new ItemListener(){
-
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-            	updatefaceData();
-
-            }});
-
-        chckbxEyeAutoReset.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				 updatefaceData();
-				
-			}});
-
-        eyerdbtnActive.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                updatefaceData();
-            }});
-
-        spinner_upperface.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				 updatefaceData();
-				
-			}});
-
-        spinner_lowerface.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				updatefaceData();
-				
-			}});
       
-        spinner_metrics.addChangeListener(new ChangeListener(){
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				updateMetricsData();
-				
-			}});
-        autoRepeatCheckBox.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}});
         
-        spinnertimevalue.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                ////////////////////////
-            }
-        });
+        updatefaceData();
+        updateMetricsData();
         
-
-
+        /*these are not used anywhere(time interval) */
+        boolean autoRepeattime = autoRepeatCheckBox.isSelected();
+		Double timevalue = (double) spinnertimevalue.getValue();
+		
     }
 
     /**
@@ -143,13 +72,12 @@ public class DetectionController {
      */
     public void updatefaceData() {
 
-
+    	
         String upperFace = (String) choiceupperface.getSelectedItem();
-        float upperFaceValue = Float.parseFloat((String) spinner_upperface.getValue());
-
+        Double upperFaceValue = (double) spinner_upperface.getValue();
         switch (upperFace.toString()) {
             case "Raise Brow":
-                emodel.setRaiseBrow(upperFaceValue);
+            	emodel.setRaiseBrow(upperFaceValue);
                 break;
             case "Furrow Brow":
                 emodel.setFurrowBrow(upperFaceValue);
@@ -157,8 +85,7 @@ public class DetectionController {
         }
 
         String lowerFace = (String) choicelowerface.getSelectedItem();
-        float lowerFaceValue = Float.parseFloat((String) spinner_lowerface.getValue());
-
+        Double lowerFaceValue = (double) spinner_lowerface.getValue();
         switch (lowerFace.toString()) {
             case "Smile":
                 emodel.setSmile(lowerFaceValue);
@@ -176,33 +103,70 @@ public class DetectionController {
                 emodel.setLaugh(lowerFaceValue);
                 break;
         }
+       /*eye activate button send intitialized to 0 when click sturn to one and set the value of eye to 1
+        *on second click sets value to 0 
+        * */
+        eyerdbtnActive.addActionListener(new ActionListener(){
 
-        boolean eyeActive = eyerdbtnActive.isSelected();
-
-        if (eyeActive) {
-            String eye = (String) choicemetrics.getSelectedItem();
-
-            switch (eye) {
-                case "Blink":
-                    emodel.setBlink(1);
-                    break;
-                case "Wink Left":
-                    emodel.setLeftWink(1);
-                    break;
-                case "Wink Right":
-                    emodel.setRightWlink(1);
-                    break;
-                case "Look Left":
-                    emodel.setLookLeft(1);
-                    break;
-                case "Look Right":
-                    emodel.setLookRight(1);
-                    break;
-            }
-        }
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			
+				if(eyeActive==false)
+				{
+					eyeActive=true;
+					if (eyeActive) {
+			            String eye = (String) choiceeye.getSelectedItem();
+			            switch (eye) {
+			                case "Blink":
+			                    emodel.setBlink(1);
+			                    break;
+			                case "Wink Left":
+			                    emodel.setLeftWink(1);
+			                    break;
+			                case "Wink Right":
+			                    emodel.setRightWlink(1);
+			                    break;
+			                case "Look Left":
+			                    emodel.setLookLeft(1);
+			                    break;
+			                case "Look Right":
+			                    emodel.setLookRight(1);
+			                    break;
+			            }
+			        }
+				}
+				else
+				{
+					eyeActive=false;
+					if (!eyeActive) {
+			            String eye = (String) choiceeye.getSelectedItem();
+			            switch (eye) {
+			                case "Blink":
+			                    emodel.setBlink(0);
+			                    break;
+			                case "Wink Left":
+			                    emodel.setLeftWink(0);
+			                    break;
+			                case "Wink Right":
+			                    emodel.setRightWlink(0);
+			                    break;
+			                case "Look Left":
+			                    emodel.setLookLeft(0);
+			                    break;
+			                case "Look Right":
+			                    emodel.setLookRight(0);
+			                    break;
+			            }
+			        }
+					
+				}
+				
+			}
+        	
+        });
+       
 
         boolean eyeAutoReset = chckbxEyeAutoReset.isSelected();
-
         if (eyeAutoReset) {
             emodel.setEyeReset(true);
         }
@@ -213,8 +177,7 @@ public class DetectionController {
 	
 
 		String MetricsData = (String) choicemetrics.getSelectedItem();
-		float MetricsDataval = Float.parseFloat((String) spinner_metrics.getValue());
-
+		Double MetricsDataval = (double) spinner_metrics.getValue();
 		switch (MetricsData) {
 		case "Interest":
 			emodel.setInterest(MetricsDataval);

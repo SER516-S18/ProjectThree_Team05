@@ -69,12 +69,13 @@ public class ServerUI extends JFrame {
 		setContentPane(contentPane);
 		
 		SpinnerModel value_1 = new SpinnerNumberModel(0, 0, 1.0, 0.1); 
-		SpinnerModel value_2 = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
-		SpinnerModel value_3 = new SpinnerNumberModel(0, 0, 5.0, 0.5);
+		SpinnerModel value_2 = new SpinnerNumberModel(0, 0, 1.0, 0.1); 
+		SpinnerModel value_3 = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
+		SpinnerModel value_4 = new SpinnerNumberModel(0, 0, 5.0, 0.5);
 		JSpinner spinner_upperface = new JSpinner(value_1);
-		JSpinner spinner_lowerface = new JSpinner(value_1);
-		JSpinner spinnertimevalue = new JSpinner(value_2);
- 		JSpinner spinner_metrics = new JSpinner(value_3);
+		JSpinner spinner_lowerface = new JSpinner(value_2);
+		JSpinner spinnertimevalue = new JSpinner(value_3);
+ 		JSpinner spinner_metrics = new JSpinner(value_4);
 		
 		Choice choicemetrics = new Choice();
 		Choice choiceupperface = new Choice();

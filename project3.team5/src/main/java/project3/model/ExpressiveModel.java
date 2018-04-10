@@ -1,27 +1,27 @@
 package project3.model;
 
 public class ExpressiveModel {
-	private int blink;
-	private int rightWlink;
-	private int leftWink;
-	private int lookLeft;
-	private int lookRight;
-	private float raiseBrow;
-	private float furrowBrow;
-	private float smile;
-	private float clench;
-	private float smirkLeft;
-	private float smirkRight;
-	private float laugh;
-	private int TimeStamp;
-	private String gifLabel;
+	public int blink;
+	public int rightWlink;
+	public int leftWink;
+	public int lookLeft;
+	public int lookRight;
+	public double raiseBrow;
+	public double furrowBrow;
+	public double smile;
+	public double clench;
+	public double smirkLeft;
+	public double smirkRight;
+	public double laugh;
+	public int TimeStamp;
+	public String gifLabel;
 	public Boolean eyeReset;
-	private float Interest;
-	private float Engagement;
-	private float Stress;
-	private float Relaxation;
-	private float Excitement;
-	private float Focus;
+	public double Interest;
+	public double Engagement;
+	public double Stress;
+	public double Relaxation;
+	public double Excitement;
+	public double Focus;
 	  
     public int getTimeStamp() {
     	return TimeStamp;
@@ -33,7 +33,8 @@ public class ExpressiveModel {
 		return blink;
 	}
 	public void setBlink(int blink) {
-		this.blink = blink;
+		System.out.println(blink);
+    	this.blink = blink;
 	}
 	public int getRightWlink() {
 		return rightWlink;
@@ -46,6 +47,7 @@ public class ExpressiveModel {
 	}
 	public void setLeftWink(int leftWink) {
 		this.leftWink = leftWink;
+		System.out.println(leftWink);
 	}
 	public int getLookLeft() {
 		return lookLeft;
@@ -59,46 +61,46 @@ public class ExpressiveModel {
 	public void setLookRight(int lookRight) {
 		this.lookRight = lookRight;
 	}
-	public float getRaiseBrow() {
+	public double getRaiseBrow() {
 		return raiseBrow;
 	}
-	public void setRaiseBrow(float raiseBrow) {
+	public void setRaiseBrow(double raiseBrow) {
 		this.raiseBrow = raiseBrow;
 	}
-	public float getFurrowBrow() {
+	public double getFurrowBrow() {
 		return furrowBrow;
 	}
-	public void setFurrowBrow(float furrowBrow) {
+	public void setFurrowBrow(double furrowBrow) {
 		this.furrowBrow = furrowBrow;
 	}
-	public float getSmile() {
+	public double getSmile() {
 		return smile;
 	}
-	public void setSmile(float smile) {
+	public void setSmile(double smile) {
 		this.smile = smile;
 	}
-	public float getClench() {
+	public double getClench() {
 		return clench;
 	}
-	public void setClench(float clench) {
+	public void setClench(double clench) {
 		this.clench = clench;
 	}
-	public float getSmirkLeft() {
+	public double getSmirkLeft() {
 		return smirkLeft;
 	}
-	public void setSmirkLeft(float smirkLeft) {
+	public void setSmirkLeft(double smirkLeft) {
 		this.smirkLeft = smirkLeft;
 	}
-	public float getSmirkRight() {
+	public double getSmirkRight() {
 		return smirkRight;
 	}
-	public void setSmirkRight(float smirkRight) {
+	public void setSmirkRight(double smirkRight) {
 		this.smirkRight = smirkRight;
 	}
-	public float getLaugh() {
+	public double getLaugh() {
 		return laugh;
 	}
-	public void setLaugh(float laugh) {
+	public void setLaugh(double laugh) {
 		this.laugh = laugh;
 	}
 
@@ -114,41 +116,42 @@ public class ExpressiveModel {
 	}
 	public void setEyeReset(Boolean eyeReset) {
 		this.eyeReset = eyeReset;
+		
 	}
-	public float getInterest() {
+	public double getInterest() {
 		return Interest;
 	}
-	public void setInterest(float interest) {
+	public void setInterest(double interest) {
 		this.Interest = interest;
 	}
-	public float getEngagement() {
+	public double getEngagement() {
 		return Engagement;
 	}
-	public void setEngagement(float engagement) {
+	public void setEngagement(double engagement) {
 		this.Engagement = engagement;
 	}
-	public float getStress() {
+	public double getStress() {
 		return Stress;
 	}
-	public void setStress(float stress) {
+	public void setStress(double stress) {
 		this.Stress = stress;
 	}
-	public float getRelaxation() {
+	public double getRelaxation() {
 		return Relaxation;
 	}
-	public void setRelaxation(float relaxation) {
+	public void setRelaxation(double relaxation) {
 		this.Relaxation = relaxation;
 	}
-	public float getExcitement() {
+	public double getExcitement() {
 		return Excitement;
 	}
-	public void setExcitement(float excitement) {
+	public void setExcitement(double excitement) {
 		this.Excitement = excitement;
 	}
-	public float getFocus() {
+	public double getFocus() {
 		return Focus;
 	}
-	public void setFocus(float focus) {
+	public void setFocus(double focus) {
 		this.Focus = focus;
 	}
 
