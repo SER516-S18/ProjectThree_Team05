@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,11 +17,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import project3.client.controller.ClientExpression;
+import project3.client.controller.ExpressiveModelObservable;
 import project3.client.controller.FacialExpressionGraphController;
+import project3.client.model.ExpressiveModel;
 
 	
 
-public class FaceMetricsPanel extends JPanel {
+public class FaceMetricsPanel extends JPanel implements Observer {
 		/**
 	 * 
 	 */
@@ -41,6 +45,8 @@ public class FaceMetricsPanel extends JPanel {
 		private JPanel rightSmirkPanel;
 		private JPanel laughPanel;
 		private FacialExpressionGraphController facialExpressionGraphController;
+		private ExpressiveModel expressiveModel;
+		private FaceMetricsPanel faceMetricsPanel;
 		
 			
 		public FaceMetricsPanel() {
@@ -70,21 +76,16 @@ public class FaceMetricsPanel extends JPanel {
 		gifLabel.setPreferredSize(new Dimension(260, 260));
 		facePanel.add(gifLabel);	
 		
-		clientExpression = new ClientExpression();
-		expressionName = clientExpression.getExpression();
-		if(expressionName!= null) {
-			facePanel.remove(gifLabel);
-			gifLabel = new JLabel(new ImageIcon("res/"+expressionName));
-			gifLabel.setPreferredSize(new Dimension(260, 260));
-			facePanel.add(gifLabel);	
-		}
-
+		
+		System.out.println(facePanel);
+		System.out.println(gifLabel);
 		graphPanel = new JPanel();
 		graphPanel.setPreferredSize(new Dimension(529, 478));
 		graphPanel.setBackground(Color.WHITE);
 		graphPanel.setLayout(new BorderLayout());
 		graphPanel.setOpaque(false);
 		graphPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
 		
 		JPanel panelBuffer = new JPanel(new GridLayout(11, 1, 0, 0));
 		panelBuffer.setBackground(Color.GRAY);
@@ -217,5 +218,28 @@ public class FaceMetricsPanel extends JPanel {
 		this.add(graphPanel);
 
 	}
+		// uncomment for implementation of observer pattern 
+
+		@Override
+		public void update(Observable o, Object arg) {
+			// TODO Auto-generated method stub
+		/*	expressiveModel = (ExpressiveModel) arg;
+			clientExpression = new ClientExpression();
+			expressionName = clientExpression.getExpression(expressiveModel);
+			if(expressionName!= null) {
+				System.out.println(expressionName);
+				facePanel.removeAll();
+				facePanel.revalidate();
+			
+				facePanel.repaint();
+				gifLabel = new JLabel(new ImageIcon("res/"+expressionName));
+				gifLabel.setPreferredSize(new Dimension(260, 260));
+				facePanel.add(gifLabel);
+				this.revalidate();
+				this.repaint();
+
+			}*/
+			
+		}
 
 }
