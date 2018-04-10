@@ -17,3 +17,18 @@ mvn package
 ```
 File >> Import >> Maven >> Existing Maven Projects >> Browse to Project Folder(Directory with pom.xml)
 ```
+
+### Team Members
+1. Rachana Kashyap (rnkashya@asu.edu )
+2. Harshitha Katpally (hkatpall@asu.edu)
+3. Abdul Samad Khan (akhan51@asu.edu)
+4. Raisa Khatunb  (raisakhatun@gmail.com)
+5. Tarun kolla (tkolla@asu.edu)
+6. Koushik Kotamraju (kkotamra@asu.edu)
+7. Mitali Kulkarni (mskulka4@asu.edu)
+8. Abhishek Kumar (Akuma168@asu.edu)
+9. Natalya Kumar (nkumar50@asu.edu)
+10. Minal Laad (mlaad@asu.edu)
+11. Sowmya Madabhushi (smadabh1@asu.edu)
+12. Venkata Akhil Madaraju (vmadaraj@asu.edu)
+13. Aanchal Mahajan (amahaj14@asu.edu)

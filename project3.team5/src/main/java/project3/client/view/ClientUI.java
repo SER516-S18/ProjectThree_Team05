@@ -1,6 +1,7 @@
 package project3.client.view;
 
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +15,7 @@ import project3.model.ConnectionIpAndPortValues;
 import project3.server.controller.Server;
 import project3.server.view.ServerUI;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -21,15 +23,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class ClientUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private static MainTab mainTab;
+	private ClientMenuBar menuBar = new ClientMenuBar();
 	private JPanel mainPanel;
 	private JLabel clockLabel;
 	private JLabel timeLabel;
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,23 +50,22 @@ public class ClientUI extends JFrame {
 	}
 	
 	public ClientUI() {
+		this.setTitle("Client");
+		this.setSize(new Dimension(1200,800));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(new BorderLayout());
 		
-		setTitle("Client");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1015, 616);
-		
-		mainPanel = new JPanel();
-		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		mainPanel.setBackground(Color.WHITE);
-		setContentPane(mainPanel);
-		mainPanel.setLayout(null);
-
-		/**
+        //this.setOpaque(false);
+        //this.setBorder(new EmptyBorder(0, 8, 8, 8));
+        this.add(menuBar , BorderLayout.BEFORE_FIRST_LINE);
+        
+        
+        /**
 		 * Creates Menu with Application and conn
 		 * */
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 698, 22);
-		mainPanel.add(menuBar);
+		add(menuBar);
 		
 		JMenu mainMenu = new JMenu("Menu");
 		menuBar.add(mainMenu);
@@ -86,7 +91,15 @@ public class ClientUI extends JFrame {
 			}
 		});
 		menuApplication.add(connectServer);
+		this.add(menuBar , BorderLayout.BEFORE_FIRST_LINE);
 		
+		JPanel panelBuffer = new JPanel(new GridLayout(1, 2, 8, 8));
+        panelBuffer.setBorder(BorderFactory.createLineBorder(Color.black));
+        
+        mainTab = new MainTab();
+        panelBuffer.add(mainTab, BorderLayout.LINE_START);
+        
+        this.add(panelBuffer, BorderLayout.CENTER);
 		JMenuItem serverConnect = new JMenuItem("Connect to Server");
 		serverConnect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -128,15 +141,8 @@ public class ClientUI extends JFrame {
 			}
 		});
 		mainMenu.add(menuExit);
-		
-		mainPanel.add(new MainTab());
-		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
-		clockLabel.setBounds(731, 5, 45, 45);
-		mainPanel.add(clockLabel);
-		clockLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		
-		timeLabel = new JLabel("");
-		timeLabel.setBounds(764, 11, 61, 16);
-		mainPanel.add(timeLabel);
+	}
+	public static MainTab setObserver() {
+		return mainTab;
 	}
 }
