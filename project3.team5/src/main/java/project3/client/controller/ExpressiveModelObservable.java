@@ -27,7 +27,7 @@ public class ExpressiveModelObservable extends Observable{
 	
 	public void AddToListExpressiveModel(ExpressiveModel expressiveModel)
 	{
-		System.out.println("In add to list"+expressiveModel.getBlink() + expressiveModel.getFurrowBrow());
+		System.out.println("In add to list"+expressiveModel.getEngagement() + expressiveModel.getFurrowBrow());
 		expressiveModel.setBlink(1);
 		this.expressiveData.add(expressiveModel);
 		System.out.println(expressiveModel.getBlink());

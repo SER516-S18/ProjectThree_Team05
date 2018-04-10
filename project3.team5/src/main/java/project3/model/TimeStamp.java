@@ -5,10 +5,10 @@ import java.util.Timer;
 public class TimeStamp {
 	 private static  Timer timer = new Timer();
 		
-	  private int secondspassed;
-	  private int intialTime ;
+	  private double secondspassed;
+	  private double intialTime ;
 	 
-	  public int getIntialTime() {
+	  public double getIntialTime() {
 		return intialTime;
 	  }
 	  
@@ -20,11 +20,11 @@ public class TimeStamp {
 			return timer;
 	  }
 
-	  public int getSecondspassed() {
+	  public double getSecondspassed() {
 		  	return secondspassed;
 	  }
 
-	  public void setSecondspassed(int secondspassed) {
-		  this.secondspassed = secondspassed;
+	  public void setSecondspassed(double secondspassed2) {
+		  this.secondspassed = secondspassed2;
 	  }
 }

@@ -1,7 +1,6 @@
 package project3.server.view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -12,6 +11,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import project3.server.controller.Server;
+import project3.server.controller.ServerEndPoint;
 import project3.server.controller.DetectionController;
 
 import java.awt.GridBagLayout;
@@ -41,24 +42,13 @@ public class ServerUI extends JFrame {
 	private static final Font FONT = new Font("Times New Roman", Font.BOLD, 16);
 
 	/**
-	 * Launches the server UI application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new ServerUI().setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Creates the UI for Server 
 	 */
 	public ServerUI() {
+		
+		ServerEndPoint serverEndPoint = ServerEndPoint.getServerEndPointInsctance();
+		Server serverInstance = Server.getServerInstance();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(350, 30, 500, 550);
 		setMinimumSize(new Dimension(470,400));
@@ -130,58 +120,55 @@ public class ServerUI extends JFrame {
 		panel.add(autoRepeatCheckBox, gbc_chckbxAutoReset);
 		autoRepeatCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
 		autoRepeatCheckBox.setEnabled(true);
-		autoRepeatCheckBox.addActionListener(new ActionListener() {
 
+		autoRepeatCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	
-            	//send value only once
-            	
+           	 System.out.println(autoRepeatCheckBox.isSelected());
+
             	    if(autoRepeatCheckBox.isSelected()){
-            	    	
+             	    	serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
             	        buttonToggle.setText("Start");
-        	        	autoRepeatCheckBox.setEnabled(true);
-            	        buttonToggle.addActionListener(new ActionListener() {
-
-            	            @Override
-            	            public void actionPerformed(ActionEvent e) {
-            	            	if(buttonToggle.getText().equals("Start"))
-            	            	{
-            	            		// implement start functionality here
-                	            	buttonToggle.setText("Stop");
-                    	        	autoRepeatCheckBox.setEnabled(false);	
-            	            	}
-            	            	else
-            	            	{
-
-                	            	buttonToggle.setText("Start");
-                    	        	autoRepeatCheckBox.setEnabled(true);
-            	            	}
-            	            }
-            	        });
-            	        
-            	    
             	    }
             	    else {
-            	    	buttonToggle.setText("Send");
-            	    	autoRepeatCheckBox.setEnabled(true);
+            	    		serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
+            	        buttonToggle.setText("Send");
             	    }
             }
 		});
 		
-		buttonToggle.addActionListener(new ActionListener()
-				{
-
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
-						DetectionController detectionController = new DetectionController(spinner_upperface, 
-								spinner_lowerface, spinnertimevalue, spinner_metrics, 
-								choiceupperface, choicelowerface, choiceeye, choicemetrics, 
-								chckbxNewCheckBox, eyerdbtnActive, autoRepeatCheckBox);
-						
-					}
-			
-				});
+		buttonToggle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				DetectionController detectionController = new DetectionController(spinner_upperface, 
+						spinner_lowerface, spinnertimevalue, spinner_metrics, 
+						choiceupperface, choicelowerface, choiceeye, choicemetrics, 
+						chckbxNewCheckBox, eyerdbtnActive, autoRepeatCheckBox);
+				
+				if(buttonToggle.getText().equals("Start")) {
+					
+	            		serverEndPoint.setServerStatus(true);
+		            	buttonToggle.setText("Stop");
+		    	        	autoRepeatCheckBox.setEnabled(false);
+		    	        	serverEndPoint.startSendingValues(detectionController.emodel);			    	        	
+	            	}
+	            	else if (buttonToggle.getText().equals("Stop")) {
+	            		
+	            		serverEndPoint.setServerStatus(false);
+		            	buttonToggle.setText("Start");
+		    	        	autoRepeatCheckBox.setEnabled(true);
+		    	        	serverEndPoint.haltSendingValues();
+	            	}
+	            	else if(buttonToggle.getText().equals("Send")) {
+	            		
+	            		serverEndPoint.setServerStatus(true);
+	     	        	autoRepeatCheckBox.setEnabled(true);
+	     	        	System.out.println("Send button clicked");
+	     	        	serverEndPoint.startSendingValues(detectionController.emodel);
+		        }
+			}
+		});
+		
 		GridBagConstraints gbc_tglbtnSend = new GridBagConstraints();
 		gbc_tglbtnSend.insets = new Insets(0, 5, 0, 5);
 		gbc_tglbtnSend.ipadx = 10;
@@ -200,7 +187,6 @@ public class ServerUI extends JFrame {
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-
 		Border detection = new TitledBorder(null, "Detection", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
 		Border detectionMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
@@ -215,11 +201,8 @@ public class ServerUI extends JFrame {
 		gbc_lblUpperface.gridy = 2;
 		panel_1.add(lblUpperface, gbc_lblUpperface);
 		
-		
 		choiceupperface.add("Raise Brow");
-		choiceupperface.add("Furrow Brow");
-		
-				
+		choiceupperface.add("Furrow Brow");				
 		
 		GridBagConstraints gbc_spinner_1 = new GridBagConstraints();
 		gbc_spinner_1.insets = new Insets(0, 0, 5, 5);
@@ -228,7 +211,6 @@ public class ServerUI extends JFrame {
 		gbc_spinner_1.gridx = 3;
 		gbc_spinner_1.gridy = 2;
 		panel_1.add(spinner_upperface, gbc_spinner_1);
-		
 		
 		GridBagConstraints gbc_choice_2 = new GridBagConstraints();
 		//gbc_choice_2.gridwidth = 2;
@@ -250,7 +232,6 @@ public class ServerUI extends JFrame {
 		choicelowerface.add("Smirk Left");
 		choicelowerface.add("Smirk Right");
 		choicelowerface.add("Laugh");
-		
 	
 		GridBagConstraints gbc_spinner_2 = new GridBagConstraints();
 		gbc_spinner_2.insets = new Insets(0, 0, 5, 5);

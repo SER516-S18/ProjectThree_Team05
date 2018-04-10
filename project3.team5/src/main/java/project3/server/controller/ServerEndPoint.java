@@ -1,6 +1,5 @@
 package project3.server.controller;
 
-
 import java.io.IOException;
 import java.util.Set;
 import java.util.Timer;
@@ -20,17 +19,15 @@ import project3.model.ExpressiveModel;
 import project3.model.TimeStamp;
 import project3.model.serverConfiguations;
 
-
-
 @ServerEndpoint(value = "/server" ,decoders = MessageDecoder.class,  encoders = MessageEncoder.class)
 public class ServerEndPoint{
 	
 	private Session session;
     private static Set<ServerEndPoint> connections  = new CopyOnWriteArraySet<>();
     private static ServerEndPoint serverEndPoint = new ServerEndPoint();
-    private static boolean serverStatus = false;  
-    
-    
+    private static boolean serverStatus = false;
+	private ExpressiveModel values = new ExpressiveModel();
+
     public  boolean isServerStatus() {
 		return serverStatus;
 	}
@@ -39,37 +36,28 @@ public class ServerEndPoint{
 		ServerEndPoint.serverStatus = serverStatus;
 	}
 
-	
-    
     TimeStamp timeStamp = new TimeStamp(); 
     Timer time = new Timer() ;
-    int secondspassed = 0;
+    double secondspassed = 0.0;
+    double timerOffset = 0.0;
     
-    public static ServerEndPoint getServerEndPointInsctance()
-    {
+    public static ServerEndPoint getServerEndPointInsctance() {
     	 if (serverEndPoint == null)
     		 serverEndPoint = new ServerEndPoint();
     	 
          return serverEndPoint;
-    	
     }
     
 	@OnOpen
 	public void onOpen(Session session ) throws IOException, EncodeException{
 		 this.session = session;
-	        connections.add(this);
+	     connections.add(this);
 	}
-	
 	
 	@OnClose
 	public void onClose(Session Session) throws IOException, EncodeException{
-		
 		connections.remove(this);
-       // session.close();
-		System.out.println(Session.isOpen());
-		Session.close();
-		System.out.println(Session.isOpen());
-        
+		Session.close();        
 	}
 	
 	@OnError
@@ -81,10 +69,11 @@ public class ServerEndPoint{
 	{
 		return new TimerTask() {
 			  public void run() {
-
-				  ExpressiveModel values = new ExpressiveModel();
-				  System.out.println("ServerTimer : "+secondspassed);
+				  System.out.println("ServerTimer : "+secondspassed);				  
 				  values.setTimeStamp(timeStamp.getSecondspassed());
+				  System.out.println("ServerData : "+ values.getEngagement());
+				  System.out.println("Send multiple value");
+				  
 				  try {
 					broadcast(values);
 					} catch (IOException | EncodeException e) {
@@ -92,58 +81,53 @@ public class ServerEndPoint{
 						e.printStackTrace();
 					}
 				  
-				  secondspassed++;
+				  secondspassed += timerOffset;
 				  timeStamp.setSecondspassed(secondspassed);
 				  timeStamp.setIntialTime();
-				  
 			  }
 			};
 	}
 	
-		
-	
 	public void broadcast(ExpressiveModel values ) 
 		      throws IOException, EncodeException {
-		  
-		        connections.forEach(endpoint -> {
-		            synchronized (endpoint) {
-		                try {
-		                    endpoint.session.getBasicRemote().
-		                      sendObject(values);
-		                } catch (IOException | EncodeException e) {
-		                    e.printStackTrace();
-		                }
-		            }
-		        });
-		    }
+  
+        connections.forEach(endpoint -> {
+            synchronized (endpoint) {
+                try {
+                    endpoint.session.getBasicRemote().
+                      sendObject(values);
+                } catch (IOException | EncodeException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-
-	public void haltSendingValues()
-	{
+	public void haltSendingValues() {
 		 this.time.cancel();		
 	}
 	
-	public void startSendingValues() {
-		
-		if(isServerStatus())
-		{			
-			 if(serverConfiguations.getServerDataInstance().isAutoReset())
-			 {
-				 this.time = new Timer();
-				 time.scheduleAtFixedRate(createNewTimerTask(),timeStamp.getIntialTime() ,5000);
+	public void startSendingValues(ExpressiveModel receivedValues) {
+		this.values = receivedValues;
+		timerOffset = values.getTimeStamp();
 
+		if(isServerStatus()) {			
+			 if(serverConfiguations.getServerDataInstance().isAutoReset()) {
+				 this.time = new Timer();
+				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,5000);
 			 }
-			 else 
-			 {
-				 ExpressiveModel values = new ExpressiveModel();
+			 else {
+
 				 values.setTimeStamp(timeStamp.getSecondspassed());
 				 System.out.println("ServerTimer : "+ timeStamp.getSecondspassed());
+				 System.out.println("ServerData : "+ values.getEngagement());
 				 System.out.println("send one value");
-				 secondspassed++;
+				 
+				 secondspassed += timerOffset;
 				 timeStamp.setSecondspassed(secondspassed);
 				 setServerStatus(false);
-				 
-				 try {
+				 				 
+				try {
 					broadcast(values);
 				} catch (IOException | EncodeException e) {
 					// TODO Auto-generated catch blockz
@@ -152,7 +136,4 @@ public class ServerEndPoint{
 			 }
 		}
 	}
-	
-	
-
 }

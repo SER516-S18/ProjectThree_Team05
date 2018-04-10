@@ -4,17 +4,10 @@ package project3.server.controller;
 import java.awt.Choice;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 
 import project3.model.ExpressiveModel;
 
@@ -28,13 +21,13 @@ import project3.model.ExpressiveModel;
 
 public class DetectionController {
 
-    public JSpinner spinner_upperface, spinner_lowerface, spinnertimevalue,spinner_metrics;
-    public JCheckBox chckbxEyeAutoReset, autoRepeatCheckBox;
-    public Choice choiceupperface, choicelowerface, choicemetrics, choiceeye;
-    public JButton eyerdbtnActive;
-    public JButton btnClearLogs;
+    private JSpinner spinner_upperface, spinner_lowerface, spinnertimevalue, spinner_metrics;
+    private JCheckBox chckbxEyeAutoReset, autoRepeatCheckBox;
+    private Choice choiceupperface, choicelowerface, choicemetrics, choiceeye;
+    private JButton eyerdbtnActive;
+    private JButton btnClearLogs;
     public ExpressiveModel emodel = new ExpressiveModel();
-    public boolean eyeActive= false;
+    private boolean eyeActive= false;
 	
     /* no implementation for time interval*/
 
@@ -57,23 +50,16 @@ public class DetectionController {
         this.chckbxEyeAutoReset = chckbxNewCheckBox;
         this.autoRepeatCheckBox= autoRepeatCheckBox;
       
-        
         updatefaceData();
         updateMetricsData();
-        
-        /*these are not used anywhere(time interval) */
-        boolean autoRepeattime = autoRepeatCheckBox.isSelected();
-		Double timevalue = (double) spinnertimevalue.getValue();
-		
+        updateSpinnerTimeValue();
     }
 
     /**
      * Updating face expression data values using spinner values
      */
-    public void updatefaceData() {
-
-    	
-        String upperFace = (String) choiceupperface.getSelectedItem();
+    private void updatefaceData() {
+    		String upperFace = (String) choiceupperface.getSelectedItem();
         Double upperFaceValue = (double) spinner_upperface.getValue();
         switch (upperFace.toString()) {
             case "Raise Brow":
@@ -107,7 +93,6 @@ public class DetectionController {
         *on second click sets value to 0 
         * */
         eyerdbtnActive.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -164,18 +149,13 @@ public class DetectionController {
 			}
         	
         });
-       
-
         boolean eyeAutoReset = chckbxEyeAutoReset.isSelected();
         if (eyeAutoReset) {
             emodel.setEyeReset(true);
         }
     }
     
-    public void updateMetricsData() {
-
-	
-
+    private void updateMetricsData() {
 		String MetricsData = (String) choicemetrics.getSelectedItem();
 		Double MetricsDataval = (double) spinner_metrics.getValue();
 		switch (MetricsData) {
@@ -199,5 +179,10 @@ public class DetectionController {
 			break;
 		}
 	}
+    
+    private void updateSpinnerTimeValue() {
+		Double timevalue = (double) spinnertimevalue.getValue();
+		emodel.setTimeStamp(timevalue);
+    }
     
 }

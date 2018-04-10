@@ -1,32 +1,33 @@
 package project3.model;
 
 public class ExpressiveModel {
-	public int blink;
-	public int rightWlink;
-	public int leftWink;
-	public int lookLeft;
-	public int lookRight;
-	public double raiseBrow;
-	public double furrowBrow;
-	public double smile;
-	public double clench;
-	public double smirkLeft;
-	public double smirkRight;
-	public double laugh;
-	public int TimeStamp;
-	public String gifLabel;
-	public Boolean eyeReset;
-	public double Interest;
-	public double Engagement;
-	public double Stress;
-	public double Relaxation;
-	public double Excitement;
-	public double Focus;
+	
+	private int blink;
+	private int rightWlink;
+	private int leftWink;
+	private int lookLeft;
+	private int lookRight;
+	private double raiseBrow;
+	private double furrowBrow;
+	private double smile;
+	private double clench;
+	private double smirkLeft;
+	private double smirkRight;
+	private double laugh;
+	private double TimeStamp;
+	private String gifLabel;
+	private Boolean eyeReset;
+	private double Interest;
+	private double Engagement;
+	private double Stress;
+	private double Relaxation;
+	private double Excitement;
+	private double Focus;
 	  
-    public int getTimeStamp() {
-    	return TimeStamp;
+    public double getTimeStamp() {
+    		return TimeStamp;
 	}
-    public void setTimeStamp(int timeStamp) {
+    public void setTimeStamp(double timeStamp) {
 		TimeStamp = timeStamp;
 	}
 	public int getBlink() {
