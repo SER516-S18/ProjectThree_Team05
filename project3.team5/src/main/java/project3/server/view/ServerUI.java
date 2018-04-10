@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import java.awt.Choice;
+import java.awt.Color;
 import java.awt.Dimension;
 
 public class ServerUI extends JFrame {
@@ -68,10 +69,12 @@ public class ServerUI extends JFrame {
 		setContentPane(contentPane);
 		
 		SpinnerModel value_1 = new SpinnerNumberModel(0, 0, 1.0, 0.1); 
+		SpinnerModel value_2 = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
+		SpinnerModel value_3 = new SpinnerNumberModel(0, 0, 5.0, 0.5);
 		JSpinner spinner_upperface = new JSpinner(value_1);
 		JSpinner spinner_lowerface = new JSpinner(value_1);
-		SpinnerModel value = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
-		JSpinner spinnertimevalue = new JSpinner(value);
+		JSpinner spinnertimevalue = new JSpinner(value_2);
+ 		JSpinner spinner_metrics = new JSpinner(value_3);
 		
 		Choice choicemetrics = new Choice();
 		Choice choiceupperface = new Choice();
@@ -79,7 +82,10 @@ public class ServerUI extends JFrame {
 		Choice choiceeye = new Choice();
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Auto Reset");
+		JCheckBox autoRepeatCheckBox = new JCheckBox("Auto Repeat", false);
 		JButton eyerdbtnActive = new JButton("Activate");
+		JButton buttonToggle = new JButton("Send");
+		 
 		//creates the panel for Interaction
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
@@ -114,11 +120,8 @@ public class ServerUI extends JFrame {
 		gbc_spinner.gridy = 2;
 		panel.add(spinnertimevalue, gbc_spinner);
 		
-// Check box and Button
+		// Check box and Button
 
-        JButton buttonToggle = new JButton("Send");
-
-		JCheckBox autoRepeatCheckBox = new JCheckBox("Auto Repeat", false);
 		GridBagConstraints gbc_chckbxAutoReset = new GridBagConstraints();
 		gbc_chckbxAutoReset.insets = new Insets(10, 10, 10, 10);
 		gbc_chckbxAutoReset.gridx = 5;
@@ -170,8 +173,10 @@ public class ServerUI extends JFrame {
 
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						DetectionController detectionController = new DetectionController(spinner_upperface, spinner_lowerface, spinnertimevalue,
-								choiceupperface, choicelowerface, choiceeye, choicemetrics, chckbxNewCheckBox, eyerdbtnActive);
+						DetectionController detectionController = new DetectionController(spinner_upperface, 
+								spinner_lowerface, spinnertimevalue, spinner_metrics, 
+								choiceupperface, choicelowerface, choiceeye, choicemetrics, 
+								chckbxNewCheckBox, eyerdbtnActive, autoRepeatCheckBox);
 						
 					}
 			
@@ -239,11 +244,11 @@ public class ServerUI extends JFrame {
 		gbc_lblLowerface.gridy = 6;
 		panel_1.add(lblLowerface, gbc_lblLowerface);
 		
-		choicelowerface.add("smile");
-		choicelowerface.add("clench");
-		choicelowerface.add("smirk left");
-		choicelowerface.add("smirk right");
-		choicelowerface.add("laugh");
+		choicelowerface.add("Smile");
+		choicelowerface.add("Clench");
+		choicelowerface.add("Smirk Left");
+		choicelowerface.add("Smirk Right");
+		choicelowerface.add("Laugh");
 		
 	
 		GridBagConstraints gbc_spinner_2 = new GridBagConstraints();
@@ -307,29 +312,27 @@ public class ServerUI extends JFrame {
  		gbc_lblPerformanceMetrics.gridy = 10;
  		panel_1.add(lblPerformanceMetrics, gbc_lblPerformanceMetrics);
  		
- 		Choice choice = new Choice();
- 		choice.add("Interest");
- 		choice.add("Engagement");
- 		choice.add("Stress");
- 		choice.add("Relaxation");
- 		choice.add("Excitement");
- 		choice.add("Focus");
+ 		choicemetrics.add("Interest");
+ 		choicemetrics.add("Engagement");
+ 		choicemetrics.add("Stress");
+ 		choicemetrics.add("Relaxation");
+ 		choicemetrics.add("Excitement");
+ 		choicemetrics.add("Focus");
 
  		GridBagConstraints gbc_choice = new GridBagConstraints();
  		gbc_choice.insets = new Insets(0, 0, 5, 5);
  		gbc_choice.gridx = 3;
  		gbc_choice.gridy = 10;
- 		panel_1.add(choice, gbc_choice);
+ 		panel_1.add(choicemetrics, gbc_choice);
  
- 		SpinnerModel value_3 = new SpinnerNumberModel(0, 0, 5.0, 0.5);
- 		JSpinner spinner_3 = new JSpinner(value_3);
+ 		
  		GridBagConstraints gbc_spinner_3 = new GridBagConstraints();
  		gbc_spinner_3.insets = new Insets(0, 0, 1, 1);
  		gbc_spinner_3.ipadx = 12;
  		gbc_spinner_3.ipady = 5;
  		gbc_spinner_3.gridx = 4;
  		gbc_spinner_3.gridy = 10;
- 		panel_1.add(spinner_3, gbc_spinner_3);
+ 		panel_1.add(spinner_metrics, gbc_spinner_3);
  		
 
 		

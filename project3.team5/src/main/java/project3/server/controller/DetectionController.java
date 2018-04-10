@@ -28,32 +28,36 @@ import project3.model.ExpressiveModel;
 
 public class DetectionController {
 
-    public JSpinner spinner_upperface, spinner_lowerface, spinnertimevalue;
-    public JCheckBox chckbxEyeAutoReset;
+    public JSpinner spinner_upperface, spinner_lowerface, spinnertimevalue,spinner_metrics;
+    public JCheckBox chckbxEyeAutoReset, autoRepeatCheckBox;
     public Choice choiceupperface, choicelowerface, choicemetrics, choiceeye;
     public JButton eyerdbtnActive;
     public JButton btnClearLogs;
     public ExpressiveModel emodel;
 
     public DetectionController(JSpinner spinner_upperface, JSpinner spinner_lowerface,
-                               JSpinner spinnertimevalue, Choice choiceupperface, Choice choicelowerface,
+                               JSpinner spinnertimevalue,JSpinner spinner_metrics,
+                               Choice choiceupperface, Choice choicelowerface,
                                Choice choiceeye, Choice choicemetrics, JCheckBox chckbxNewCheckBox,
-                               JButton eyerdbtnActive) {
+                               JButton eyerdbtnActive, JCheckBox autoRepeatCheckBox) {
 
 
         this.spinnertimevalue = spinnertimevalue;
         this.spinner_lowerface = spinner_lowerface;
         this.spinner_upperface = spinner_upperface;
+        this.spinner_metrics = spinner_metrics;
         this.choiceupperface = choiceupperface;
         this.choicelowerface = choicelowerface;
         this.choiceeye = choiceeye;
         this.choicemetrics = choicemetrics;
         this.eyerdbtnActive = eyerdbtnActive;
         this.chckbxEyeAutoReset = chckbxNewCheckBox;
+        this.autoRepeatCheckBox= autoRepeatCheckBox;
+        
         choiceupperface.addItemListener(new ItemListener(){
 
             @Override
-            public void itemStateChanged(ItemEvent arg0) {
+            public void itemStateChanged(ItemEvent e) {
                 updatefaceData();
 
             }});
@@ -61,7 +65,7 @@ public class DetectionController {
         choicelowerface.addItemListener(new ItemListener(){
 
             @Override
-            public void itemStateChanged(ItemEvent arg0) {
+            public void itemStateChanged(ItemEvent e) {
                 updatefaceData();
 
             }});
@@ -69,56 +73,73 @@ public class DetectionController {
         choiceeye.addItemListener(new ItemListener(){
 
             @Override
-            public void itemStateChanged(ItemEvent arg0) {
+            public void itemStateChanged(ItemEvent e) {
                 updatefaceData();
 
             }});
         choicemetrics.addItemListener(new ItemListener(){
 
             @Override
-            public void itemStateChanged(ItemEvent arg0) {
-                /////////////////////////////
+            public void itemStateChanged(ItemEvent e) {
+            	updatefaceData();
 
             }});
 
-
         chckbxEyeAutoReset.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                updatefaceData();
-            }
-        });
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 updatefaceData();
+				
+			}});
 
         eyerdbtnActive.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 updatefaceData();
-            }
-        });
+            }});
 
         spinner_upperface.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                updatefaceData();
-            }
-        });
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				 updatefaceData();
+				
+			}});
 
         spinner_lowerface.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                updatefaceData();
-            }
-        });
 
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				updatefaceData();
+				
+			}});
+      
+        spinner_metrics.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				updateMetricsData();
+				
+			}});
+        autoRepeatCheckBox.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}});
+        
         spinnertimevalue.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 ////////////////////////
             }
         });
+        
 
 
     }
 
-
-
     /**
-     * Updates the expression data based on the selected spinner values.
+     * Updating face expression data values using spinner values
      */
     public void updatefaceData() {
 
@@ -185,4 +206,35 @@ public class DetectionController {
         if (eyeAutoReset) {
             emodel.setEyeReset(true);
         }
-    }}
+    }
+    
+    public void updateMetricsData() {
+
+	
+
+		String MetricsData = (String) choicemetrics.getSelectedItem();
+		float MetricsDataval = Float.parseFloat((String) spinner_metrics.getValue());
+
+		switch (MetricsData) {
+		case "Interest":
+			emodel.setInterest(MetricsDataval);
+			break;
+		case "Engagement":
+			emodel.setEngagement(MetricsDataval);
+			break;
+		case "Stress":
+			emodel.setStress(MetricsDataval);
+			break;
+		case "Relaxation":
+			emodel.setRelaxation(MetricsDataval);
+			break;
+		case "Excitement":
+			emodel.setExcitement(MetricsDataval);
+			break;
+		case "Focus":
+			emodel.setFocus(MetricsDataval);
+			break;
+		}
+	}
+    
+}

@@ -16,17 +16,19 @@ public class ExpressiveModel {
 	private int TimeStamp;
 	private String gifLabel;
 	public Boolean eyeReset;
+	private float Interest;
+	private float Engagement;
+	private float Stress;
+	private float Relaxation;
+	private float Excitement;
+	private float Focus;
 	  
     public int getTimeStamp() {
     	return TimeStamp;
 	}
-    
-	public void setTimeStamp(int timeStamp) {
+    public void setTimeStamp(int timeStamp) {
 		TimeStamp = timeStamp;
 	}
-	
-		
-	
 	public int getBlink() {
 		return blink;
 	}
@@ -112,6 +114,42 @@ public class ExpressiveModel {
 	}
 	public void setEyeReset(Boolean eyeReset) {
 		this.eyeReset = eyeReset;
+	}
+	public float getInterest() {
+		return Interest;
+	}
+	public void setInterest(float interest) {
+		this.Interest = interest;
+	}
+	public float getEngagement() {
+		return Engagement;
+	}
+	public void setEngagement(float engagement) {
+		this.Engagement = engagement;
+	}
+	public float getStress() {
+		return Stress;
+	}
+	public void setStress(float stress) {
+		this.Stress = stress;
+	}
+	public float getRelaxation() {
+		return Relaxation;
+	}
+	public void setRelaxation(float relaxation) {
+		this.Relaxation = relaxation;
+	}
+	public float getExcitement() {
+		return Excitement;
+	}
+	public void setExcitement(float excitement) {
+		this.Excitement = excitement;
+	}
+	public float getFocus() {
+		return Focus;
+	}
+	public void setFocus(float focus) {
+		this.Focus = focus;
 	}
 
 }
