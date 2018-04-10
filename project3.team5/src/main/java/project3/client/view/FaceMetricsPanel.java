@@ -217,15 +217,19 @@ public class FaceMetricsPanel extends JPanel implements Observer {
 		public void update(Observable o, Object arg) {
 			
 			expressiveModel = (ExpressiveModel) arg;
-			System.out.println("In update"+ expressiveModel.getBlink());
+			clientExpression = new ClientExpression();
 			expressionName = clientExpression.getExpression(expressiveModel);
-			System.out.println("expression name"+ expressionName);
 			if(expressionName!= null) {
-				System.out.println("blah!");
-				ImageIcon icon = new ImageIcon("res/"+expressionName);
-				icon.getImage().flush();
-				gifLabel.setIcon( icon );
-				facePanel.add(gifLabel);	
+				System.out.println(expressionName);
+				facePanel.removeAll();
+				facePanel.revalidate();
+			
+				facePanel.repaint();
+				gifLabel = new JLabel(new ImageIcon("res/"+expressionName));
+				gifLabel.setPreferredSize(new Dimension(260, 260));
+				facePanel.add(gifLabel);
+				this.revalidate();
+				this.repaint();
 				
 			}
 			

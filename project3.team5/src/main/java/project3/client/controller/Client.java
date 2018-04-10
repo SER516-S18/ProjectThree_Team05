@@ -4,7 +4,8 @@ import java.net.URI;
 import java.util.Scanner;
 import javax.websocket.Session;
 import org.glassfish.tyrus.client.ClientManager;
-import project3.client.view.FaceMetricsPanel;
+
+import project3.client.view.ClientUI;
 import project3.model.ConnectionIpAndPortValues;
 import utilities.Constants;
 
@@ -20,8 +21,8 @@ public class Client implements Runnable{
         // connect to server
         Scanner scanner = new Scanner(System.in);
         
-        FaceMetricsPanel expressiveModelObserver = new FaceMetricsPanel();
-        ExpressiveModelObservable.getExpressiveModelObservableInstance().addObserver(expressiveModelObserver);
+
+        ExpressiveModelObservable.getExpressiveModelObservableInstance().addObserver(ClientUI.setObserver().setAsObserver());
 
         StringBuilder sb = new StringBuilder();
         sb.append(Constants.CONNECTIONSTRING_START);
