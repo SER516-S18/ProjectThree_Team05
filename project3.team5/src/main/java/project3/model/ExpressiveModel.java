@@ -23,6 +23,7 @@ public class ExpressiveModel {
 	private double Relaxation;
 	private double Excitement;
 	private double Focus;
+	private boolean autoReset;
 	  
     public double getTimeStamp() {
     		return TimeStamp;
@@ -154,6 +155,12 @@ public class ExpressiveModel {
 	}
 	public void setFocus(double focus) {
 		this.Focus = focus;
+	}
+	public boolean isAutoReset() {
+		return autoReset;
+	}
+	public void setAutoReset(boolean autoReset) {
+		this.autoReset = autoReset;
 	}
 
 }

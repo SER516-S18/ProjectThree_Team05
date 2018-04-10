@@ -3,7 +3,10 @@ package project3.client.controller;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import org.glassfish.grizzly.http.server.ServerConfiguration;
+
 import project3.model.ExpressiveModel;
+import project3.model.serverConfiguations;
 
 public class ExpressiveModelObservable extends Observable{
 
@@ -29,6 +32,9 @@ public class ExpressiveModelObservable extends Observable{
 	{
 		System.out.println("In add to list"+expressiveModel.getEngagement() + expressiveModel.getFurrowBrow());
 		this.expressiveData.add(expressiveModel);
+		if(serverConfiguations.getServerDataInstance().isAutoReset()) {
+			expressiveModel.setAutoReset(true);
+		}
 		setChanged();
 		this.notifyObservers(expressiveModel);
 	}
