@@ -32,7 +32,6 @@ public class ClientUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static MainTab mainTab;
-	private ClientMenuBar menuBar = new ClientMenuBar();
 	private JPanel mainPanel;
 	private JLabel clockLabel;
 	private JLabel timeLabel;
@@ -55,11 +54,6 @@ public class ClientUI extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		
-        //this.setOpaque(false);
-        //this.setBorder(new EmptyBorder(0, 8, 8, 8));
-        this.add(menuBar , BorderLayout.BEFORE_FIRST_LINE);
-        
-        
         /**
 		 * Creates Menu with Application and conn
 		 * */
@@ -69,6 +63,15 @@ public class ClientUI extends JFrame {
 		
 		JMenu mainMenu = new JMenu("Menu");
 		menuBar.add(mainMenu);
+		
+		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
+		clockLabel.setBounds(800, 10, 25, 25);
+		//clockLabel.setPreferredSize(new Dimension(45,45));
+		menuBar.add(clockLabel);
+		
+		timeLabel = new JLabel("");
+		timeLabel.setPreferredSize(new Dimension(61,16));
+		menuBar.add(timeLabel);
 		
 		JMenu menuApplication = new JMenu("Application");
 		mainMenu.add(menuApplication);
