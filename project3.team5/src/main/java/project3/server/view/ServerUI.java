@@ -298,24 +298,39 @@ public class ServerUI extends JFrame {
 		panel_1.add(choiceeye, gbc_choice_1);
 		
 		//Performance Metrics added
-		JLabel lblPerformanceMetrics = new JLabel("Performance Metrics");
-		GridBagConstraints gbc_lblPerformanceMetrics = new GridBagConstraints();
-		gbc_lblPerformanceMetrics.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPerformanceMetrics.gridwidth = 2;
-		gbc_lblPerformanceMetrics.gridx = 1;
-		gbc_lblPerformanceMetrics.gridy = 10;
-		panel_1.add(lblPerformanceMetrics, gbc_lblPerformanceMetrics);
-		
-		
-		choicemetrics.add("OK");
-		choicemetrics.add("Requires More Data");
-		
-		
-		GridBagConstraints gbc_choice = new GridBagConstraints();
-		gbc_choice.insets = new Insets(0, 0, 5, 5);
-		gbc_choice.gridx = 3;
-		gbc_choice.gridy = 10;
-		panel_1.add(choicemetrics, gbc_choice);
+ 		JLabel lblPerformanceMetrics = new JLabel("Performance Metrics");
+ 		lblPerformanceMetrics.setForeground(Color.BLUE);
+ 		GridBagConstraints gbc_lblPerformanceMetrics = new GridBagConstraints();
+ 		gbc_lblPerformanceMetrics.insets = new Insets(0, 0, 5, 5);
+ 		gbc_lblPerformanceMetrics.gridwidth = 2;
+ 		gbc_lblPerformanceMetrics.gridx = 1;
+ 		gbc_lblPerformanceMetrics.gridy = 10;
+ 		panel_1.add(lblPerformanceMetrics, gbc_lblPerformanceMetrics);
+ 		
+ 		Choice choice = new Choice();
+ 		choice.add("Interest");
+ 		choice.add("Engagement");
+ 		choice.add("Stress");
+ 		choice.add("Relaxation");
+ 		choice.add("Excitement");
+ 		choice.add("Focus");
+
+ 		GridBagConstraints gbc_choice = new GridBagConstraints();
+ 		gbc_choice.insets = new Insets(0, 0, 5, 5);
+ 		gbc_choice.gridx = 3;
+ 		gbc_choice.gridy = 10;
+ 		panel_1.add(choice, gbc_choice);
+ 
+ 		SpinnerModel value_3 = new SpinnerNumberModel(0, 0, 5.0, 0.5);
+ 		JSpinner spinner_3 = new JSpinner(value_3);
+ 		GridBagConstraints gbc_spinner_3 = new GridBagConstraints();
+ 		gbc_spinner_3.insets = new Insets(0, 0, 1, 1);
+ 		gbc_spinner_3.ipadx = 12;
+ 		gbc_spinner_3.ipady = 5;
+ 		gbc_spinner_3.gridx = 4;
+ 		gbc_spinner_3.gridy = 10;
+ 		panel_1.add(spinner_3, gbc_spinner_3);
+ 		
 
 		
 		//Console
