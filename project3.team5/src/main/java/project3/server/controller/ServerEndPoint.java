@@ -112,17 +112,12 @@ public class ServerEndPoint{
 		this.values = receivedValues;
 		timerOffset = values.getTimeStamp();
 		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server is sending Values to client");
-
 		
 		if(serverConfigurations.getServerDataInstance().isServerStatus()) {			
-
 			 if(serverConfigurations.getServerDataInstance().isAutoRepeat()) {
-
 				 this.time = new Timer();
-
-				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,250);
-
-				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,(long) (timerOffset*100));
+				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,5000);
+//				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,(long) (timerOffset*100));
 
 			 }
 			 else {
@@ -135,7 +130,7 @@ public class ServerEndPoint{
 				 secondspassed += timerOffset;
 				 timeStamp.setSecondspassed(secondspassed);
 			
-				 serverConfigurations.getInstance().setDataSendingStatus(false);
+				 serverConfigurations.getServerDataInstance().setServerStatus(false);
 				 				 
 				try {
 					broadcast(values);

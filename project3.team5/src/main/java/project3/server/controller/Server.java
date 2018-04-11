@@ -29,7 +29,7 @@ public class Server implements Runnable{
 
 	public void setAutoReset(boolean autoResetValue) {
 
-		  serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();
+		  serverConfigurations serverConfig = serverConfigurations.getServerDataInstance();
 		  serverConfig.setAutoRepeat(autoResetValue);
 
 

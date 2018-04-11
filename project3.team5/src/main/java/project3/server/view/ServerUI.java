@@ -148,21 +148,21 @@ public class ServerUI extends JFrame {
 				
 				if(buttonToggle.getText().equals("Start")) {
 					
-	            		serverConfigurations.getInstance().setDataSendingStatus(true);
+	            		serverConfigurations.getServerDataInstance().setServerStatus(true);
 		            	buttonToggle.setText("Stop");
 		    	        	autoRepeatCheckBox.setEnabled(false);
 		    	        	serverEndPoint.startSendingValues(detectionController.emodel);			    	        	
 	            	}
 	            	else if (buttonToggle.getText().equals("Stop")) {
 	            		
-	            		serverConfigurations.getInstance().setDataSendingStatus(false);
+	            		serverConfigurations.getServerDataInstance().setServerStatus(false);
 		            	buttonToggle.setText("Start");
 		    	        	autoRepeatCheckBox.setEnabled(true);
 		    	        	serverEndPoint.haltSendingValues();
 	            	}
 	            	else if(buttonToggle.getText().equals("Send")) {
 	            		
-	            		serverConfigurations.getInstance().setDataSendingStatus(true);
+	            		serverConfigurations.getServerDataInstance().setServerStatus(true);
 	     	        	autoRepeatCheckBox.setEnabled(true);
 	     	        	System.out.println("Send button clicked");
 	     	        	serverEndPoint.startSendingValues(detectionController.emodel);
