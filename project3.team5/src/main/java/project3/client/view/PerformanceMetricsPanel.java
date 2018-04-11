@@ -1,8 +1,12 @@
 package project3.client.view;
 
+import project3.client.controller.PerformanceMetricsTabController;
+import project3.client.model.PerformanceMetricsTabModel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -15,10 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import project3.client.controller.PerformanceMetricsButtonController;
-import project3.client.controller.PerformanceMetricsTabController;
-import project3.client.model.PerformanceMetricsTabModel;
 
 public class PerformanceMetricsPanel extends JPanel {
 	public JPanel performanceGraphPanel;
@@ -37,7 +37,6 @@ public class PerformanceMetricsPanel extends JPanel {
 	PerformanceMetricsTabModel performanceMetricsModel;
 	PerformanceMetricsTabController performanceMetricsController;
 
-	
 	public PerformanceMetricsPanel() {
 		this.setLayout(new GridLayout(1,2,8,8));
 		this.setBorder(new EmptyBorder(8, 8, 8, 8));
@@ -68,53 +67,60 @@ public class PerformanceMetricsPanel extends JPanel {
 		
 		interestButton = new JButton("IN");
 		interestButton.setBackground(Color.red);
-		interestButton.setBounds(100, 34, 50, 50);
+		interestButton.setBounds(100, 34, 70, 50);
+		interestButton.setOpaque(true);
+		interestButton.setBorderPainted(false);
 		performanceColorPanel.add(interestButton, c);
 		
 		engagementButton = new JButton("EN");
-		engagementButton.setBounds(155, 34, 50, 50);
+		engagementButton.setBounds(180, 34, 70, 50);
 		engagementButton.setBackground(Color.blue);
+		engagementButton.setOpaque(true);
+		engagementButton.setBorderPainted(false);
 		performanceColorPanel.add(engagementButton, c);
 		
 		stressButton = new JButton("ST");
-		stressButton.setBounds(210, 34, 50,50);
+		stressButton.setBounds(260, 34, 70,50);
 		stressButton.setBackground(Color.yellow);
+		stressButton.setOpaque(true);
+		stressButton.setBorderPainted(false);
 		performanceColorPanel.add(stressButton, c);
 		
 		relaxationButton = new JButton("RE");
-		relaxationButton.setBounds(100, 89,50,50);
+		relaxationButton.setBounds(100, 89,70,50);
 		relaxationButton.setBackground(Color.pink);
+		relaxationButton.setOpaque(true);
+		relaxationButton.setBorderPainted(false);
 		performanceColorPanel.add(relaxationButton, c);
 		
 		excitementButton = new JButton("EX");
 		excitementButton.setBackground(Color.green);
-		excitementButton.setBounds(155, 89, 50, 50);
+		excitementButton.setBounds(180, 89, 70, 50);
+		excitementButton.setOpaque(true);
+		excitementButton.setBorderPainted(false);
 		performanceColorPanel.add(excitementButton, c);
 		
 		focusButton = new JButton("FO");
-		stressButton.setBackground(Color.gray);
-		focusButton.setBounds(210, 89, 50,50);
-		PerformanceMetricsButtonController performanceMBController=new PerformanceMetricsButtonController(performanceColorPanel,interestButton,engagementButton,focusButton,stressButton,relaxationButton,excitementButton);
+		focusButton.setBackground(Color.gray);
+		focusButton.setBounds(260, 89, 70,50);
+		focusButton.setOpaque(true);
+		focusButton.setBorderPainted(false);		
 		performanceColorPanel.add(focusButton, c); 
 		
-		
-		
 		displayLengthLabel = new JLabel("Display Length",displayLengthLabel.CENTER);
-		displayLengthLabel.setBounds(100,470,110,26);
+		displayLengthLabel.setBounds(100,300,110,26);
 		performanceColorPanel.add(displayLengthLabel, c);
 				
 		xAxisLength = new JTextField("30",JTextField.CENTER);
-		xAxisLength.setBounds(216,470,50,26);
+		xAxisLength.setBounds(216,300,50,26);
 		xAxisLength.setColumns(10);
 		performanceColorPanel.add(xAxisLength,c);
 		
-		
 		secondsLabel = new JLabel("Seconds",secondsLabel.CENTER);
-		secondsLabel.setBounds(276,470,61,26);
+		secondsLabel.setBounds(276,300,61,26);
 		performanceColorPanel.add(secondsLabel, c);
 		
-		
+		new PerformanceMetricsButtonListener(performanceColorPanel,interestButton,engagementButton,focusButton,stressButton,relaxationButton,excitementButton);
 		this.add(performanceColorPanel, BorderLayout.NORTH);
 	}
-
 }
