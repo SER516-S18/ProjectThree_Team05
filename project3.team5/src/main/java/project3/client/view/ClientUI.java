@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.ServerSocket;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,6 +36,8 @@ public class ClientUI extends JFrame {
 	private JPanel mainPanel;
 	private JLabel clockLabel;
 	private JLabel timeLabel;
+	private String hostnamestring,portstring;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -127,7 +130,10 @@ public class ClientUI extends JFrame {
 					Thread thread1 = new Thread(server);
 					Thread thread2 = new Thread(client);
 					thread1.start();
-					thread2.start();
+					thread2.start();				
+					hostnamestring = host.getText();
+					portstring=port.getText();
+					isPortInUse(hostnamestring,portstring);
 					break;
 				case 1:
 					System.out.println("Cancel");
@@ -147,5 +153,22 @@ public class ClientUI extends JFrame {
 	}
 	public static MainTab setObserver() {
 		return mainTab;
+	}
+	
+	private void isPortInUse(String host, String port2) {
+	      try {
+	        	int port = Integer.parseInt(port2);
+	        	new ServerSocket(port).close();
+	            JOptionPane.showMessageDialog(mainTab,
+	            		"Connection is established.");
+	            
+
+	        }
+	        catch(Exception e) {
+	        	JOptionPane.showMessageDialog(mainTab,
+	        			"Port is already in use.");
+	         }
+
+	        
 	}
 }
