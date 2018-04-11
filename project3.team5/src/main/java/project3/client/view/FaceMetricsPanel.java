@@ -33,6 +33,10 @@ import project3.model.ExpressiveModel;
 
 public class FaceMetricsPanel extends JPanel implements Observer{
 		
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		private JPanel facePanel;
 		private JLabel gifLabel;
 		private ClientExpression clientExpression =  new ClientExpression();
@@ -94,7 +98,10 @@ public class FaceMetricsPanel extends JPanel implements Observer{
 		facePanel.setLayout(new GridLayout(1,1,0,0));
 		this.add(facePanel);
 		
-		gifLabel = new JLabel(new ImageIcon("res/laugh.png"));
+//		gifLabel = new JLabel(new ImageIcon("res/laugh.png"));
+		java.net.URL logoOneUrl = getClass().getResource("/laugh.png");
+		gifLabel = new JLabel(new ImageIcon(logoOneUrl));
+		
 		gifLabel.setPreferredSize(new Dimension(260, 260));
 		facePanel.add(gifLabel);	
 		
@@ -264,7 +271,10 @@ public class FaceMetricsPanel extends JPanel implements Observer{
 				facePanel.removeAll();
 				facePanel.revalidate();
 				facePanel.repaint();
-				gifLabel = new JLabel(new ImageIcon("res/"+expressionName));
+//				gifLabel = new JLabel(new ImageIcon("res/"+expressionName));
+				java.net.URL logoOneUrl = getClass().getResource("/"+expressionName);
+				gifLabel = new JLabel(new ImageIcon(logoOneUrl));
+				
 				gifLabel.setPreferredSize(new Dimension(260, 260));
 				facePanel.add(gifLabel);
 				System.out.println("After gif changed");

@@ -33,6 +33,10 @@ import project3.model.ExpressiveModel;
 import project3.model.GraphsPropertiesModel;
 
 public class PerformanceMetricsPanel extends JPanel implements Observer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ChartPanel performanceGraphPanel;
 	public JPanel performanceColorPanel;
 	public JButton interestButton;

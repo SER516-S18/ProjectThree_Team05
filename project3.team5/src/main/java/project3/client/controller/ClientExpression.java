@@ -16,7 +16,9 @@ public class ClientExpression {
 
 	public ClientExpression() {
 		expressiveModel = new ExpressiveModel();
-		expressiveModel.setGifLabel("res/laugh.png");
+		java.net.URL logoOneUrl = getClass().getResource("/laugh.png");
+//		gifLabel = new JLabel(new ImageIcon(logoOneUrl));
+		expressiveModel.setGifLabel(logoOneUrl.toString());
 	}
 
 	public String getExpression(ExpressiveModel expressiveModel) {

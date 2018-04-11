@@ -67,7 +67,9 @@ public class ClientUI extends JFrame {
 		JMenu mainMenu = new JMenu("Menu");
 		menuBar.add(mainMenu);
 		
-		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
+//		clockLabel = new JLabel(new ImageIcon("res/clck.png"));
+		java.net.URL logoOneUrl = getClass().getResource("/clck.png");
+		clockLabel = new JLabel(new ImageIcon(logoOneUrl));
 		clockLabel.setBounds(800, 10, 25, 25);
 		//clockLabel.setPreferredSize(new Dimension(45,45));
 		menuBar.add(clockLabel);
