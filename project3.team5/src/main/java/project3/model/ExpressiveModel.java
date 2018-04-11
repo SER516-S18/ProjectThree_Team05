@@ -24,7 +24,14 @@ public class ExpressiveModel {
 	private double Excitement;
 	private double Focus;
 	private boolean autoRepeat;
+	private boolean ServerStatus;
 
+	public boolean isServerStatus() {
+		return ServerStatus;
+	}
+	public void setServerStatus(boolean serverStatus) {
+		ServerStatus = serverStatus;
+	}
 	public boolean isAutoRepeat() {
 		return autoRepeat;
 	}

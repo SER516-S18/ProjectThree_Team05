@@ -72,6 +72,7 @@ public class ServerEndPoint{
 				  System.out.println("Send multiple value");
 				  
 				  try {
+					  values.setServerStatus(true);
 					broadcast(values);
 					} catch (IOException | EncodeException e) {
 						// TODO Auto-generated catch block
@@ -105,6 +106,12 @@ public class ServerEndPoint{
 	public void haltSendingValues() {
 		
 		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server has stopped sending Values to client");
+		values.setServerStatus(false);
+		try {
+			broadcast(values);
+		} catch (IOException | EncodeException e) {
+			ServerConsolePanel.getServerConsoleInstance().appendLogMessage(e.getMessage());
+		}
 		 this.time.cancel();		
 	}
 	
@@ -113,7 +120,7 @@ public class ServerEndPoint{
 		timerOffset = values.getTimeStamp();
 		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server is sending Values to client");
 		
-		if(serverConfigurations.getServerDataInstance().isServerStatus()) {			
+		if(serverConfigurations.getServerDataInstance().isServerStatus()) {	
 			 if(serverConfigurations.getServerDataInstance().isAutoRepeat()) {
 				 this.time = new Timer();
 				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,5000);
