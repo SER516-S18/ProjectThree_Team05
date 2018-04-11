@@ -27,7 +27,6 @@ import javax.swing.border.LineBorder;
 import org.jfree.chart.ChartPanel;
 
 import project3.client.controller.ClientExpression;
-import project3.client.controller.PerformanceMetricsButtonController;
 import project3.client.controller.PerformanceMetricsTabController;
 import project3.model.ExpressiveModel;
 import project3.model.GraphsPropertiesModel;

@@ -1,27 +1,48 @@
+/**
+ * @SER516 Project3_Team05
+ */
+
 package project3.client.controller;
 
 import project3.model.ExpressiveModel;
 
+/*
+ * Returns the facial expression that is to be displayed
+ */
 public class ClientExpression {
-
 	ExpressiveModel expressiveModel;
-
-	public ExpressiveModel getExpressiveModel() {
-		return expressiveModel;
-	}
-
-	public void setExpressiveModel(ExpressiveModel expressiveModel) {
-		this.expressiveModel = expressiveModel;
-	}
-
+	
+	/*
+	 * Constructor for ClientExpression class to show the default image as a facial expression
+	 */
 	public ClientExpression() {
 		expressiveModel = new ExpressiveModel();
 		expressiveModel.setGifLabel("res/laugh.png");
 	}
 
+	/*
+	 * Returns an object of ExpressiveModel
+	 * @return this.expressiveModel
+	 */
+	public ExpressiveModel getExpressiveModel() {
+		return expressiveModel;
+	}
+
+	/*
+	 * Sets an ExpressiveModel object
+	 * @param ExpressiveModel object
+	 */
+	public void setExpressiveModel(ExpressiveModel expressiveModel) {
+		this.expressiveModel = expressiveModel;
+	}
+	
+	/*
+	 * Checks the expressions value being passed and returns the respective image
+	 * @param ExpressiveModel object
+	 * @return corresponding expression 
+	 */
 	public String getExpression(ExpressiveModel expressiveModel) {
 		if (expressiveModel.isAutoRepeat()) {
-
 			if (expressiveModel.getBlink() != 0) {
 				return "blink.gif";
 			} else if (expressiveModel.getRightWlink() != 0) {
@@ -75,36 +96,6 @@ public class ClientExpression {
 			}
 		}
 		return null;
-	}
-	
-	public String getGraphExpression(ExpressiveModel expressiveModel) {
-
-			if (expressiveModel.getBlink() != 0) {
-				return "blink";
-			} else if (expressiveModel.getRightWlink() != 0) {
-				return "rightwink";
-			} else if (expressiveModel.getLeftWink() != 0) {
-				return "leftwink";
-			} else if (expressiveModel.getLookLeft() != 0) {
-				return "lookleft";
-			} else if (expressiveModel.getLookRight() != 0) {
-				return "lookright";
-			} else if (expressiveModel.getFurrowBrow() != 0) {
-				return "furrowbrow";
-			} else if (expressiveModel.getRaiseBrow() != 0) {
-				return "raisebrow";
-			} else if (expressiveModel.getSmile() != 0) {
-				return "smile";
-			} else if (expressiveModel.getClench() != 0) {
-				return "clench";
-			} else if (expressiveModel.getSmirkLeft() != 0) {
-				return "leftsmirk";
-			} else if (expressiveModel.getSmirkRight() != 0) {
-				return "rightsmirk";
-			} else if (expressiveModel.getLaugh() != 0) {
-				return "laugh";
-			}
-			return null;
 	}
 
 }
