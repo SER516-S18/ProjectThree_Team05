@@ -4,7 +4,8 @@ package project3.server.controller;
 import javax.websocket.DeploymentException;
 
 import project3.model.ConnectionIpAndPortValues;
-import project3.model.serverConfiguations;
+import project3.model.serverConfigurations;
+import project3.server.view.ServerConsolePanel;
 import utilities.Constants;
 
 public class Server implements Runnable{
@@ -16,16 +17,22 @@ public class Server implements Runnable{
             new org.glassfish.tyrus.server.Server(ConnectionIpAndPortValues.getIpAddress(),
             		ConnectionIpAndPortValues.getPortAddress(), Constants.WS, ServerEndPoint.class);
             try {
+            	ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server is Started on Port number "+ ConnectionIpAndPortValues.getPortAddress());
 				server.start();
+				
 			} catch (DeploymentException e) {
 				// TODO Auto-generated catch block
+				ServerConsolePanel.getServerConsoleInstance().appendLogMessage(e.getMessage());
 				e.printStackTrace();
 			}
 	}
 
 	public void setAutoReset(boolean autoResetValue) {
-		serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();
-		serverConfig.setAutoRepeat(autoResetValue);
+
+		  serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();
+		  serverConfig.setAutoRepeat(autoResetValue);
+
+
 		
 		if(autoResetValue)
 			serverConfig.setSendOneTime(false);
