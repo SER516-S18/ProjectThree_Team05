@@ -1,9 +1,6 @@
 package project3.serverTest;
-
-
-
+  
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.awt.Choice;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,16 +11,11 @@ import project3.model.serverConfigurations;
 import project3.server.controller.Server;
 import project3.server.view.ServerUI;
 
-public class ServerTest {
-	private JSpinner spinner_upperface, spinner_lowerface, spinnertimevalue, spinner_metrics;
-    private JCheckBox chckbxEyeAutoReset, autoRepeatCheckBox;
-    private Choice choiceupperface, choicelowerface, choicemetrics, choiceeye;
-    private JButton eyerdbtnActive;
-    private JButton btnClearLogs;
-    public ExpressiveModel emodel = new ExpressiveModel();
-    private boolean eyeActive= false;
-	
 
+public class ServerTest {
+
+    public ExpressiveModel emodel = new ExpressiveModel();
+   
 
 	@Test
 	public void testServerUI_Server() {
@@ -72,20 +64,21 @@ public class ServerTest {
 	
 	@Test
 	public void testServer_setAutoReset1() {
-	
+
 		Server server = new Server(); 
 		server.setAutoReset(false);
 	}
 	
 	@Test
 	public void testServer_setAutoReset2() {
-	
+
 		Server server = new Server(); 
 		server.setAutoReset(true);
 	}
 	
 	@Test
 	public void TestServerConfiguationssetAutoRepeat1() {
+
 		serverConfigurations sconf = new serverConfigurations();
 		sconf.setAutoRepeat(false);
 		
@@ -94,7 +87,9 @@ public class ServerTest {
 	
 	@Test
 	public void TestServerConfiguationssetAutoRepeat() {
+
 		serverConfigurations sconf = new serverConfigurations();
+
 		sconf.setAutoRepeat(true);
 		
 		assertEquals(true,sconf.isAutoRepeat());
