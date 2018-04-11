@@ -111,7 +111,7 @@ public class ServerTest {
 	}
 	
 	@Test
-	public void TestServerConfiguationssetAutoRepeat2() {
+	public void TestServerConfiguationssetAutoRepeat() {
 		serverConfiguations sconf = new serverConfiguations();
 		sconf.setAutoRepeat(true);
 		
