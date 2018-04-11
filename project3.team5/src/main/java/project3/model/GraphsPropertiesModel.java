@@ -10,7 +10,7 @@ public class GraphsPropertiesModel {
 	private Color focusColor = Color.GREEN;
 	private Color stressColor = Color.GRAY;
 	private Color relaxationColor = Color.PINK;
-	private double displayLength;
+	private double displayLength = 30.0;
 	private static GraphsPropertiesModel graphProperties;
 	
 	private GraphsPropertiesModel() {
