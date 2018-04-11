@@ -18,6 +18,9 @@ mvn package
 File >> Import >> Maven >> Existing Maven Projects >> Browse to Project Folder(Directory with pom.xml)
 ```
 
+#### To run the project
+java -jar Client.jar
+
 ### Team Members
 1. Rachana Kashyap (rnkashya@asu.edu )
 2. Harshitha Katpally (hkatpall@asu.edu)
@@ -32,3 +35,8 @@ File >> Import >> Maven >> Existing Maven Projects >> Browse to Project Folder(D
 11. Sowmya Madabhushi (smadabh1@asu.edu)
 12. Venkata Akhil Madaraju (vmadaraj@asu.edu)
 13. Aanchal Mahajan (amahaj14@asu.edu)
+
+#### Working of application
+1. Only the last changed value can be sent to the Client side and not all the values set.
+2. Colors for performance metrics graph will be set only after selecting the color and then clicking on the button again.
+3. At a time only one performance metrics graph will be plotted.
