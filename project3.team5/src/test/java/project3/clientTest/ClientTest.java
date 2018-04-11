@@ -123,6 +123,7 @@ public class ClientTest {
             plotValues.add(receivedDataset.get(i), receivedDataset.get(i) );
         }
         dataset.addSeries(plotValues);
+        assertEquals(1,plotValues.getItemCount());
     }
 
 }
