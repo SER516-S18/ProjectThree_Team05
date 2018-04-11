@@ -5,7 +5,7 @@ import java.util.Observable;
 import org.glassfish.grizzly.http.server.ServerConfiguration;
 
 import project3.model.ExpressiveModel;
-import project3.model.serverConfigurations;
+import project3.model.ServerConfigurations;
 
 public class ExpressiveModelObservable extends Observable{
 

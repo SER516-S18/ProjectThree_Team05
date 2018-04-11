@@ -35,7 +35,7 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
 		
 	}
 
-	public JFreeChart PlotPerformanceGraph(ExpressiveModel expressiveModel, int xAxisLength) {
+	public JFreeChart PlotPerformanceGraph(ExpressiveModel expressiveModel, double xAxisLength) {
 		
 		JFreeChart xyLineChart = ChartFactory.createXYLineChart("", "", "",
 				createDataset(),

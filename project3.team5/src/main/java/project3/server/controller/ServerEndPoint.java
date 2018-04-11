@@ -19,7 +19,7 @@ import project3.model.MessageEncoder;
 import project3.model.ConnectionIpAndPortValues;
 import project3.model.ExpressiveModel;
 import project3.model.TimeStamp;
-import project3.model.serverConfigurations;
+import project3.model.ServerConfigurations;
 import project3.server.view.ServerConsolePanel;
 
 @ServerEndpoint(value = "/server" ,decoders = MessageDecoder.class,  encoders = MessageEncoder.class)
@@ -72,6 +72,7 @@ public class ServerEndPoint{
 				  System.out.println("Send multiple value");
 				  
 				  try {
+					  values.setServerStatus(true);
 					broadcast(values);
 					} catch (IOException | EncodeException e) {
 						// TODO Auto-generated catch block
@@ -105,6 +106,12 @@ public class ServerEndPoint{
 	public void haltSendingValues() {
 		
 		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server has stopped sending Values to client");
+		values.setServerStatus(false);
+		try {
+			broadcast(values);
+		} catch (IOException | EncodeException e) {
+			ServerConsolePanel.getServerConsoleInstance().appendLogMessage(e.getMessage());
+		}
 		 this.time.cancel();		
 	}
 	
@@ -113,8 +120,8 @@ public class ServerEndPoint{
 		timerOffset = values.getTimeStamp();
 		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server is sending Values to client");
 		
-		if(serverConfigurations.getServerDataInstance().isServerStatus()) {			
-			 if(serverConfigurations.getServerDataInstance().isAutoRepeat()) {
+		if(ServerConfigurations.getServerDataInstance().isServerStatus()) {	
+			 if(ServerConfigurations.getServerDataInstance().isAutoRepeat()) {
 				 this.time = new Timer();
 				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,5000);
 //				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,(long) (timerOffset*100));
@@ -130,7 +137,7 @@ public class ServerEndPoint{
 				 secondspassed += timerOffset;
 				 timeStamp.setSecondspassed(secondspassed);
 			
-				 serverConfigurations.getServerDataInstance().setServerStatus(false);
+				 ServerConfigurations.getServerDataInstance().setServerStatus(false);
 				 				 
 				try {
 					broadcast(values);

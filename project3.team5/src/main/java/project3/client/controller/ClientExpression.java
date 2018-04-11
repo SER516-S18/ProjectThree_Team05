@@ -20,7 +20,11 @@ public class ClientExpression {
 	}
 
 	public String getExpression(ExpressiveModel expressiveModel) {
-		if (expressiveModel.isAutoRepeat()) {
+		
+		if(!expressiveModel.isServerStatus() && expressiveModel.isAutoRepeat()) {
+			return "laugh.png";
+		}
+		else if (expressiveModel.isAutoRepeat() ) {
 
 			if (expressiveModel.getBlink() != 0) {
 				return "blink.gif";
@@ -47,7 +51,7 @@ public class ClientExpression {
 			} else if (expressiveModel.getLaugh() != 0) {
 				return "laugh.gif";
 			}
-		} else if(!expressiveModel.isAutoRepeat()) {
+		} else if(!expressiveModel.isAutoRepeat() ) {
 			if (expressiveModel.getBlink() != 0) {
 				return "blinkclose.png";
 			} else if (expressiveModel.getRightWlink() != 0) {
@@ -73,7 +77,7 @@ public class ClientExpression {
 			} else if (expressiveModel.getLaugh() != 0) {
 				return "laughing.png";
 			}
-		}
+		} 
 		return null;
 	}
 	

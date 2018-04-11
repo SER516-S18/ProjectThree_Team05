@@ -4,7 +4,7 @@
 
 package project3.server.view;
 
-import project3.model.serverConfigurations;
+import project3.model.ServerConfigurations;
 import project3.server.controller.Server;
 import project3.server.controller.ServerEndPoint;
 import project3.server.controller.DetectionController;
@@ -26,6 +26,13 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import project3.server.controller.Server;
+import project3.server.controller.ServerEndPoint;
+import project3.model.ServerConfigurations;
+import project3.server.controller.DetectionController;
+
+import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
@@ -137,23 +144,44 @@ public class ServerUI extends JFrame {
 
 				if (buttonToggle.getText().equals("Start")) {
 
-					serverConfigurations.getServerDataInstance().setServerStatus(true);
+					ServerConfigurations.getServerDataInstance().setServerStatus(true);
 					buttonToggle.setText("Stop");
 					autoRepeatCheckBox.setEnabled(false);
 					serverEndPoint.startSendingValues(detectionController.emodel);
 				} else if (buttonToggle.getText().equals("Stop")) {
 
-					serverConfigurations.getServerDataInstance().setServerStatus(false);
+					ServerConfigurations.getServerDataInstance().setServerStatus(false);
 					buttonToggle.setText("Start");
 					autoRepeatCheckBox.setEnabled(true);
 					serverEndPoint.haltSendingValues();
 				} else if (buttonToggle.getText().equals("Send")) {
 
-					serverConfigurations.getServerDataInstance().setServerStatus(true);
+					ServerConfigurations.getServerDataInstance().setServerStatus(true);
 					autoRepeatCheckBox.setEnabled(true);
 					System.out.println("Send button clicked");
 					serverEndPoint.startSendingValues(detectionController.emodel);
 				}
+				if(buttonToggle.getText().equals("Start")) {
+					
+	            		ServerConfigurations.getServerDataInstance().setServerStatus(true);
+		            	buttonToggle.setText("Stop");
+		    	        	autoRepeatCheckBox.setEnabled(false);
+		    	        	serverEndPoint.startSendingValues(detectionController.emodel);			    	        	
+	            	}
+	            	else if (buttonToggle.getText().equals("Stop")) {
+	            		
+	            		ServerConfigurations.getServerDataInstance().setServerStatus(false);
+		            	buttonToggle.setText("Start");
+		    	        	autoRepeatCheckBox.setEnabled(true);
+		    	        	serverEndPoint.haltSendingValues();
+	            	}
+	            	else if(buttonToggle.getText().equals("Send")) {
+	            		
+	            		ServerConfigurations.getServerDataInstance().setServerStatus(true);
+	     	        	autoRepeatCheckBox.setEnabled(true);
+	     	        	System.out.println("Send button clicked");
+	     	        	serverEndPoint.startSendingValues(detectionController.emodel);
+		        }
 			}
 		});
 

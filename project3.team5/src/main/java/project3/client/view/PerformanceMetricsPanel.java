@@ -5,7 +5,6 @@
 package project3.client.view;
 
 import project3.client.controller.PerformanceMetricsTabController;
-import project3.client.model.PerformanceMetricsTabModel;
 import project3.model.ExpressiveModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,11 +22,16 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import org.jfree.chart.ChartPanel;
+import project3.client.controller.ClientExpression;
+import project3.client.controller.PerformanceMetricsButtonController;
+import project3.client.controller.PerformanceMetricsTabController;
+import project3.model.ExpressiveModel;
+import project3.model.GraphsPropertiesModel;
 
 /*
  *  This class configures various elements in the Performance metrics tab in ClientUI
  */
-public class PerformanceMetricsPanel extends JPanel implements Observer {
+public class PerformanceMetricsPanel extends JPanel implements Observer{
 	public ChartPanel performanceGraphPanel;
 	public JPanel performanceColorPanel;
 	public JButton interestButton;
@@ -40,19 +44,17 @@ public class PerformanceMetricsPanel extends JPanel implements Observer {
 	private JTextField xAxisLength;
 	private JLabel secondsLabel;
 	private ExpressiveModel expressiveModel = new ExpressiveModel();
-
-	private String[] performanceMetricColors = new String[] { "Red", "Green", "Blue", "Yellow", "Pink",
-			"Magenta" };
-	int displayLength;
-	PerformanceMetricsTabModel performanceMetricsModel = new PerformanceMetricsTabModel();
+	private String[] performanceMetricColors = new String[] { "Red", "Green", "Blue", "Yellow", "Pink", "Magenta" };
+	double displayLength;
 	PerformanceMetricsTabController performanceMetricsController = new PerformanceMetricsTabController("");
 
 	public PerformanceMetricsPanel() {
 		this.setLayout(new GridLayout(1, 2, 8, 8));
 		this.setBorder(new EmptyBorder(8, 8, 8, 8));
-		this.setOpaque(false);
-		this.setBackground(Color.WHITE);
-		this.setBorder(new LineBorder(new Color(0, 0, 0)));
+        this.setOpaque(false);
+        this.setBackground(Color.WHITE);
+        this.setBorder(new LineBorder(new Color(0, 0, 0)));
+			
 
 		performanceColorPanel = new JPanel();
 		performanceColorPanel.setPreferredSize(new Dimension(900, 478));
@@ -126,9 +128,10 @@ public class PerformanceMetricsPanel extends JPanel implements Observer {
 		new PerformanceMetricsButtonListener(performanceColorPanel, interestButton, engagementButton, focusButton,
 				stressButton, relaxationButton, excitementButton);
 		this.add(performanceColorPanel, BorderLayout.NORTH);
-		performanceMetricsModel.setDisplayLength(30);
-		displayLength = performanceMetricsModel.getDisplayLength();
 
+		displayLength = GraphsPropertiesModel.getGraphsPropertiesModelInstance().getDisplayLength();
+		
+		
 		performanceGraphPanel = new ChartPanel(null);
 		performanceGraphPanel
 				.setChart(performanceMetricsController.PlotPerformanceGraph(expressiveModel, displayLength));
