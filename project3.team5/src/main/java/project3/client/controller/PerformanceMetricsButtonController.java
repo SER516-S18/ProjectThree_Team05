@@ -13,6 +13,8 @@ import javax.swing.colorchooser.AbstractColorChooserPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import project3.model.GraphsPropertiesModel;
+
 /*This class helps to attach various action with onclicking the buttons in PerformanceColorPanel */
 public class PerformanceMetricsButtonController {
 	private	JButton IN;
@@ -88,6 +90,7 @@ public class PerformanceMetricsButtonController {
 		IN.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
 	        	setColorChooser(IN,performanceMetricsPanel,colorChooserIN);
+	        	GraphsPropertiesModel.getGraphsPropertiesModelInstance().setInterestColor(IN.getBackground());
 	        }
 	    });
 		
@@ -130,7 +133,7 @@ public class PerformanceMetricsButtonController {
 	            colorChanged(IN,colorChooserIN); 
 	            performanceMetricsPanel.remove(colorChooserIN);
 	            performanceMetricsPanel.validate();
-	        	performanceMetricsPanel.repaint();
+	            performanceMetricsPanel.repaint();
 	        }
 	    });
 		colorChooserEX.getSelectionModel().addChangeListener(new ChangeListener() {

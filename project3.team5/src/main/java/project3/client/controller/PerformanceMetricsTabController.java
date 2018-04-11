@@ -52,7 +52,8 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
 		System.out.println(GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 		y = expressiveModel.getInterest();
 		XYLineAnnotation interestLine = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.RED);
+			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+		//interestLine.se
 		plot.addAnnotation(interestLine);
 		
 		
@@ -94,7 +95,7 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
 		
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 		//renderer.setBaseStroke( new BasicStroke( 10 ) );
-		//renderer.setSeriesPaint(0, GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
+		renderer.setSeriesPaint(0, GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 		System.out.println("In performance color" + GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 		plot.setRenderer(renderer);
 		plot.setBackgroundPaint(Color.WHITE);

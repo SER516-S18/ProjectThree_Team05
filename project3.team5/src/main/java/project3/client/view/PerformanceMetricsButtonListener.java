@@ -89,7 +89,8 @@ public class PerformanceMetricsButtonListener {
 		IN.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
 	        	setColorChooser(IN,performanceColorPanel,colorChooserIN);
-	        	GraphsPropertiesModel.getGraphsPropertiesModelInstance().setInterestColor(colorChooserIN.getBackground());
+	        	GraphsPropertiesModel.getGraphsPropertiesModelInstance().setInterestColor(IN.getBackground());
+	        	//System.out.println(GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 	        	System.out.println(IN.getBackground());
 	        //	System.out.println(colorChooserIN.getColor());
 	        }
