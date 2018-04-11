@@ -1,12 +1,25 @@
 package project3.clientTest;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.junit.jupiter.api.Test;
 import project3.model.ExpressiveModel;
+
+import java.util.ArrayList;
+
 /*
-* Testing the Client side facial expressions values
+* Testing the Client side facial expressions and graph plotting
 * */
 public class ClientTest {
+    private static final long serialVersionUID = 1L;
+    private XYSeries plotValues;
+    double x1 = 0.0;
+    double x2 = 30.0;
+    double y = 3.0;
+    private XYPlot plot;
+
     @Test
     void testGetBlink() {
         ExpressiveModel expModel = new ExpressiveModel();
@@ -100,4 +113,16 @@ public class ClientTest {
 
         assertEquals(1,expmodel.getLaugh());
     }
+    @Test
+    void testGraph(){
+        ArrayList<Double> receivedDataset = new ArrayList<Double>();
+        receivedDataset.add(0.5);
+        final XYSeriesCollection dataset = new XYSeriesCollection( );
+        plotValues = new XYSeries("");
+        for(int i = 0; i < receivedDataset.size(); i++) {
+            plotValues.add(receivedDataset.get(i), receivedDataset.get(i) );
+        }
+        dataset.addSeries(plotValues);
+    }
+
 }
