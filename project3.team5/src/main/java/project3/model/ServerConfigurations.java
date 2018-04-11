@@ -1,10 +1,10 @@
 package project3.model;
 
-public class serverConfigurations {
+public class ServerConfigurations {
 	
 	private boolean autoRepeat = false;
 	private boolean sendOneTime = true;
-	private static serverConfigurations serverConfig = new serverConfigurations();
+	private static ServerConfigurations serverConfig = new ServerConfigurations();
 
 	public boolean isServerStatus() {
 		return isServerStatus;
@@ -28,10 +28,10 @@ public class serverConfigurations {
 		this.sendOneTime = sendOneTimeValue;
 	}
 		
-	public  static serverConfigurations getServerDataInstance()
+	public  static ServerConfigurations getServerDataInstance()
 	{
 		if(serverConfig == null)
-			serverConfig = new serverConfigurations();
+			serverConfig = new ServerConfigurations();
 		
 		return serverConfig;
 	}

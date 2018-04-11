@@ -1,35 +1,26 @@
 package project3.serverTest;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.Choice;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
 
 import org.junit.jupiter.api.Test;
-
+ 
 import project3.model.ExpressiveModel;
-import project3.model.serverConfiguations;
+import project3.model.ServerConfigurations;
 import project3.server.controller.Server;
-import project3.server.controller.ServerEndPoint;
+
 import project3.server.view.ServerUI;
 
 public class ServerTest {
-	private JSpinner spinner_upperface, spinner_lowerface, spinnertimevalue, spinner_metrics;
-    private JCheckBox chckbxEyeAutoReset, autoRepeatCheckBox;
-    private Choice choiceupperface, choicelowerface, choicemetrics, choiceeye;
-    private JButton eyerdbtnActive;
-    private JButton btnClearLogs;
-    public ExpressiveModel emodel = new ExpressiveModel();
-    private boolean eyeActive= false;
-	
 
+    public ExpressiveModel emodel = new ExpressiveModel();
+   
 
 	@Test
 	public void testServerUI_Server() {
@@ -78,33 +69,21 @@ public class ServerTest {
 	
 	@Test
 	public void testServer_setAutoReset1() {
-		/*serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();
-		serverConfig.setAutoRepeat(false);
 		
-		if(autoResetValue)
-			serverConfig.setSendOneTime(false);
-		else
-			serverConfig.setSendOneTime(true);*/
 		Server server = new Server(); 
 		server.setAutoReset(false);
 	}
 	
 	@Test
 	public void testServer_setAutoReset2() {
-		/*serverConfiguations serverConfig = serverConfiguations.getServerDataInstance();
-		serverConfig.setAutoRepeat(false);
 		
-		if(autoResetValue)
-			serverConfig.setSendOneTime(false);
-		else
-			serverConfig.setSendOneTime(true);*/
 		Server server = new Server(); 
 		server.setAutoReset(true);
 	}
 	
 	@Test
 	public void TestServerConfiguationssetAutoRepeat1() {
-		serverConfiguations sconf = new serverConfiguations();
+		ServerConfigurations sconf =new ServerConfigurations();
 		sconf.setAutoRepeat(false);
 		
 		assertEquals(false,sconf.isAutoRepeat());
@@ -112,23 +91,13 @@ public class ServerTest {
 	
 	@Test
 	public void TestServerConfiguationssetAutoRepeat() {
-		serverConfiguations sconf = new serverConfiguations();
+		ServerConfigurations sconf = new ServerConfigurations();
 		sconf.setAutoRepeat(true);
 		
 		assertEquals(true,sconf.isAutoRepeat());
 	}
 	
-	@Test
-	public void setServerStatus1() {
-		ServerEndPoint sstatus = new ServerEndPoint();
-		sstatus.setServerStatus(false);
-	}
 	
-	@Test
-	public void setServerStatus2() {
-		ServerEndPoint sstatus = new ServerEndPoint();
-		sstatus.setServerStatus(true);
-	}
 	
 
 }
