@@ -4,12 +4,12 @@ import java.awt.Color;
 
 public class GraphsPropertiesModel {
 
-	private Color interestColor;
-	private Color engagementColor;
-	private Color excitementColor;
-	private Color focusColor;
-	private Color stressColor;
-	private Color relaxationColor;
+	private Color interestColor = Color.RED;
+	private Color engagementColor = Color.YELLOW;
+	private Color excitementColor = Color.BLUE;
+	private Color focusColor = Color.GREEN;
+	private Color stressColor = Color.GRAY;
+	private Color relaxationColor = Color.PINK;
 	private double displayLength;
 	private static GraphsPropertiesModel graphProperties;
 	

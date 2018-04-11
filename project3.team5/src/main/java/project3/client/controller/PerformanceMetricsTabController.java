@@ -52,7 +52,7 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
 		System.out.println(GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 		y = expressiveModel.getInterest();
 		XYLineAnnotation interestLine = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+			    x1, y, x2, y, new BasicStroke(2.0f), GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 		//interestLine.se
 		plot.addAnnotation(interestLine);
 		
@@ -60,27 +60,27 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
 		
 		y = expressiveModel.getEngagement();
 		XYLineAnnotation engagementLine = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+			    x1, y, x2, y, new BasicStroke(2.0f), GraphsPropertiesModel.getGraphsPropertiesModelInstance().getEngagementColor());
 		plot.addAnnotation(engagementLine);
 		
 		y = expressiveModel.getStress();
 		XYLineAnnotation stressLine = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+			    x1, y, x2, y, new BasicStroke(2.0f), GraphsPropertiesModel.getGraphsPropertiesModelInstance().getStressColor());
 		plot.addAnnotation(stressLine);
 		
 		y = expressiveModel.getRelaxation();
 		XYLineAnnotation relaxationLine = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+			    x1, y, x2, y, new BasicStroke(2.0f), GraphsPropertiesModel.getGraphsPropertiesModelInstance().getRelaxationColor());
 		plot.addAnnotation(relaxationLine);
 		
 		y = expressiveModel.getExcitement();
 		XYLineAnnotation excitementLine = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+			    x1, y, x2, y, new BasicStroke(2.0f), GraphsPropertiesModel.getGraphsPropertiesModelInstance().getExcitementColor());
 		plot.addAnnotation(excitementLine);
 		
 		y = expressiveModel.getFocus();
 		XYLineAnnotation focusLine = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+			    x1, y, x2, y, new BasicStroke(2.0f), GraphsPropertiesModel.getGraphsPropertiesModelInstance().getFocusColor());
 		plot.addAnnotation(focusLine);
 		
 		//TODO Change X-Axis length with change in value
@@ -94,12 +94,8 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
         plot.setDomainGridlinesVisible(false);
 		
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-		//renderer.setBaseStroke( new BasicStroke( 10 ) );
-		renderer.setSeriesPaint(0, GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
-		System.out.println("In performance color" + GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 		plot.setRenderer(renderer);
 		plot.setBackgroundPaint(Color.WHITE);
-		//setContentPane(chartPanel);
 		
 		return xyLineChart;
 		
@@ -107,12 +103,6 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
 
 	private XYDataset createDataset() {
 		
-		/*final XYSeriesCollection dataset = new XYSeriesCollection( );          
-		plotValues = new XYSeries("");
-		plotValues.add(plotValue, plotValue);
-		dataset.addSeries(plotValues);
-		System.out.println("In double create dataset");
-		return dataset;*/
 		return null;
 	}
 	

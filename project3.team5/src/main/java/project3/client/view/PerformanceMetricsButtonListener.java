@@ -26,8 +26,8 @@ public class PerformanceMetricsButtonListener {
 	private	JColorChooser colorChooserEX=new JColorChooser(Color.BLUE);
 	private	JColorChooser colorChooserFO=new JColorChooser(Color.GREEN);
 	private	JColorChooser colorChooserEN=new JColorChooser(Color.YELLOW);
-	private	JColorChooser colorChooserST=new JColorChooser(Color.BLACK);
-	private	JColorChooser colorChooserRE=new JColorChooser(Color.WHITE);
+	private	JColorChooser colorChooserST=new JColorChooser(Color.GRAY);
+	private	JColorChooser colorChooserRE=new JColorChooser(Color.PINK);
 /* This Constructor attaches action listener to the buttons on clicking*/
 	public PerformanceMetricsButtonListener(JPanel performanceColorPanel,JButton IN,JButton EN,JButton FO,JButton ST,JButton RE,JButton EX) {
 
@@ -90,37 +90,38 @@ public class PerformanceMetricsButtonListener {
 	        public void actionPerformed(ActionEvent arg0) {
 	        	setColorChooser(IN,performanceColorPanel,colorChooserIN);
 	        	GraphsPropertiesModel.getGraphsPropertiesModelInstance().setInterestColor(IN.getBackground());
-	        	//System.out.println(GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
-	        	System.out.println(IN.getBackground());
-	        //	System.out.println(colorChooserIN.getColor());
 	        }
 	    });	
 		EX.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {	        	
 	            setColorChooser(EX,performanceColorPanel,colorChooserEX);	  
-	        		GraphsPropertiesModel.getGraphsPropertiesModelInstance().setExcitementColor(colorChooserEX.getColor());
+	        		GraphsPropertiesModel.getGraphsPropertiesModelInstance().setExcitementColor(EX.getBackground());
 	        		
 	        }
 	    });
 		EN.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {	        	
-	            setColorChooser(EN,performanceColorPanel,colorChooserEN);            	           
+	            setColorChooser(EN,performanceColorPanel,colorChooserEN); 
+	            GraphsPropertiesModel.getGraphsPropertiesModelInstance().setEngagementColor(EN.getBackground());
 	        }
 	    });
 		ST.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {	        	
 	            setColorChooser(ST,performanceColorPanel,colorChooserST);	
+	            GraphsPropertiesModel.getGraphsPropertiesModelInstance().setStressColor(ST.getBackground());
 	            
 	        }
 	    });
 		FO.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {	        	
 	            setColorChooser(FO,performanceColorPanel,colorChooserFO);	            	            	     	           
+	            GraphsPropertiesModel.getGraphsPropertiesModelInstance().setFocusColor(FO.getBackground());
 	        }
 	    });
 		RE.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {	        	
-	            setColorChooser(RE,performanceColorPanel,colorChooserRE);	     	   	           
+	            setColorChooser(RE,performanceColorPanel,colorChooserRE);	
+	            GraphsPropertiesModel.getGraphsPropertiesModelInstance().setRelaxationColor(RE.getBackground());
 	        }
 	    });
 		colorChooserIN.getSelectionModel().addChangeListener(new ChangeListener() {

@@ -80,7 +80,7 @@ public class PerformanceMetricsPanel extends JPanel implements Observer{
 		GridBagConstraints c = new GridBagConstraints();
 		
 		interestButton = new JButton("IN");
-		interestButton.setBackground(Color.red);
+		interestButton.setBackground(Color.RED);
 		interestButton.setBounds(100, 34, 70, 50);
 		interestButton.setOpaque(true);
 		interestButton.setBorderPainted(false);
@@ -94,34 +94,34 @@ public class PerformanceMetricsPanel extends JPanel implements Observer{
 		
 		engagementButton = new JButton("EN");
 		engagementButton.setBounds(180, 34, 70, 50);
-		engagementButton.setBackground(Color.blue);
+		engagementButton.setBackground(Color.YELLOW);
 		engagementButton.setOpaque(true);
 		engagementButton.setBorderPainted(false);
 		performanceColorPanel.add(engagementButton, c);
 		
 		stressButton = new JButton("ST");
 		stressButton.setBounds(260, 34, 70,50);
-		stressButton.setBackground(Color.yellow);
+		stressButton.setBackground(Color.GRAY);
 		stressButton.setOpaque(true);
 		stressButton.setBorderPainted(false);
 		performanceColorPanel.add(stressButton, c);
 		
 		relaxationButton = new JButton("RE");
 		relaxationButton.setBounds(100, 89,70,50);
-		relaxationButton.setBackground(Color.pink);
+		relaxationButton.setBackground(Color.PINK);
 		relaxationButton.setOpaque(true);
 		relaxationButton.setBorderPainted(false);
 		performanceColorPanel.add(relaxationButton, c);
 		
 		excitementButton = new JButton("EX");
-		excitementButton.setBackground(Color.green);
+		excitementButton.setBackground(Color.BLUE);
 		excitementButton.setBounds(180, 89, 70, 50);
 		excitementButton.setOpaque(true);
 		excitementButton.setBorderPainted(false);
 		performanceColorPanel.add(excitementButton, c);
 		
 		focusButton = new JButton("FO");
-		focusButton.setBackground(Color.gray);
+		focusButton.setBackground(Color.GREEN);
 		focusButton.setBounds(260, 89, 70,50);
 		focusButton.setOpaque(true);
 		focusButton.setBorderPainted(false);		

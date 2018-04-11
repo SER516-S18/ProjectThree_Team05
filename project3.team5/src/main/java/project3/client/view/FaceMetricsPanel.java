@@ -272,7 +272,7 @@ public class FaceMetricsPanel extends JPanel implements Observer{
 				ArrayList<ExpressiveModel> expressiveData = ExpressiveModelObservable.getExpressiveModelObservableInstance().GetExpressiveData();
 				
 				panelBuffer.removeAll();
-				//if(expressiveModel.isAutoRepeat()) {
+				
 				for(int i = 0; i<expressiveData.size(); i++) {
 				
 					blinkData.add(new Integer(expressiveData.get(i).getBlink()));
@@ -287,52 +287,9 @@ public class FaceMetricsPanel extends JPanel implements Observer{
 					rightSmirkData.add(new Double(expressiveData.get(i).getSmirkRight()));
 					laughData.add(new Double(expressiveData.get(i).getLaugh()));
 					
-					/*blinkPanel.setChart(blinkGraphController.PlotFacialExpressionIntegerGraph(blinkData));
-					blinkGraphController.pack();
-					panelBuffer.add(blinkPanel, BorderLayout.PAGE_START);
-					
-					leftWinkPanel.setChart(leftWinkGraphController.PlotFacialExpressionIntegerGraph(leftWinkData));
-					leftWinkGraphController.pack();
-					panelBuffer.add(leftWinkPanel, BorderLayout.PAGE_START);
-					
-					rightWinkPanel.setChart(rightWinkGraphController.PlotFacialExpressionIntegerGraph(rightWinkData));
-					rightWinkGraphController.pack();
-					panelBuffer.add(rightWinkPanel, BorderLayout.PAGE_START);
-					
-					lookRightPanel.setChart(lookRightGraphController.PlotFacialExpressionIntegerGraph(lookRightData));
-					lookRightGraphController.pack();
-					panelBuffer.add(lookRightPanel, BorderLayout.PAGE_START);
-					
-					furrowBrowPanel.setChart(furrowBrowGraphController.PlotFacialExpressionDoubleGraph(furrowBrowData));
-					furrowBrowGraphController.pack();
-					panelBuffer.add(furrowBrowPanel, BorderLayout.PAGE_START);
-					
-					raiseBrowPanel.setChart(raiseBrowGraphController.PlotFacialExpressionDoubleGraph(raiseBrowData));
-					raiseBrowGraphController.pack();
-					panelBuffer.add(raiseBrowPanel, BorderLayout.PAGE_START);
-					
-					smilePanel.setChart(smileGraphController.PlotFacialExpressionDoubleGraph(smileData));
-					smileGraphController.pack();
-					panelBuffer.add(smilePanel, BorderLayout.PAGE_START);
-					
-					clenchPanel.setChart(clenchGraphController.PlotFacialExpressionDoubleGraph(clenchData));
-					clenchGraphController.pack();
-					panelBuffer.add(clenchPanel, BorderLayout.PAGE_START);
-					
-					leftSmirkPanel.setChart(leftSmirkGraphController.PlotFacialExpressionDoubleGraph(leftSmirkData));
-					leftSmirkGraphController.pack();
-					panelBuffer.add(leftSmirkPanel, BorderLayout.PAGE_START);
-					
-					rightSmirkPanel.setChart(rightSmirkGraphController.PlotFacialExpressionDoubleGraph(rightSmirkData));
-					rightSmirkGraphController.pack();
-					panelBuffer.add(rightSmirkPanel, BorderLayout.PAGE_START);
-					
-					laughPanel.setChart(laughGraphController.PlotFacialExpressionDoubleGraph(laughData));
-					laughGraphController.pack();
-					panelBuffer.add(laughPanel, BorderLayout.PAGE_START);*/
-					
+				
 				}
-				//}
+				
 					
 				
 				if(expressiveModel.isAutoRepeat()) {
@@ -384,63 +341,63 @@ public class FaceMetricsPanel extends JPanel implements Observer{
 							panelBuffer.revalidate();
 							panelBuffer.repaint();
 						}
-				}
 				
-				/*else {
-					panelBuffer.removeAll();
-					blinkPanel.setChart(blinkGraphController.PlotFacialExpressionIntegerGraph(blinkData.get(blinkData.size()-1)));
+				
+				else {
+					blinkPanel.setChart(blinkGraphController.PlotFacialExpressionIntegerGraph(blinkData));
 					blinkGraphController.pack();
 					panelBuffer.add(blinkPanel, BorderLayout.PAGE_START);
 					
-					rightWinkPanel.setChart(rightWinkGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getRightWlink()));
+					rightWinkPanel.setChart(rightWinkGraphController.PlotFacialExpressionIntegerGraph(rightWinkData));
 					rightWinkGraphController.pack();
 					panelBuffer.add(rightWinkPanel, BorderLayout.PAGE_START);
 					
-					leftWinkPanel.setChart(leftWinkGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getLeftWink()));
+					leftWinkPanel.setChart(leftWinkGraphController.PlotFacialExpressionIntegerGraph(leftWinkData));
 					leftWinkGraphController.pack();
 					panelBuffer.add(leftWinkPanel, BorderLayout.PAGE_START);
 					
-					lookRightPanel.setChart(lookRightGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getLookRight()));
+					lookRightPanel.setChart(lookRightGraphController.PlotFacialExpressionIntegerGraph(lookRightData));
 					lookRightGraphController.pack();
 					panelBuffer.add(lookRightPanel, BorderLayout.PAGE_START);
 					
-					furrowBrowPanel.setChart(furrowBrowGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getFurrowBrow()));
+					furrowBrowPanel.setChart(furrowBrowGraphController.PlotFacialExpressionDoubleGraph(furrowBrowData));
 					furrowBrowGraphController.pack();
 					panelBuffer.add(furrowBrowPanel, BorderLayout.PAGE_START);
 					
-					raiseBrowPanel.setChart(raiseBrowGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getRaiseBrow()));
+					raiseBrowPanel.setChart(raiseBrowGraphController.PlotFacialExpressionDoubleGraph(raiseBrowData));
 					raiseBrowGraphController.pack();
 					panelBuffer.add(raiseBrowPanel, BorderLayout.PAGE_START);
 					
-					smilePanel.setChart(smileGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getSmile()));
+					smilePanel.setChart(smileGraphController.PlotFacialExpressionDoubleGraph(smileData));
 					smileGraphController.pack();
 					panelBuffer.add(smilePanel, BorderLayout.PAGE_START);
 					
-					clenchPanel.setChart(clenchGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getClench()));
+					clenchPanel.setChart(clenchGraphController.PlotFacialExpressionDoubleGraph(clenchData));
 					clenchGraphController.pack();
 					panelBuffer.add(clenchPanel, BorderLayout.PAGE_START);
 					
-					leftSmirkPanel.setChart(leftSmirkGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getSmirkLeft()));
+					leftSmirkPanel.setChart(leftSmirkGraphController.PlotFacialExpressionDoubleGraph(leftSmirkData));
 					leftSmirkGraphController.pack();
 					panelBuffer.add(leftSmirkPanel, BorderLayout.PAGE_START);
 					
-					rightSmirkPanel.setChart(rightSmirkGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getSmirkRight()));
+					rightSmirkPanel.setChart(rightSmirkGraphController.PlotFacialExpressionDoubleGraph(rightSmirkData));
 					rightSmirkGraphController.pack();
 					panelBuffer.add(rightSmirkPanel, BorderLayout.PAGE_START);
 					
-					laughPanel.setChart(laughGraphController.PlotFacialExpressionIntegerGraph(expressiveModel.getLaugh()));
+					laughPanel.setChart(laughGraphController.PlotFacialExpressionDoubleGraph(laughData));
 					laughGraphController.pack();
 					panelBuffer.add(laughPanel, BorderLayout.PAGE_START);
 					
 					panelBuffer.revalidate();
 					panelBuffer.repaint();
-				}*/
+				}
 				/*System.out.println("After plotting graph");
 				this.revalidate();
 				this.repaint();*/
 				
 			}
+		}
 			
-		
+}	
 
-}
+
