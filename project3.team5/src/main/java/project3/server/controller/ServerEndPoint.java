@@ -1,6 +1,7 @@
 package project3.server.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,9 +16,11 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import project3.model.MessageDecoder;
 import project3.model.MessageEncoder;
+import project3.model.ConnectionIpAndPortValues;
 import project3.model.ExpressiveModel;
 import project3.model.TimeStamp;
-import project3.model.serverConfiguations;
+import project3.model.serverConfigurations;
+import project3.server.view.ServerConsolePanel;
 
 @ServerEndpoint(value = "/server" ,decoders = MessageDecoder.class,  encoders = MessageEncoder.class)
 public class ServerEndPoint{
@@ -25,16 +28,9 @@ public class ServerEndPoint{
 	private Session session;
     private static Set<ServerEndPoint> connections  = new CopyOnWriteArraySet<>();
     private static ServerEndPoint serverEndPoint = new ServerEndPoint();
-    private static boolean serverStatus = false;
 	private ExpressiveModel values = new ExpressiveModel();
 
-    public  boolean isServerStatus() {
-		return serverStatus;
-	}
-
-	public void setServerStatus(boolean serverStatus) {
-		ServerEndPoint.serverStatus = serverStatus;
-	}
+  
 
     TimeStamp timeStamp = new TimeStamp(); 
     Timer time = new Timer() ;
@@ -57,7 +53,8 @@ public class ServerEndPoint{
 	@OnClose
 	public void onClose(Session Session) throws IOException, EncodeException{
 		connections.remove(this);
-		Session.close();        
+		Session.close();   
+		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server has been Stopped");;
 	}
 	
 	@OnError
@@ -78,8 +75,9 @@ public class ServerEndPoint{
 					broadcast(values);
 					} catch (IOException | EncodeException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					
+						ServerConsolePanel.getServerConsoleInstance().appendLogMessage(e.getMessage());
+											}
 				  
 				  secondspassed += timerOffset;
 				  timeStamp.setSecondspassed(secondspassed);
@@ -97,24 +95,35 @@ public class ServerEndPoint{
                     endpoint.session.getBasicRemote().
                       sendObject(values);
                 } catch (IOException | EncodeException e) {
-                    e.printStackTrace();
+                	ServerConsolePanel.getServerConsoleInstance().appendLogMessage(e.getMessage());
+                   
                 }
             }
         });
     }
 
 	public void haltSendingValues() {
+		
+		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server has stopped sending Values to client");
 		 this.time.cancel();		
 	}
 	
 	public void startSendingValues(ExpressiveModel receivedValues) {
 		this.values = receivedValues;
 		timerOffset = values.getTimeStamp();
+		ServerConsolePanel.getServerConsoleInstance().appendLogMessage("Server is sending Values to client");
 
-		if(isServerStatus()) {			
-			 if(serverConfiguations.getServerDataInstance().isAutoRepeat()) {
+		
+		if(serverConfigurations.getServerDataInstance().isServerStatus()) {			
+
+			 if(serverConfigurations.getServerDataInstance().isAutoRepeat()) {
+
 				 this.time = new Timer();
+
 				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,250);
+
+				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,(long) (timerOffset*100));
+
 			 }
 			 else {
 
@@ -125,13 +134,15 @@ public class ServerEndPoint{
 				 
 				 secondspassed += timerOffset;
 				 timeStamp.setSecondspassed(secondspassed);
-				 setServerStatus(false);
+			
+				 serverConfigurations.getInstance().setDataSendingStatus(false);
 				 				 
 				try {
 					broadcast(values);
 				} catch (IOException | EncodeException e) {
 					// TODO Auto-generated catch blockz
-					e.printStackTrace();
+					ServerConsolePanel.getServerConsoleInstance().appendLogMessage(e.getMessage());
+					
 				}
 			 }
 		}

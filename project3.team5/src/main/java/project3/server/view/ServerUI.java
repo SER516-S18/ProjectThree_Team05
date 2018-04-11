@@ -13,6 +13,7 @@ import javax.swing.border.TitledBorder;
 
 import project3.server.controller.Server;
 import project3.server.controller.ServerEndPoint;
+import project3.model.serverConfigurations;
 import project3.server.controller.DetectionController;
 
 import java.awt.GridBagLayout;
@@ -50,7 +51,7 @@ public class ServerUI extends JFrame {
 		Server serverInstance = Server.getServerInstance();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(350, 30, 500, 550);
+		setBounds(350, 30, 600, 700);
 		setMinimumSize(new Dimension(470,400));
 		setTitle(" Server");
 		contentPane = new JPanel();
@@ -147,21 +148,21 @@ public class ServerUI extends JFrame {
 				
 				if(buttonToggle.getText().equals("Start")) {
 					
-	            		serverEndPoint.setServerStatus(true);
+	            		serverConfigurations.getInstance().setDataSendingStatus(true);
 		            	buttonToggle.setText("Stop");
 		    	        	autoRepeatCheckBox.setEnabled(false);
 		    	        	serverEndPoint.startSendingValues(detectionController.emodel);			    	        	
 	            	}
 	            	else if (buttonToggle.getText().equals("Stop")) {
 	            		
-	            		serverEndPoint.setServerStatus(false);
+	            		serverConfigurations.getInstance().setDataSendingStatus(false);
 		            	buttonToggle.setText("Start");
 		    	        	autoRepeatCheckBox.setEnabled(true);
 		    	        	serverEndPoint.haltSendingValues();
 	            	}
 	            	else if(buttonToggle.getText().equals("Send")) {
 	            		
-	            		serverEndPoint.setServerStatus(true);
+	            		serverConfigurations.getInstance().setDataSendingStatus(true);
 	     	        	autoRepeatCheckBox.setEnabled(true);
 	     	        	System.out.println("Send button clicked");
 	     	        	serverEndPoint.startSendingValues(detectionController.emodel);
@@ -319,20 +320,21 @@ public class ServerUI extends JFrame {
 
 		
 		//Console
-		JPanel panel_2 = new JPanel();
-		contentPane.add(panel_2, BorderLayout.SOUTH);
+		
+		contentPane.add(ServerConsolePanel.getServerConsoleInstance(), BorderLayout.SOUTH);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_panel_2.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100};
 		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		panel_2.setLayout(gbl_panel_2);
+		ServerConsolePanel.getServerConsoleInstance().setLayout(gbl_panel_2);
 				
 		Border console = new TitledBorder(null, "Console", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
 		Border consoleMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-
+        
 		Border consoleBorder = BorderFactory.createCompoundBorder(consoleMargin, console);
-		panel_2.setBorder(consoleBorder);
+		ServerConsolePanel.getServerConsoleInstance().setBorder(consoleBorder);
+		
 	        // To Do add console log 
 	}
 }
