@@ -12,6 +12,8 @@ import javax.swing.colorchooser.AbstractColorChooserPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import project3.model.GraphsPropertiesModel;
+
 /*This class helps to attach various actions with onclicking the buttons in PerformanceColorPanel */
 public class PerformanceMetricsButtonListener {
 	private	JButton IN;
@@ -87,11 +89,16 @@ public class PerformanceMetricsButtonListener {
 		IN.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {
 	        	setColorChooser(IN,performanceColorPanel,colorChooserIN);
+	        	GraphsPropertiesModel.getGraphsPropertiesModelInstance().setInterestColor(colorChooserIN.getBackground());
+	        	System.out.println(IN.getBackground());
+	        //	System.out.println(colorChooserIN.getColor());
 	        }
 	    });	
 		EX.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {	        	
-	            setColorChooser(EX,performanceColorPanel,colorChooserEX);	            	           
+	            setColorChooser(EX,performanceColorPanel,colorChooserEX);	  
+	        		GraphsPropertiesModel.getGraphsPropertiesModelInstance().setExcitementColor(colorChooserEX.getColor());
+	        		
 	        }
 	    });
 		EN.addActionListener(new ActionListener() {
@@ -101,7 +108,8 @@ public class PerformanceMetricsButtonListener {
 	    });
 		ST.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent arg0) {	        	
-	            setColorChooser(ST,performanceColorPanel,colorChooserST);	            	            	            	           
+	            setColorChooser(ST,performanceColorPanel,colorChooserST);	
+	            
 	        }
 	    });
 		FO.addActionListener(new ActionListener() {
@@ -122,6 +130,7 @@ public class PerformanceMetricsButtonListener {
 	        	performanceColorPanel.repaint();
 	        }
 	    });
+		
 		colorChooserEX.getSelectionModel().addChangeListener(new ChangeListener() {
 	        public void stateChanged(ChangeEvent e) {	        	
 	        	colorChanged(EX,colorChooserEX); 

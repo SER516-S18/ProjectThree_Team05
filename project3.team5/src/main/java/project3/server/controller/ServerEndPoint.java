@@ -114,7 +114,7 @@ public class ServerEndPoint{
 		if(isServerStatus()) {			
 			 if(serverConfiguations.getServerDataInstance().isAutoRepeat()) {
 				 this.time = new Timer();
-				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,5000);
+				 time.scheduleAtFixedRate(createNewTimerTask(),(long) timeStamp.getIntialTime() ,250);
 			 }
 			 else {
 

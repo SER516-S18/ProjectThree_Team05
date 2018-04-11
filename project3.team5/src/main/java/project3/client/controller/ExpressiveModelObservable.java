@@ -9,7 +9,7 @@ import project3.model.serverConfiguations;
 
 public class ExpressiveModelObservable extends Observable{
 
-	private ArrayList<ExpressiveModel> expressiveData;
+	private static ArrayList<ExpressiveModel> expressiveData;
 	private ExpressiveModel expressiveModelValue;
 	private static ExpressiveModelObservable expressiveModelObservableInstance ;
 	
@@ -26,12 +26,15 @@ public class ExpressiveModelObservable extends Observable{
 		return expressiveModelObservableInstance;
 	}
 	
+	public static ArrayList<ExpressiveModel> GetExpressiveData(){
+		return expressiveData;
+	}
+	
 	public void AddToListExpressiveModel(ExpressiveModel expressiveModel)
 	{
 		System.out.println("In add to list "+expressiveModel.getEngagement() + 
 				"/Set auto repeat "+ expressiveModel.isAutoRepeat() + 
 				" /Auto reset "+ expressiveModel.getEyeReset());
-		
 		this.expressiveData.add(expressiveModel);
 //		if(serverConfiguations.getServerDataInstance().isAutoReset()) {
 //			expressiveModel.setAutoReset(true);

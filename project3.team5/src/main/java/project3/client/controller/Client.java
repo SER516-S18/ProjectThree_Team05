@@ -23,6 +23,7 @@ public class Client implements Runnable{
         
 
         ExpressiveModelObservable.getExpressiveModelObservableInstance().addObserver(ClientUI.setObserver().setAsObserver());
+        ExpressiveModelObservable.getExpressiveModelObservableInstance().addObserver(ClientUI.setObserver().setPerformanceAsObserver());
 
         StringBuilder sb = new StringBuilder();
         sb.append(Constants.CONNECTIONSTRING_START);

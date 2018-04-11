@@ -1,6 +1,8 @@
 package project3.client.controller;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.util.ArrayList;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -11,7 +13,10 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
+
+import project3.model.ExpressiveModel;
 
 public class FacialExpressionGraphController extends ApplicationFrame{
 
@@ -25,23 +30,16 @@ public class FacialExpressionGraphController extends ApplicationFrame{
 		super(title);
 	}
 	
-	public ChartPanel PlotFacialExpressionGraph() {
+	public JFreeChart PlotFacialExpressionIntegerGraph(ArrayList<Integer> receivedDataset) {
 		
 		JFreeChart xyLineChart = ChartFactory.createXYLineChart("", "", "",
-				createDataset(),
+				createIntegerDataset(receivedDataset),
 		PlotOrientation.VERTICAL, true, false, false);
 		xyLineChart.removeLegend();
 		
-		ChartPanel chartPanel = new ChartPanel(xyLineChart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(641, 483));
-		
+				
 		plot = xyLineChart.getXYPlot();
 		
-		/*XYLineAnnotation line = new XYLineAnnotation(
-			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
-		plot.addAnnotation(line);*/
-		
-		//TODO Change X-Axis length with change in value
 		NumberAxis xAxis = (NumberAxis) plot.getDomainAxis();
 		xAxis.setTickLabelsVisible(false);
 		plot.setRangeGridlinesVisible(false);
@@ -51,16 +49,67 @@ public class FacialExpressionGraphController extends ApplicationFrame{
         plot.setDomainGridlinesVisible(false);
 		
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+		renderer.setSeriesPaint(0, Color.RED);
+		renderer.setSeriesStroke(0, new BasicStroke(1.0f));
 		plot.setRenderer(renderer);
 		plot.setBackgroundPaint(Color.WHITE);
-		setContentPane(chartPanel);
-		
-		return chartPanel;
+		//System.out.println("After getting double plot");
+		return xyLineChart;
 		
 	}
 
-	private XYDataset createDataset() {
-		return null;
+	private XYDataset createIntegerDataset(ArrayList<Integer> receivedDataset) {
+		final XYSeriesCollection dataset = new XYSeriesCollection( );          
+		plotValues = new XYSeries("");
+		for(int i = 0; i < receivedDataset.size(); i++) {
+			plotValues.add(receivedDataset.get(i), receivedDataset.get(i) );
+		}
+		dataset.addSeries(plotValues);
+		//System.out.println("In int create dataset");
+		return dataset;
 	}
+	
+public JFreeChart PlotFacialExpressionDoubleGraph(ArrayList<Double> receivedDataset) {
+		
+		JFreeChart xyLineChart = ChartFactory.createXYLineChart("", "", "",
+				createDoubleDataset(receivedDataset),
+		PlotOrientation.VERTICAL, true, false, false);
+		xyLineChart.removeLegend();
+		
+		ChartPanel chartPanel = new ChartPanel(xyLineChart);
+		chartPanel.setPreferredSize(new java.awt.Dimension(641, 483));
+		
+		plot = xyLineChart.getXYPlot();
+		
+		NumberAxis xAxis = (NumberAxis) plot.getDomainAxis();
+		xAxis.setTickLabelsVisible(false);
+		plot.setRangeGridlinesVisible(false);
+		
+		NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
+		yAxis.setTickLabelsVisible(false);
+        plot.setDomainGridlinesVisible(false);
+		
+		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+		renderer.setSeriesPaint(0, Color.RED);
+		renderer.setSeriesStroke(0, new BasicStroke(1.0f));
+		plot.setRenderer(renderer);
+		plot.setBackgroundPaint(Color.WHITE);
+		setContentPane(chartPanel);
+		//System.out.println("After getting double plot");
+		return xyLineChart;
+		
+	}
+
+	private XYDataset createDoubleDataset(ArrayList<Double> receivedDataset) {
+		final XYSeriesCollection dataset = new XYSeriesCollection( );          
+		plotValues = new XYSeries("");
+		for(int i = 0; i < receivedDataset.size(); i++) {
+			//System.out.println("Size: "+ receivedDataset.size());
+			plotValues.add(receivedDataset.get(i), receivedDataset.get(i) );
+		}
+		dataset.addSeries(plotValues);
+		//System.out.println("In int create dataset");
+		return dataset;
+}
 
 }

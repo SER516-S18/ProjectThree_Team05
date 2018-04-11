@@ -14,14 +14,18 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
+
+import project3.model.ExpressiveModel;
+import project3.model.GraphsPropertiesModel;
 
 public class PerformanceMetricsTabController extends ApplicationFrame{
 	private static final long serialVersionUID = 1L;
 	private XYSeries plotValues;
 	double x1 = 0.0;
-	double x2 = 30.0;
-	double y = 3.0;
+	double x2;
+	double y;
 	private XYPlot plot;
 	Color colorlist[] = new Color[] { Color.RED, Color.GREEN, Color.BLUE, 
 			Color.YELLOW, Color.PINK, Color.MAGENTA };
@@ -31,26 +35,56 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
 		
 	}
 
-	public ChartPanel PlotPerformanceGraph(int xAxisLength) {
+	public JFreeChart PlotPerformanceGraph(ExpressiveModel expressiveModel, int xAxisLength) {
 		
 		JFreeChart xyLineChart = ChartFactory.createXYLineChart("", "", "",
-				createDataset(xAxisLength),
+				createDataset(),
 		PlotOrientation.VERTICAL, true, false, false);
 		xyLineChart.removeLegend();
 		
-		ChartPanel chartPanel = new ChartPanel(xyLineChart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(641, 483));
+		/*ChartPanel chartPanel = new ChartPanel(xyLineChart);
+		chartPanel.setPreferredSize(new java.awt.Dimension(641, 483));*/
 		
 		plot = xyLineChart.getXYPlot();
 		
+		x2 = xAxisLength;
 		//TODO add multiple graphs to show different performance metrics
-		XYLineAnnotation line = new XYLineAnnotation(
+		System.out.println(GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
+		y = expressiveModel.getInterest();
+		XYLineAnnotation interestLine = new XYLineAnnotation(
+			    x1, y, x2, y, new BasicStroke(2.0f), Color.RED);
+		plot.addAnnotation(interestLine);
+		
+		
+		
+		y = expressiveModel.getEngagement();
+		XYLineAnnotation engagementLine = new XYLineAnnotation(
 			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
-		plot.addAnnotation(line);
+		plot.addAnnotation(engagementLine);
+		
+		y = expressiveModel.getStress();
+		XYLineAnnotation stressLine = new XYLineAnnotation(
+			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+		plot.addAnnotation(stressLine);
+		
+		y = expressiveModel.getRelaxation();
+		XYLineAnnotation relaxationLine = new XYLineAnnotation(
+			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+		plot.addAnnotation(relaxationLine);
+		
+		y = expressiveModel.getExcitement();
+		XYLineAnnotation excitementLine = new XYLineAnnotation(
+			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+		plot.addAnnotation(excitementLine);
+		
+		y = expressiveModel.getFocus();
+		XYLineAnnotation focusLine = new XYLineAnnotation(
+			    x1, y, x2, y, new BasicStroke(2.0f), Color.black);
+		plot.addAnnotation(focusLine);
 		
 		//TODO Change X-Axis length with change in value
 		NumberAxis xAxis = (NumberAxis) plot.getDomainAxis();
-		xAxis.setRange(0.0, 30.0);
+		xAxis.setRange(0.0, xAxisLength);
 		plot.setRangeGridlinesVisible(false);
 		
 		NumberAxis yAxis = (NumberAxis) plot.getRangeAxis();
@@ -59,15 +93,25 @@ public class PerformanceMetricsTabController extends ApplicationFrame{
         plot.setDomainGridlinesVisible(false);
 		
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+		//renderer.setBaseStroke( new BasicStroke( 10 ) );
+		//renderer.setSeriesPaint(0, GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
+		System.out.println("In performance color" + GraphsPropertiesModel.getGraphsPropertiesModelInstance().getInterestColor());
 		plot.setRenderer(renderer);
 		plot.setBackgroundPaint(Color.WHITE);
-		setContentPane(chartPanel);
+		//setContentPane(chartPanel);
 		
-		return chartPanel;
+		return xyLineChart;
 		
 	}
 
-	private XYDataset createDataset(int xAxisLength) {
+	private XYDataset createDataset() {
+		
+		/*final XYSeriesCollection dataset = new XYSeriesCollection( );          
+		plotValues = new XYSeries("");
+		plotValues.add(plotValue, plotValue);
+		dataset.addSeries(plotValues);
+		System.out.println("In double create dataset");
+		return dataset;*/
 		return null;
 	}
 	
