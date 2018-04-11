@@ -13,7 +13,7 @@ import javax.swing.border.TitledBorder;
 
 import project3.server.controller.Server;
 import project3.server.controller.ServerEndPoint;
-import project3.model.serverConfigurations;
+import project3.model.ServerConfigurations;
 import project3.server.controller.DetectionController;
 
 import java.awt.GridBagLayout;
@@ -148,21 +148,21 @@ public class ServerUI extends JFrame {
 				
 				if(buttonToggle.getText().equals("Start")) {
 					
-	            		serverConfigurations.getServerDataInstance().setServerStatus(true);
+	            		ServerConfigurations.getServerDataInstance().setServerStatus(true);
 		            	buttonToggle.setText("Stop");
 		    	        	autoRepeatCheckBox.setEnabled(false);
 		    	        	serverEndPoint.startSendingValues(detectionController.emodel);			    	        	
 	            	}
 	            	else if (buttonToggle.getText().equals("Stop")) {
 	            		
-	            		serverConfigurations.getServerDataInstance().setServerStatus(false);
+	            		ServerConfigurations.getServerDataInstance().setServerStatus(false);
 		            	buttonToggle.setText("Start");
 		    	        	autoRepeatCheckBox.setEnabled(true);
 		    	        	serverEndPoint.haltSendingValues();
 	            	}
 	            	else if(buttonToggle.getText().equals("Send")) {
 	            		
-	            		serverConfigurations.getServerDataInstance().setServerStatus(true);
+	            		ServerConfigurations.getServerDataInstance().setServerStatus(true);
 	     	        	autoRepeatCheckBox.setEnabled(true);
 	     	        	System.out.println("Send button clicked");
 	     	        	serverEndPoint.startSendingValues(detectionController.emodel);

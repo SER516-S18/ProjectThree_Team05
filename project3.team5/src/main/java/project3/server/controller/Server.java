@@ -4,7 +4,7 @@ package project3.server.controller;
 import javax.websocket.DeploymentException;
 
 import project3.model.ConnectionIpAndPortValues;
-import project3.model.serverConfigurations;
+import project3.model.ServerConfigurations;
 import project3.server.view.ServerConsolePanel;
 import utilities.Constants;
 
@@ -29,7 +29,7 @@ public class Server implements Runnable{
 
 	public void setAutoReset(boolean autoResetValue) {
 
-		  serverConfigurations serverConfig = serverConfigurations.getServerDataInstance();
+		  ServerConfigurations serverConfig = ServerConfigurations.getServerDataInstance();
 		  serverConfig.setAutoRepeat(autoResetValue);
 
 

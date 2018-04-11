@@ -5,9 +5,11 @@ import java.awt.Choice;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+
+import org.glassfish.grizzly.http.server.ServerConfiguration;
 import org.junit.jupiter.api.Test;
 import project3.model.ExpressiveModel;
-import project3.model.serverConfigurations;
+import project3.model.ServerConfigurations;
 import project3.server.controller.Server;
 import project3.server.view.ServerUI;
 
@@ -79,7 +81,8 @@ public class ServerTest {
 	@Test
 	public void TestServerConfiguationssetAutoRepeat1() {
 
-		serverConfigurations sconf = new serverConfigurations();
+		ServerConfigurations sconf = new ServerConfigurations();
+
 		sconf.setAutoRepeat(false);
 		
 		assertEquals(false,sconf.isAutoRepeat());
@@ -88,7 +91,7 @@ public class ServerTest {
 	@Test
 	public void TestServerConfiguationssetAutoRepeat() {
 
-		serverConfigurations sconf = new serverConfigurations();
+		ServerConfigurations sconf = new ServerConfigurations();
 
 		sconf.setAutoRepeat(true);
 		
