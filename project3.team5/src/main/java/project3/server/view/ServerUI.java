@@ -1,8 +1,16 @@
+/**
+ * @SER516 Project3_Team05
+ */
+
 package project3.server.view;
+
+import project3.server.controller.Server;
+import project3.server.controller.ServerEndPoint;
+import project3.model.ServerConfigurations;
+import project3.server.controller.DetectionController;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,12 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-
-import project3.server.controller.Server;
-import project3.server.controller.ServerEndPoint;
-import project3.model.ServerConfigurations;
-import project3.server.controller.DetectionController;
-
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -23,95 +25,92 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JCheckBox;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Dimension;
 
+/**
+ * ServerUI builds the Server Window by placing all the modules in the JFrame
+ * window. This window is the interface which collects all values to be sent to
+ * the client for use.
+ */
+
 public class ServerUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private static final Font FONT = new Font("Times New Roman", Font.BOLD, 16);
 
 	/**
-	 * Creates the UI for Server 
+	 * * Constructor creates the UI for Server. Creates JFrame and other JSpinner
+	 * elements which set the values for the Detection Controller Class Object. This
+	 * is where the client picks up the values for graph and facial expressions
 	 */
 	public ServerUI() {
-		
+
 		ServerEndPoint serverEndPoint = ServerEndPoint.getServerEndPointInsctance();
 		Server serverInstance = Server.getServerInstance();
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(350, 30, 600, 700);
-		setMinimumSize(new Dimension(470,400));
+		setMinimumSize(new Dimension(470, 400));
 		setTitle(" Server");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		SpinnerModel value_1 = new SpinnerNumberModel(0, 0, 1.0, 0.1); 
-		SpinnerModel value_2 = new SpinnerNumberModel(0, 0, 1.0, 0.1); 
-		SpinnerModel value_3 = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
-		SpinnerModel value_4 = new SpinnerNumberModel(0, 0, 5.0, 0.5);
-		JSpinner spinner_upperface = new JSpinner(value_1);
-		JSpinner spinner_lowerface = new JSpinner(value_2);
-		JSpinner spinnertimevalue = new JSpinner(value_3);
- 		JSpinner spinner_metrics = new JSpinner(value_4);
-		
+
+		SpinnerModel value_upperface = new SpinnerNumberModel(0, 0, 1.0, 0.1);
+		SpinnerModel value_lowerface = new SpinnerNumberModel(0, 0, 1.0, 0.1);
+		SpinnerModel value_time = new SpinnerNumberModel(0.25, 0.01, 10, 0.25);
+		SpinnerModel value_metrics = new SpinnerNumberModel(0, 0, 1.0, 0.1);
+		JSpinner spinner_upperface = new JSpinner(value_upperface);
+		JSpinner spinner_lowerface = new JSpinner(value_lowerface);
+		JSpinner spinner_time = new JSpinner(value_time);
+		JSpinner spinner_metrics = new JSpinner(value_metrics);
+
 		Choice choicemetrics = new Choice();
 		Choice choiceupperface = new Choice();
 		Choice choicelowerface = new Choice();
 		Choice choiceeye = new Choice();
-		
+
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Auto Reset");
 		JCheckBox autoRepeatCheckBox = new JCheckBox("Auto Repeat", false);
 		JButton eyerdbtnActive = new JButton("Activate");
 		JButton buttonToggle = new JButton("Send");
-		 
-		//creates the panel for Interaction
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 40};
-		//gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		//gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 40 };
 		panel.setLayout(gbl_panel);
-		
 
 		Border interaction = new TitledBorder(null, "Interaction", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
 		Border interactionMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-
 		Border interactionBorder = BorderFactory.createCompoundBorder(interactionMargin, interaction);
 		panel.setBorder(interactionBorder);
-		
-		//creates spinner to genrerate numbers at required intervals.
-		JLabel lblEmoti = new JLabel("Time Interval (Sec): ");
-		GridBagConstraints gbc_lblEmoti = new GridBagConstraints();
-		gbc_lblEmoti.insets = new Insets(10, 10, 5, 5);
-		gbc_lblEmoti.gridx = 4;
-		gbc_lblEmoti.gridy = 2;
-		panel.add(lblEmoti, gbc_lblEmoti);
-		panel.add(spinnertimevalue);
-		
-		
-		GridBagConstraints gbc_spinner = new GridBagConstraints();
-		gbc_spinner.insets = new Insets(10, 12, 5, 5);
-		gbc_spinner.ipady = 6;
-		gbc_spinner.gridx = 5;
-		gbc_spinner.gridy = 2;
-		panel.add(spinnertimevalue, gbc_spinner);
-		
+
+		// creates spinner to generate numbers at required intervals.
+		JLabel timeLabel = new JLabel("Time Interval (Sec): ");
+		GridBagConstraints gbcTimeLabel = new GridBagConstraints();
+		gbcTimeLabel.insets = new Insets(10, 10, 5, 5);
+		gbcTimeLabel.gridx = 4;
+		gbcTimeLabel.gridy = 2;
+		panel.add(timeLabel, gbcTimeLabel);
+		panel.add(spinner_time);
+
+		GridBagConstraints gbc_timespinner = new GridBagConstraints();
+		gbc_timespinner.insets = new Insets(10, 12, 5, 5);
+		gbc_timespinner.ipady = 6;
+		gbc_timespinner.gridx = 5;
+		gbc_timespinner.gridy = 2;
+		panel.add(spinner_time, gbc_timespinner);
+
 		// Check box and Button
 
 		GridBagConstraints gbc_chckbxAutoReset = new GridBagConstraints();
@@ -123,218 +122,203 @@ public class ServerUI extends JFrame {
 		autoRepeatCheckBox.setEnabled(true);
 
 		autoRepeatCheckBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-           	 System.out.println(autoRepeatCheckBox.isSelected());
-
-            	    if(autoRepeatCheckBox.isSelected()){
-             	    	serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
-            	        buttonToggle.setText("Start");
-            	    }
-            	    else {
-            	    		serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
-            	        buttonToggle.setText("Send");
-            	    }
-            }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (autoRepeatCheckBox.isSelected()) {
+					serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
+					buttonToggle.setText("Start");
+				} else {
+					serverInstance.setAutoReset(autoRepeatCheckBox.isSelected());
+					buttonToggle.setText("Send");
+				}
+			}
 		});
-		
+
 		buttonToggle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				DetectionController detectionController = new DetectionController(spinner_upperface, 
-						spinner_lowerface, spinnertimevalue, spinner_metrics, 
-						choiceupperface, choicelowerface, choiceeye, choicemetrics, 
+				DetectionController detectionController = new DetectionController(spinner_upperface, spinner_lowerface,
+						spinner_time, spinner_metrics, choiceupperface, choicelowerface, choiceeye, choicemetrics,
 						chckbxNewCheckBox, eyerdbtnActive, autoRepeatCheckBox);
-				
-				if(buttonToggle.getText().equals("Start")) {
-					
-	            		ServerConfigurations.getServerDataInstance().setServerStatus(true);
-		            	buttonToggle.setText("Stop");
-		    	        	autoRepeatCheckBox.setEnabled(false);
-		    	        	serverEndPoint.startSendingValues(detectionController.emodel);			    	        	
-	            	}
-	            	else if (buttonToggle.getText().equals("Stop")) {
-	            		
-	            		ServerConfigurations.getServerDataInstance().setServerStatus(false);
-		            	buttonToggle.setText("Start");
-		    	        	autoRepeatCheckBox.setEnabled(true);
-		    	        	serverEndPoint.haltSendingValues();
-	            	}
-	            	else if(buttonToggle.getText().equals("Send")) {
-	            		
-	            		ServerConfigurations.getServerDataInstance().setServerStatus(true);
-	     	        	autoRepeatCheckBox.setEnabled(true);
-	     	        	System.out.println("Send button clicked");
-	     	        	serverEndPoint.startSendingValues(detectionController.emodel);
-		        }
+
+				if (buttonToggle.getText().equals("Start")) {
+
+					ServerConfigurations.getServerDataInstance().setServerStatus(true);
+					buttonToggle.setText("Stop");
+					autoRepeatCheckBox.setEnabled(false);
+					serverEndPoint.startSendingValues(detectionController.emodel);
+				} else if (buttonToggle.getText().equals("Stop")) {
+
+					ServerConfigurations.getServerDataInstance().setServerStatus(false);
+					buttonToggle.setText("Start");
+					autoRepeatCheckBox.setEnabled(true);
+					serverEndPoint.haltSendingValues();
+				} else if (buttonToggle.getText().equals("Send")) {
+
+					ServerConfigurations.getServerDataInstance().setServerStatus(true);
+					autoRepeatCheckBox.setEnabled(true);
+					serverEndPoint.startSendingValues(detectionController.emodel);
+				}
 			}
 		});
-		
-		GridBagConstraints gbc_tglbtnSend = new GridBagConstraints();
-		gbc_tglbtnSend.insets = new Insets(0, 5, 0, 5);
-		gbc_tglbtnSend.ipadx = 10;
-        gbc_tglbtnSend.ipady = 10;
-		gbc_tglbtnSend.gridx = 8;
-		gbc_tglbtnSend.gridy = 2;
-		panel.add(buttonToggle, gbc_tglbtnSend);
-		
-		//Detection Panel
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.CENTER);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
-		
+
+		GridBagConstraints gbcSendButton = new GridBagConstraints();
+		gbcSendButton.insets = new Insets(0, 5, 0, 5);
+		gbcSendButton.ipadx = 10;
+		gbcSendButton.ipady = 10;
+		gbcSendButton.gridx = 8;
+		gbcSendButton.gridy = 2;
+		panel.add(buttonToggle, gbcSendButton);
+
+		// Detection Panel
+		JPanel detectionPanel = new JPanel();
+		contentPane.add(detectionPanel, BorderLayout.CENTER);
+		GridBagLayout gblDetectionPanel = new GridBagLayout();
+		gblDetectionPanel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
+		gblDetectionPanel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gblDetectionPanel.columnWeights = new double[] { 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gblDetectionPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0,
+				Double.MIN_VALUE };
+		detectionPanel.setLayout(gblDetectionPanel);
+
 		Border detection = new TitledBorder(null, "Detection", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
 		Border detectionMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
 		Border detectionBorder = BorderFactory.createCompoundBorder(detectionMargin, detection);
-		panel_1.setBorder(detectionBorder);
-		
-		//Creating Upperface labels and options
-		JLabel lblUpperface = new JLabel("Upper Face ");
-		GridBagConstraints gbc_lblUpperface = new GridBagConstraints();
-		gbc_lblUpperface.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUpperface.gridx = 1;
-		gbc_lblUpperface.gridy = 2;
-		panel_1.add(lblUpperface, gbc_lblUpperface);
-		
-		choiceupperface.add("Raise Brow");
-		choiceupperface.add("Furrow Brow");				
-		
-		GridBagConstraints gbc_spinner_1 = new GridBagConstraints();
-		gbc_spinner_1.insets = new Insets(0, 0, 5, 5);
-		gbc_spinner_1.ipadx = 12;
-		gbc_spinner_1.ipady = 6;
-		gbc_spinner_1.gridx = 3;
-		gbc_spinner_1.gridy = 2;
-		panel_1.add(spinner_upperface, gbc_spinner_1);
-		
-		GridBagConstraints gbc_choice_2 = new GridBagConstraints();
-		//gbc_choice_2.gridwidth = 2;
-		gbc_choice_2.insets = new Insets(0, 0, 5, 5);
-		gbc_choice_2.gridx = 2;
-		gbc_choice_2.gridy = 2;
-		panel_1.add(choiceupperface, gbc_choice_2);
+		detectionPanel.setBorder(detectionBorder);
 
-		//Adding lowerFace and its options
-		JLabel lblLowerface = new JLabel("Lower Face");
-		GridBagConstraints gbc_lblLowerface = new GridBagConstraints();
-		gbc_lblLowerface.insets = new Insets(0, 0, 5, 5);
-		gbc_lblLowerface.gridx = 1;
-		gbc_lblLowerface.gridy = 6;
-		panel_1.add(lblLowerface, gbc_lblLowerface);
-		
+		// Creating Upperface labels and options
+		JLabel upperfaceLabel = new JLabel("Upper Face ");
+		GridBagConstraints gbcUpperfaceLabel = new GridBagConstraints();
+		gbcUpperfaceLabel.insets = new Insets(0, 0, 5, 5);
+		gbcUpperfaceLabel.gridx = 1;
+		gbcUpperfaceLabel.gridy = 2;
+		detectionPanel.add(upperfaceLabel, gbcUpperfaceLabel);
+
+		choiceupperface.add("Raise Brow");
+		choiceupperface.add("Furrow Brow");
+
+		GridBagConstraints gbcUpperfaceSpinner = new GridBagConstraints();
+		gbcUpperfaceSpinner.insets = new Insets(0, 0, 5, 5);
+		gbcUpperfaceSpinner.ipadx = 12;
+		gbcUpperfaceSpinner.ipady = 6;
+		gbcUpperfaceSpinner.gridx = 3;
+		gbcUpperfaceSpinner.gridy = 2;
+		detectionPanel.add(spinner_upperface, gbcUpperfaceSpinner);
+
+		GridBagConstraints gbcUpperfacechoice = new GridBagConstraints();
+		gbcUpperfacechoice.insets = new Insets(0, 0, 5, 5);
+		gbcUpperfacechoice.gridx = 2;
+		gbcUpperfacechoice.gridy = 2;
+		detectionPanel.add(choiceupperface, gbcUpperfacechoice);
+
+		// Adding lowerFace and its options
+		JLabel lowerfaceLabel = new JLabel("Lower Face");
+		GridBagConstraints gbcLowerfaceLabel = new GridBagConstraints();
+		gbcLowerfaceLabel.insets = new Insets(0, 0, 5, 5);
+		gbcLowerfaceLabel.gridx = 1;
+		gbcLowerfaceLabel.gridy = 6;
+		detectionPanel.add(lowerfaceLabel, gbcLowerfaceLabel);
+
 		choicelowerface.add("Smile");
 		choicelowerface.add("Clench");
 		choicelowerface.add("Smirk Left");
 		choicelowerface.add("Smirk Right");
 		choicelowerface.add("Laugh");
-	
-		GridBagConstraints gbc_spinner_2 = new GridBagConstraints();
-		gbc_spinner_2.insets = new Insets(0, 0, 5, 5);
-		gbc_spinner_2.ipadx = 12;
-		gbc_spinner_2.ipady = 6;
-		gbc_spinner_2.gridx = 3;
-		gbc_spinner_2.gridy = 6;
-		panel_1.add(spinner_lowerface, gbc_spinner_2);
-		GridBagConstraints gbc_choice_3 = new GridBagConstraints();
-		//gbc_choice_3.gridwidth = 2;
-		gbc_choice_3.insets = new Insets(0, 0, 5, 5);
-		gbc_choice_3.gridx = 2;
-		gbc_choice_3.gridy = 6;
-		panel_1.add(choicelowerface, gbc_choice_3);
-		
-		
-		//Creating Radio Active button
-		GridBagConstraints gbc_rdbtnActive = new GridBagConstraints();
-		gbc_rdbtnActive.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnActive.gridx = 3;
-		gbc_rdbtnActive.gridy = 9;
-		panel_1.add(eyerdbtnActive, gbc_rdbtnActive);
-		
-		//Creating options
+
+		GridBagConstraints gbcLowerface = new GridBagConstraints();
+		gbcLowerface.insets = new Insets(0, 0, 5, 5);
+		gbcLowerface.ipadx = 12;
+		gbcLowerface.ipady = 6;
+		gbcLowerface.gridx = 3;
+		gbcLowerface.gridy = 6;
+		detectionPanel.add(spinner_lowerface, gbcLowerface);
+
+		GridBagConstraints gbcLowerfaceChoice = new GridBagConstraints();
+		gbcLowerfaceChoice.insets = new Insets(0, 0, 5, 5);
+		gbcLowerfaceChoice.gridx = 2;
+		gbcLowerfaceChoice.gridy = 6;
+		detectionPanel.add(choicelowerface, gbcLowerfaceChoice);
+
+		// Creating Radio Active button
+		GridBagConstraints gbcEyeButton = new GridBagConstraints();
+		gbcEyeButton.insets = new Insets(0, 0, 5, 5);
+		gbcEyeButton.gridx = 3;
+		gbcEyeButton.gridy = 9;
+		detectionPanel.add(eyerdbtnActive, gbcEyeButton);
+
+		// Creating options
 		choiceeye.add("Blink");
 		choiceeye.add("Wink Left");
 		choiceeye.add("Wink Right");
 		choiceeye.add("Look Left");
 		choiceeye.add("Look Right");
-		
-		
-		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
-		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 5);
-		gbc_chckbxNewCheckBox.gridx = 4;
-		gbc_chckbxNewCheckBox.gridy = 9;
-		panel_1.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
-		
-		//Creating Eye Label
-		JLabel lblEye = new JLabel("Eye");
-		GridBagConstraints gbc_lblEye = new GridBagConstraints();
-		gbc_lblEye.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEye.gridx = 1;
-		gbc_lblEye.gridy = 9;
-		panel_1.add(lblEye, gbc_lblEye);
-		
-		GridBagConstraints gbc_choice_1 = new GridBagConstraints();
-		//gbc_choice_1.gridwidth = 3;
-		gbc_choice_1.insets = new Insets(0, 0, 5, 5);
-		gbc_choice_1.gridx = 2;
-		gbc_choice_1.gridy = 9;
-		panel_1.add(choiceeye, gbc_choice_1);
-		
-		//Performance Metrics added
- 		JLabel lblPerformanceMetrics = new JLabel("Performance Metrics");
- 		lblPerformanceMetrics.setForeground(Color.BLUE);
- 		GridBagConstraints gbc_lblPerformanceMetrics = new GridBagConstraints();
- 		gbc_lblPerformanceMetrics.insets = new Insets(0, 0, 5, 5);
- 		gbc_lblPerformanceMetrics.gridwidth = 2;
- 		gbc_lblPerformanceMetrics.gridx = 1;
- 		gbc_lblPerformanceMetrics.gridy = 10;
- 		panel_1.add(lblPerformanceMetrics, gbc_lblPerformanceMetrics);
- 		
- 		choicemetrics.add("Interest");
- 		choicemetrics.add("Engagement");
- 		choicemetrics.add("Stress");
- 		choicemetrics.add("Relaxation");
- 		choicemetrics.add("Excitement");
- 		choicemetrics.add("Focus");
 
- 		GridBagConstraints gbc_choice = new GridBagConstraints();
- 		gbc_choice.insets = new Insets(0, 0, 5, 5);
- 		gbc_choice.gridx = 3;
- 		gbc_choice.gridy = 10;
- 		panel_1.add(choicemetrics, gbc_choice);
- 
- 		
- 		GridBagConstraints gbc_spinner_3 = new GridBagConstraints();
- 		gbc_spinner_3.insets = new Insets(0, 0, 1, 1);
- 		gbc_spinner_3.ipadx = 12;
- 		gbc_spinner_3.ipady = 5;
- 		gbc_spinner_3.gridx = 4;
- 		gbc_spinner_3.gridy = 10;
- 		panel_1.add(spinner_metrics, gbc_spinner_3);
- 		
+		GridBagConstraints gbcMetricsCheckBox = new GridBagConstraints();
+		gbcMetricsCheckBox.insets = new Insets(0, 0, 5, 5);
+		gbcMetricsCheckBox.gridx = 4;
+		gbcMetricsCheckBox.gridy = 9;
+		detectionPanel.add(chckbxNewCheckBox, gbcMetricsCheckBox);
 
-		
-		//Console
-		
+		// Creating Eye Label
+		JLabel eyeLabel = new JLabel("Eye");
+		GridBagConstraints gbcEyeLabel = new GridBagConstraints();
+		gbcEyeLabel.insets = new Insets(0, 0, 5, 5);
+		gbcEyeLabel.gridx = 1;
+		gbcEyeLabel.gridy = 9;
+		detectionPanel.add(eyeLabel, gbcEyeLabel);
+
+		GridBagConstraints gbcEyeChoice = new GridBagConstraints();
+		gbcEyeChoice.insets = new Insets(0, 0, 5, 5);
+		gbcEyeChoice.gridx = 2;
+		gbcEyeChoice.gridy = 9;
+		detectionPanel.add(choiceeye, gbcEyeChoice);
+
+		// Performance Metrics added
+		JLabel performanceMetricsLabel = new JLabel("Performance Metrics");
+		performanceMetricsLabel.setForeground(Color.BLUE);
+		GridBagConstraints gbcPerformanceMetrics = new GridBagConstraints();
+		gbcPerformanceMetrics.insets = new Insets(0, 0, 5, 5);
+		gbcPerformanceMetrics.gridwidth = 2;
+		gbcPerformanceMetrics.gridx = 1;
+		gbcPerformanceMetrics.gridy = 10;
+		detectionPanel.add(performanceMetricsLabel, gbcPerformanceMetrics);
+
+		choicemetrics.add("Interest");
+		choicemetrics.add("Engagement");
+		choicemetrics.add("Stress");
+		choicemetrics.add("Relaxation");
+		choicemetrics.add("Excitement");
+		choicemetrics.add("Focus");
+
+		GridBagConstraints gbcMetrics = new GridBagConstraints();
+		gbcMetrics.insets = new Insets(0, 0, 5, 5);
+		gbcMetrics.gridx = 3;
+		gbcMetrics.gridy = 10;
+		detectionPanel.add(choicemetrics, gbcMetrics);
+
+		GridBagConstraints gbcMetricsSpinner = new GridBagConstraints();
+		gbcMetricsSpinner.insets = new Insets(0, 0, 1, 1);
+		gbcMetricsSpinner.ipadx = 12;
+		gbcMetricsSpinner.ipady = 5;
+		gbcMetricsSpinner.gridx = 4;
+		gbcMetricsSpinner.gridy = 10;
+		detectionPanel.add(spinner_metrics, gbcMetricsSpinner);
+
+		// Console
 		contentPane.add(ServerConsolePanel.getServerConsoleInstance(), BorderLayout.SOUTH);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_2.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100};
-		gbl_panel_2.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		ServerConsolePanel.getServerConsoleInstance().setLayout(gbl_panel_2);
-				
+		GridBagLayout gblConsolePanel = new GridBagLayout();
+		gblConsolePanel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
+		gblConsolePanel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100 };
+		gblConsolePanel.columnWeights = new double[] { 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gblConsolePanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0,
+				Double.MIN_VALUE };
+		ServerConsolePanel.getServerConsoleInstance().setLayout(gblConsolePanel);
+
 		Border console = new TitledBorder(null, "Console", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
 		Border consoleMargin = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-        
 		Border consoleBorder = BorderFactory.createCompoundBorder(consoleMargin, console);
 		ServerConsolePanel.getServerConsoleInstance().setBorder(consoleBorder);
-		
-	        // To Do add console log 
+
 	}
 }
