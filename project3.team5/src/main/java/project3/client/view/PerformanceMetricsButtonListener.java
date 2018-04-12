@@ -17,11 +17,17 @@ import project3.model.GraphsPropertiesModel;
 
 /*This class helps to attach various actions with onclicking the buttons in PerformanceColorPanel */
 public class PerformanceMetricsButtonListener {
+	@SuppressWarnings("unused")
 	private JButton IN;
+	@SuppressWarnings("unused")
 	private JButton EX;
+	@SuppressWarnings("unused")
 	private JButton FO;
+	@SuppressWarnings("unused")
 	private JButton EN;
+	@SuppressWarnings("unused")
 	private JButton ST;
+	@SuppressWarnings("unused")
 	private JButton RE;
 	private JColorChooser colorChooserIN = new JColorChooser(Color.RED);
 	private JColorChooser colorChooserEX = new JColorChooser(Color.BLUE);

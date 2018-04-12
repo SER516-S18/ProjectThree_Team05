@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import org.jfree.chart.ChartPanel;
@@ -104,7 +105,7 @@ public class PerformanceMetricsPanel extends JPanel implements Observer {
 		focusButton.setBorderPainted(false);
 		performanceColorPanel.add(focusButton, c);
 
-		displayLengthLabel = new JLabel("Display Length", displayLengthLabel.CENTER);
+		displayLengthLabel = new JLabel("Display Length", SwingConstants.CENTER);
 		displayLengthLabel.setBounds(100, 300, 110, 26);
 		performanceColorPanel.add(displayLengthLabel, c);
 
@@ -113,7 +114,7 @@ public class PerformanceMetricsPanel extends JPanel implements Observer {
 		xAxisLength.setColumns(10);
 		performanceColorPanel.add(xAxisLength, c);
 
-		secondsLabel = new JLabel("Seconds", secondsLabel.CENTER);
+		secondsLabel = new JLabel("Seconds", SwingConstants.CENTER);
 		secondsLabel.setBounds(276, 300, 61, 26);
 		performanceColorPanel.add(secondsLabel, c);
 

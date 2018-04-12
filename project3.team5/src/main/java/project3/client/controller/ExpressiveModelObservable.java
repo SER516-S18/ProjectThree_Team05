@@ -49,7 +49,7 @@ public class ExpressiveModelObservable extends Observable{
 	 * @param ExpressiveModel object
 	 */
 	public void AddToListExpressiveModel(ExpressiveModel expressiveModel) {
-		this.expressiveData.add(expressiveModel);
+		ExpressiveModelObservable.expressiveData.add(expressiveModel);
 		setChanged();
 		this.notifyObservers(expressiveModel);
 	}

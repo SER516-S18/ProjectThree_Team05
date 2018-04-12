@@ -1,7 +1,6 @@
-/**
- * @SER516 Project3_Team05
+/*
+ * SER516-Project3_Team05
  */
-
 package project3.client.controller;
 
 import project3.client.view.ClientUI;
@@ -21,13 +20,16 @@ public class Client implements Runnable {
 	private static Client clientObject = null;
 
 	public void startClient() throws Exception {
-        ClientManager client = ClientManager.createClient();
-        String message;
+		ClientManager client = ClientManager.createClient();
+		String message;
+
 		Scanner scanner = new Scanner(System.in);
+
 		ExpressiveModelObservable.getExpressiveModelObservableInstance()
 				.addObserver(ClientUI.setObserver().setAsObserver());
 		ExpressiveModelObservable.getExpressiveModelObservableInstance()
 				.addObserver(ClientUI.setObserver().setPerformanceAsObserver());
+
 		StringBuilder sb = new StringBuilder();
 		sb.append(Constants.CONNECTIONSTRING_START);
 		sb.append(ConnectionIpAndPortValues.getIpAddress());
@@ -36,30 +38,30 @@ public class Client implements Runnable {
 		sb.append(Constants.WS);
 		sb.append(Constants.SERVER);
 		SERVER = sb.toString();
+
 		Session session = client.connectToServer(ClientEndPoint.class, URI.create(SERVER));
 		do {
 			message = scanner.nextLine();
 		} while (!message.equalsIgnoreCase("quit"));
 	}
 
-	/*
-	 * gets an instance of the client and returns it
-	 */
+    /*
+     * gets an instance of the client and returns it
+     * */
 	public static Client getClientInstance() {
 		if (clientObject == null)
 			clientObject = new Client();
 		return clientObject;
 	}
-
-	/*
-	 * starts the client in a new thread
-	 */
+	
+    /*
+     * starts the client in a new thread
+     * */
 	@Override
 	public void run() {
 		try {
 			startClient();
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		}
 	}

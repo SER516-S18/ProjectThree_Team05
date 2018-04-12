@@ -246,7 +246,8 @@ public class FaceMetricsPanel extends JPanel implements Observer {
 			gifLabel.setPreferredSize(new Dimension(260, 260));
 			facePanel.add(gifLabel);
 
-			ArrayList<ExpressiveModel> expressiveData = ExpressiveModelObservable.getExpressiveModelObservableInstance()
+			ExpressiveModelObservable.getExpressiveModelObservableInstance();
+			ArrayList<ExpressiveModel> expressiveData = ExpressiveModelObservable
 					.GetExpressiveData();
 			panelBuffer.removeAll();
 
