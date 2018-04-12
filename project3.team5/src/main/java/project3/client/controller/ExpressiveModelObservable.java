@@ -1,47 +1,57 @@
+/**
+ * @SER516 Project3_Team05
+ */
+
 package project3.client.controller;
 
+import project3.model.ExpressiveModel;
 import java.util.ArrayList;
 import java.util.Observable;
-import org.glassfish.grizzly.http.server.ServerConfiguration;
 
-import project3.model.ExpressiveModel;
-import project3.model.ServerConfigurations;
-
+/*
+ * Implements observer pattern to notify observers of changed data 
+ */
 public class ExpressiveModelObservable extends Observable{
 
 	private static ArrayList<ExpressiveModel> expressiveData;
-	private ExpressiveModel expressiveModelValue;
 	private static ExpressiveModelObservable expressiveModelObservableInstance ;
 	
-	private ExpressiveModelObservable()
-	{
+	/*
+	 * Constructor for the ExpressiveModelObservable to initialize an ArrayList to store 
+	 * data being sent from server
+	 */
+	private ExpressiveModelObservable() {
 		expressiveData = new ArrayList<ExpressiveModel>();
 	}
 	
-	public static ExpressiveModelObservable getExpressiveModelObservableInstance()
-	{
+	/*
+	 * Creates a singleton instance of the ExpressiveModelObservable class and checks if it is null 
+	 * @return this.expressiveModelObservableInstance
+	 */
+	public static ExpressiveModelObservable getExpressiveModelObservableInstance() {
 		if(expressiveModelObservableInstance == null) {
 			expressiveModelObservableInstance = new ExpressiveModelObservable();
 		}
 		return expressiveModelObservableInstance;
 	}
 	
-	public static ArrayList<ExpressiveModel> GetExpressiveData(){
+	/*
+	 * Returns the data being sent from server in the form of an ArrayList 
+	 * of ExpressiveModel object
+	 * @return this.expressiveData
+	 */
+	public static ArrayList<ExpressiveModel> GetExpressiveData() {
 		return expressiveData;
 	}
 	
-	public void AddToListExpressiveModel(ExpressiveModel expressiveModel)
-	{
-		System.out.println("In add to list "+expressiveModel.getEngagement() + 
-				"/Set auto repeat "+ expressiveModel.isAutoRepeat() + 
-				" /Auto reset "+ expressiveModel.getEyeReset());
+	/*
+	 * Notifies all the observers of the change in data
+	 * @param ExpressiveModel object
+	 */
+	public void AddToListExpressiveModel(ExpressiveModel expressiveModel) {
 		this.expressiveData.add(expressiveModel);
-//		if(serverConfiguations.getServerDataInstance().isAutoReset()) {
-//			expressiveModel.setAutoReset(true);
-//		}
 		setChanged();
 		this.notifyObservers(expressiveModel);
 	}
-	
-	
+		
 }

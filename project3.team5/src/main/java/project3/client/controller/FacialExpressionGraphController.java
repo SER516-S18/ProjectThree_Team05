@@ -1,11 +1,13 @@
+/**
+ * @SER516 Project3_Team05
+ */
+
 package project3.client.controller;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.util.ArrayList;
-
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
@@ -16,28 +18,33 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.ApplicationFrame;
 
-import project3.model.ExpressiveModel;
-
+/*
+ * Plots the graph for facial expression with the data it receives
+ */
 public class FacialExpressionGraphController extends ApplicationFrame{
-
 	private static final long serialVersionUID = 1L;
 	private XYSeries plotValues;
-	double x1 = 0.0;
-	double x2 = 30.0;
-	double y = 3.0;
 	private XYPlot plot;
+	
+	/*
+	 * Constructor for FacialExpressionGraphController that calls its super class constructor
+	 * @param Title for the graph
+	 */
 	public FacialExpressionGraphController(String title) {
 		super(title);
 	}
 	
+	/*
+	 * Generates a JFreeChart for facial expression integer data
+	 * @param ArrayList of integer values
+	 * @return this.xyLineChart
+	 */
 	public JFreeChart PlotFacialExpressionIntegerGraph(ArrayList<Integer> receivedDataset) {
-		
 		JFreeChart xyLineChart = ChartFactory.createXYLineChart("", "", "",
 				createIntegerDataset(receivedDataset),
 		PlotOrientation.VERTICAL, true, false, false);
 		xyLineChart.removeLegend();
 		
-				
 		plot = xyLineChart.getXYPlot();
 		
 		NumberAxis xAxis = (NumberAxis) plot.getDomainAxis();
@@ -53,11 +60,14 @@ public class FacialExpressionGraphController extends ApplicationFrame{
 		renderer.setSeriesStroke(0, new BasicStroke(1.0f));
 		plot.setRenderer(renderer);
 		plot.setBackgroundPaint(Color.WHITE);
-		//System.out.println("After getting double plot");
 		return xyLineChart;
-		
 	}
 
+	/*
+	 * Generates an XYSeries and adds it to a series collection
+	 * @param ArrayList of integer values
+	 * @return this.dataset
+	 */
 	private XYDataset createIntegerDataset(ArrayList<Integer> receivedDataset) {
 		final XYSeriesCollection dataset = new XYSeriesCollection( );          
 		plotValues = new XYSeries("");
@@ -65,19 +75,20 @@ public class FacialExpressionGraphController extends ApplicationFrame{
 			plotValues.add(receivedDataset.get(i), receivedDataset.get(i) );
 		}
 		dataset.addSeries(plotValues);
-		//System.out.println("In int create dataset");
 		return dataset;
 	}
 	
-public JFreeChart PlotFacialExpressionDoubleGraph(ArrayList<Double> receivedDataset) {
+	/*
+	 * Generates a JFreeChart for facial expression double data
+	 * @param ArrayList of double values
+	 * @return this.xyLineChart
+	 */
+	public JFreeChart PlotFacialExpressionDoubleGraph(ArrayList<Double> receivedDataset) {
 		
 		JFreeChart xyLineChart = ChartFactory.createXYLineChart("", "", "",
 				createDoubleDataset(receivedDataset),
 		PlotOrientation.VERTICAL, true, false, false);
 		xyLineChart.removeLegend();
-		
-		ChartPanel chartPanel = new ChartPanel(xyLineChart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(641, 483));
 		
 		plot = xyLineChart.getXYPlot();
 		
@@ -94,22 +105,23 @@ public JFreeChart PlotFacialExpressionDoubleGraph(ArrayList<Double> receivedData
 		renderer.setSeriesStroke(0, new BasicStroke(1.0f));
 		plot.setRenderer(renderer);
 		plot.setBackgroundPaint(Color.WHITE);
-		setContentPane(chartPanel);
-		//System.out.println("After getting double plot");
 		return xyLineChart;
 		
 	}
 
+	/*
+	 * Generates an XYSeries and adds it to a series collection
+	 * @param ArrayList of double values
+	 * @return this.dataset
+	 */
 	private XYDataset createDoubleDataset(ArrayList<Double> receivedDataset) {
 		final XYSeriesCollection dataset = new XYSeriesCollection( );          
 		plotValues = new XYSeries("");
 		for(int i = 0; i < receivedDataset.size(); i++) {
-			//System.out.println("Size: "+ receivedDataset.size());
 			plotValues.add(receivedDataset.get(i), receivedDataset.get(i) );
 		}
 		dataset.addSeries(plotValues);
-		//System.out.println("In int create dataset");
 		return dataset;
-}
+	}
 
 }
